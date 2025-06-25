@@ -1,0 +1,25 @@
+.top-header {
+  background-color: $dark-bg;
+  padding: 3.125rem 0;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__logo {
+    flex: 0 0 auto;
+    margin-right: 2.5rem;
+  }
+  &__form {
+    margin-bottom: 1.5625rem;
+  }
+  &__actions {
+    margin-right: 2.5rem;
+    flex: 1 1 auto;
+    min-width: 250px;
+  }
+}
+.users-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

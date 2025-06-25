@@ -1,0 +1,26 @@
+.filter {
+    font-family: 'Scada', sans-serif;
+    font-size: 1.125rem;
+    &__settings {
+        padding: 1.5625rem 1.125rem;
+    }
+    // &__price-block, &__technics-block, &__brands-block, &__size-block, &__mileage-block, &__material-block, &__type-block {
+    //     margin-bottom: 30px;
+    // }
+    &__item {
+        margin-bottom: 30px;
+    }
+    &__btn {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.125rem;
+    }
+    &__reset {
+        text-align: center;
+    }
+    &__reset-btn {
+        font-weight: 700;
+        text-decoration: underline;
+        color: $default;
+    }
+}

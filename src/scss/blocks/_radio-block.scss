@@ -1,0 +1,8 @@
+.radio-block {
+    &__title {
+        margin-bottom: 1.125rem;
+    }
+    &__item + &__item {
+        margin-top: 0.625rem;
+    }    
+}

@@ -1,0 +1,26 @@
+.size-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Scada', sans-serif;
+    &__list {
+        display: flex;
+        align-items: center;
+    }
+    &__item {
+        margin-right: 0.625rem;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    &__btn {
+        color: $default;
+        border: 1px solid $default;
+        border-radius: 0.1875rem;
+        padding: 0.3125rem 0.625rem;
+        &.active {
+            background-color: $red;
+            border-color: $red;
+        }
+    }
+}

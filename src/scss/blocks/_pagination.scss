@@ -1,0 +1,46 @@
+.pagination {
+    padding: 1.5625rem 0;
+    &__list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    &__item {
+        margin: 0 0.3125rem 0.3125rem 0;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    &__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 2.125rem;
+        height: 2.125rem;
+        border: 0.0625rem solid #FFFFFF;
+        padding: 0.3125rem;
+        border-radius: 0.1875rem;
+        &--active {
+            background-color: $red;
+            border-color: $red;
+        }
+        &:hover {
+            background-color: $red;
+            border-color: $red;
+        }
+    }
+    &__link-icon--disabled {
+        path, rect {
+            stroke: #b1b9b9;
+        }
+    }
+    &__link--no-border {
+        border: none;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+}
+

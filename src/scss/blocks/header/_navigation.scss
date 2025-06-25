@@ -1,0 +1,38 @@
+.navigation {
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0 -0.625rem;
+    }
+    &__item {
+        position: relative;
+        margin-right: 0.9375rem;
+        &:last-child {
+            margin-right: 0;
+        }
+        &:hover {
+            .dropdown {
+                visibility: inherit;
+                opacity: 1;
+            }
+        }
+    }
+    &__link {
+        padding: 0.625rem;
+        &:hover,
+        &:active,
+        &:focus {
+            color: $red-hover;
+        }
+        &--active {
+            span {
+                border-bottom: 0.125rem solid $red; 
+            } 
+        } 
+    }
+}
+
+
+

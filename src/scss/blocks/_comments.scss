@@ -1,0 +1,17 @@
+.comments {
+    padding: 1.5625rem 0;
+    &__top {
+        margin-bottom: 2.8125rem;
+    }
+    &__title {
+        @extend %title-font;
+        font-size: 1.125rem;
+        margin-bottom: 1.5625rem;
+    }
+    &__item {
+        margin-bottom: 0.625rem;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

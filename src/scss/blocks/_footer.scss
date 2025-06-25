@@ -1,0 +1,28 @@
+.footer {
+    font-family: 'Scada', sans-serif;
+    font-size: 1.125rem;
+    &__contacts {
+        margin-right: 3.125rem;
+    }
+    &__content {
+        background-color: $dark-bg;
+        padding: 5rem 0;
+    }
+    &__social-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3.125rem;
+    }
+   
+    &__info-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    &__copyright {
+        background-color: $grey-bg;
+        padding: 2.5rem 0;
+        text-align: center;
+    }
+}

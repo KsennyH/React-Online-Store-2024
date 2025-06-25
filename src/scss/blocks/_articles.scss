@@ -1,0 +1,12 @@
+.articles {
+    &__wrapper {
+        display: flex;
+    }
+    &__news {
+        margin-right: 1.875rem;
+    }
+    &__aside {
+        flex: 0 0 30%;
+        min-width: 250px;
+    }
+}

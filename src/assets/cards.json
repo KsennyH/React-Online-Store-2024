@@ -1,0 +1,75 @@
+[
+    {
+        "id": 1,
+        "img": "https://motorrika.ru/image/cache/catalog/!!!-ALEX/MOTO/KAWASAKI%2021/MOTO/Ninja_1000SX/Ninja_1000SX_grey/01-1600x1200.jpg",
+        "title": "KAWASAKI NINJA",
+        "article": "17931",
+        "price": "250000",
+        "colors": ["Черный"]
+    },
+    {
+        "id": 2,
+        "img": "https://hotmot.ru/upload/resize_cache/iblock/ae3/500_500_140cd750bba9870f18aada2478b24840a/ae32e9c98d04cbfa7ce902bccf343f1b.jpg",
+        "title": "BMW S 1000 RR",
+        "article": "17932",
+        "price": "350000",
+        "colors": ["Черный", "Красный"]
+    },
+    {
+        "id": 3,
+        "img": "https://motaxmoto.ru/_sh/2/210.jpg",
+        "title": "IRBIS TTR 110",
+        "article": "17933",
+        "price": "75000",
+        "colors": ["Зеленый", "Белый"]
+    },
+    {
+        "id": 4,
+        "img": "https://www.velocityk.ru/images-resize/w852h490/B0Z4KA015HRH1.jpg?v=1692626609",
+        "title": "BSE Z4",
+        "article": "17934",
+        "price": "85000",
+        "colors": ["Красный", "Синий"]
+    },
+    {
+        "id": 5,
+        "img": "https://rockot-motors.ru/image/trumb/600x400/00000438240.jpg",
+        "title": "ROCKOT SPECTRUM 150",
+        "article": "17935",
+        "price": "95000",
+        "colors": ["Красный", "Синий", "Белый"]
+    },
+    {
+        "id": 6,
+        "img": "https://catalog.detmir.st/media/TFOylVhZ8_KEBylXHhdHVx1AZw6z1jZFlNBjMHepwvY=",
+        "title": "Suzuki GSX R1000R",
+        "article": "17936",
+        "price": "600000",
+        "colors": ["Черный", "Синий"]
+    },
+    {
+        "id": 7,
+        "img": "https://azimut59.ru/images/DETSKIE_KVADRI/Z6_2.0_Neon_Track-min.png",
+        "title": "BSE Z6 250e",
+        "article": "17937",
+        "price": "65000",
+        "colors": ["Зеленый", "Черный"]
+    },
+    {
+        "id": 8,
+        "img": "https://motorrika.ru/image/cache/catalog/Motorcycles/1_kawasaki/mototsikl-kawasaki-ninja-h2-sx-black-metallic-2024-01-540x400.jpg",
+        "title": "KAWASAKI Ninja H2 SX",
+        "article": "17938",
+        "price": "705000",
+        "colors": ["Черный", "Красный"]
+    },
+    {
+        "id": 9,
+        "img": "https://hotmot.ru/upload/resize_cache/iblock/ada/1200_1200_140cd750bba9870f18aada2478b24840a/ada5d951561997c85e7581bde40daf31.jpg",
+        "title": "HONDA CBR 650R",
+        "article": "17939",
+        "price": "259000",
+        "colors": ["Красный", "Желтый"]
+    }
+
+]

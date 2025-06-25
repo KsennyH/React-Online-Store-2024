@@ -1,0 +1,12 @@
+.blog-page {
+    &__wrapper {
+        display: flex;
+    }
+    &__content {
+        margin-right: 1.875rem;
+    }
+    &__aside {
+        flex: 0 0 30%;
+        min-width: 250px;
+    }
+}

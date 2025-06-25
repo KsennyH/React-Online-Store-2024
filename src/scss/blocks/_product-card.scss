@@ -1,0 +1,105 @@
+.product-card {
+  font-family: 'Scada', sans-serif;
+  font-size: 1rem;
+  position: relative;
+  background-color: #fff;
+  border-radius: 1.125rem;
+  padding: 0.625rem;
+  color: #000;
+  box-shadow: none;
+  transition: box-shadow 0.7s ease-out;
+  &:hover {
+    box-shadow: -0.125rem 0.125rem 1.1875rem 0.0625rem #ffcbcb;
+    .product-card__overlay {
+      opacity: 1;
+    }
+  }
+  &__img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.625rem;
+    img {
+      height: 9.375rem;
+      object-fit: contain;
+    }
+  }
+  &__info {
+    display: grid;
+    row-gap: 10px;
+    grid-template-rows: 0.5fr 1fr;
+  }
+  &__title {
+    text-align: center;
+  }
+  &__colors {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 5px;
+    padding-bottom: 15px;
+  }
+  &__color {
+    color: #888;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    &_active {
+      border: 1px solid green;
+      border-radius: 10px;
+      color: #000;
+    }
+  }
+  &__price {
+    margin-bottom: 5px;
+  }
+  &__article {
+    display: block;
+    font-size: 0.875rem;
+    color: $body-bg;
+  }
+  &__information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.9375rem;
+  }
+  &__text {
+    font-size: 0.875rem;
+    color: $body-bg;
+  }
+  &__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #fae7e6, $alpha: 0.8);
+    border-radius: 1.125rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+  &__overlay-link {
+    margin-bottom: 0.9375rem;
+  }
+  &__btn {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+  &__count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,41 @@
+.footer-nav {
+  display: flex;
+  &__list {
+    margin-right: 2.81rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__label {
+    font-weight: 700;
+    color: $red-hover;
+    margin-bottom: 0.625rem;
+    position: relative;
+    padding-right: 1.56rem;
+    display: inline-block;
+    &::before {
+      content: '';
+      position: absolute;
+      // background-image: url(../img/dropdown-icon.svg);
+      background-repeat: no-repeat;
+      width: 0.9375rem;
+      height: 0.75rem;
+      right: 0;
+      top: 4px;
+      display: none;
+    }
+  }
+  &__item + &__item {
+    margin-top: 0.625rem;
+  }
+  &__link {
+    transition: all 0.2s ease;
+    &:hover {
+      color: $red-hover;
+      text-decoration: underline;
+    }
+  }
+  &__spoiler {
+    display: block;
+  }
+}

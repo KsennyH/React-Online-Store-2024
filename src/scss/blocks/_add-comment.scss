@@ -1,0 +1,52 @@
+.add-comment {
+    &__title {
+        @extend %title-font;
+        font-size: 1.125rem;
+        margin-bottom: 1.5625rem;
+    }
+    &__inputs {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 1.25rem;
+        column-gap: 2%;
+        row-gap: 15px;
+    }
+    &__label {
+        flex: 1 0 49%;
+    }
+    &__input {
+        border: 1px solid #FFFFFF;
+        background-color: transparent;
+        min-height: 2rem;
+        width: 100%;
+        min-width: 200px;
+        border-radius: 1.875rem;
+        padding: 0.3125rem 1.5625rem;
+        color: $default;
+        &::placeholder {
+            font-family: 'Scada', sans-serif;
+            color: $default;
+        }
+        &:hover,
+        &:active,
+        &:focus {
+            box-shadow: -0.0625rem 0px 0.5rem 0.0625rem #ffcbcb;
+        }
+    }
+    &__textarea {
+        width: 100%;
+        min-height: 100px;
+        padding: 0.3125rem 25px;
+        border-radius: 1.875rem;
+        resize: none;
+        margin-bottom: 1.25rem;
+        color: $dark-bg;
+        &:hover,
+        &:active,
+        &:focus {
+            box-shadow: -0.0625rem 0px 0.5rem 0.0625rem #ffcbcb;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+.card-title {
+    @extend %title-font;
+    font-size: 1rem;
+    text-decoration: underline;
+}

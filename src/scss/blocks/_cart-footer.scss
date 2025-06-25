@@ -1,0 +1,19 @@
+.cart-footer {
+  display: flex;
+  padding: 20px;
+  &__total {
+    display: flex;
+    justify-content: end;
+    margin-left: auto;
+    span:first-child {
+      margin-right: 15px;
+    }
+    span[data-total] {
+      margin-right: 5px;
+    }
+  }
+  &__clear {
+    color: inherit;
+    text-decoration: underline;
+  }
+}

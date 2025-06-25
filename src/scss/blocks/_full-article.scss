@@ -1,0 +1,44 @@
+.full-article {
+    text-align: justify;
+    &__image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        img {
+            max-height: 300px;
+            object-fit: contain;
+        }
+    }
+    &__content {
+        background-color: $dark-bg;
+        padding: 1.875rem 1.5625rem;
+        border-radius: 0 0 1.25rem 1.25rem;
+        line-height: 1.8;
+    }
+    &__title {
+        margin-bottom: 0.9375rem;
+    }
+    &__preview {
+        margin-bottom: 1.5625rem;
+    }
+    &__text {
+        font-weight: 300;
+        margin-bottom: 1.25rem;
+        p + p {
+            margin-top: 0.9375rem;
+        }
+    }
+    &__info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Scada', sans-serif;
+        font-size: 0.875rem;
+        margin-right: 0 -5px;
+        span {
+            padding: 5px;
+        }
+    }
+}

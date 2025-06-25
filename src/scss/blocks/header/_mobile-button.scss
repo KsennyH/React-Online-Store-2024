@@ -1,0 +1,47 @@
+.mobile-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &__icon {
+        display: block;
+        width: 1.25rem;
+        height: 2px;
+        border-radius: 0.1875rem;
+        background-color: $default;
+        position: relative;
+        &::after, &::before {
+            position: absolute;
+            content: "";
+            width: 1.875rem;
+            height: 2px;
+            border-radius: 0.1875rem;
+            background-color: $default;
+            transition: transform 0.15s ease-in, top 0.15s ease-in;
+        }
+        &::before {
+            left: 0;
+            top: -0.625rem;
+        }
+        &::after {
+            left: 0;
+            top: 0.625rem;
+        }
+        &.active {
+            background-color: transparent;
+    
+            &::before {
+                transform: rotate(45deg);
+                top: 0;
+                transition: top 0.15s linear, transform 0.15s ease-in 0.15;
+            }
+    
+            &::after {
+                transform: rotate(-45deg);
+                top: 0;
+                transition: top 0.15s linear, transform 0.15s ease-in 0.15;
+            }
+        }
+    }
+}

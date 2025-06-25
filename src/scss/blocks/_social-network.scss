@@ -1,0 +1,12 @@
+.social-network {
+    &__list {
+        display: flex;
+    }
+    &__item:not(:last-child) {
+        margin-right: 0.625rem;
+    }
+    &__icon {
+        width: 42px;
+        height: 42px;
+    }
+}

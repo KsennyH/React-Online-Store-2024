@@ -1,0 +1,13 @@
+.motomir {
+    padding: 2.1875rem 0;
+    * + * {
+        margin-top: 0.9375rem;
+    }
+    &__text {
+        font-weight: 300;
+        line-height: 1.8;
+        p + p {
+            margin-top: 0.625rem;
+        }
+    }
+} 

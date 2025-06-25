@@ -1,0 +1,64 @@
+.toggle-block {
+    &__title {
+        margin-bottom: 1.125rem;
+    }
+    &__inputs {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 1.5625rem;
+    }
+    &__label {
+        margin-bottom: 0.3125rem;
+    }
+    &__label:first-child {
+        margin-right: 20px;
+    }
+    &__input {
+        width: 6.25rem;
+        height: 1.875rem;
+        border-radius: 0.125rem;
+        padding: 0.3125rem;
+    }
+}
+
+.noUi-target {
+    background: #FFFFFF;
+    border-radius: 2px;
+    border: none;
+    box-shadow: none;
+    height: 3px;
+}
+
+.noUi-connect {
+    background: #F30E0E;
+    border-radius: 2px;
+    height: 3px;
+}
+
+.noUi-handle {
+    background: #FFFFFF;
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 12px;
+    height: 12px;
+}
+
+.noUi-handle::before,
+.noUi-handle::after {
+    display: none;
+}
+
+.noUi-horizontal .noUi-handle-lower {
+    right: -12px;
+}
+
+.noUi-horizontal .noUi-handle-upper {
+    right: 0;
+}
+

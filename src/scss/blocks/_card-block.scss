@@ -1,0 +1,20 @@
+.card-block {
+    font-family: 'Scada', sans-serif;
+    margin-top: 1.5rem;
+    &__feature {
+        margin-bottom: 20px;
+    }
+    &__info {
+        margin-bottom: 3rem;
+    }
+    &__text {
+        font-family: 'Roboto Slab', serif;
+        font-weight: 300;
+        line-height: 1.8;
+        margin-bottom: 30px;
+        text-align: justify;
+        p + p {
+            margin-top: 0.625rem;
+        }
+    }
+}

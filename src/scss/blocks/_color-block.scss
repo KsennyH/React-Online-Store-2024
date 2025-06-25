@@ -1,0 +1,19 @@
+.color-block {
+    display: flex;
+    font-family: 'Scada', sans-serif;
+    &__label {
+        display: block;
+        margin-right: 2.5rem;
+    }
+    &__list {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    &__item {
+        margin-right: 0.625rem;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

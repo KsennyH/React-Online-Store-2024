@@ -1,0 +1,30 @@
+.checkbox {
+  &__input {
+    position: absolute;
+    width: 0.0625rem;
+    height: 0.0625rem;
+    z-index: -1;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    &:checked + .custom-checkbox::before {
+      content: '';
+      position: absolute;
+      // background-image: url(../img/check.svg);
+      background-repeat: no-repeat;
+      width: 0.4375rem;
+      height: 0.4375rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &:focus + .custom-checkbox {
+      box-shadow: 0 0 0 0.125rem $dark-bg;
+    }
+  }
+  &__custom {
+    margin-top: 1px;
+  }
+  &__name {
+    margin-left: 1.875rem;
+  }
+}

@@ -1,0 +1,18 @@
+.cart-header {
+    background-color: $grey-bg;
+    font-family: 'Scada', sans-serif;
+    font-size: 1.125rem;
+    display: grid;
+    grid-template-columns: 5fr 3fr 2fr;
+    border-radius: 10px;
+    padding: 20px;
+    &__name {
+        justify-self: center;
+    }
+    &__count {
+        justify-self: start;
+    }
+    &__price {
+        justify-self: end;
+    }
+}

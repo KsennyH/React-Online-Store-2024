@@ -1,0 +1,24 @@
+.article-pagination {
+    padding: 15px;
+    font-family: 'Scada', sans-serif;
+    font-size: 1rem;
+    &__list {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+    }
+    &__link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: 30px;
+        height: 30px;
+    }
+    &__icon {
+        &--disabled path{
+            stroke: #b1b9b9;
+        }
+    }
+}

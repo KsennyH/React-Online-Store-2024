@@ -1,0 +1,16 @@
+.sorting {
+    font-family: 'Scada', sans-serif;
+    font-size: 1.125rem;
+    padding: 0.9375rem 0;
+    &__list {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    &__item {
+        margin: 0 0.9375rem 0.3125rem 0;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

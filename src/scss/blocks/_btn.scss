@@ -1,0 +1,41 @@
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px 20px;
+  min-height: 2rem;
+  min-width: 200px;
+  border-radius: 1.875rem;
+  color: $default;
+  background-color: $red;
+  font-size: 1rem;
+  font-family: 'Scada', sans-serif;
+  transition: background-color 0.5s ease;
+  & > * {
+    pointer-events: none;
+  }
+  &__icon {
+    margin-right: 0.625rem;
+  }
+  &--price {
+    display: flex;
+    min-height: 1.875rem;
+    min-width: 160px;
+  }
+  &--link {
+    display: flex;
+    min-width: 160px;
+  }
+  &--busket {
+    display: flex;
+    min-width: 160px;
+    width: 100%;
+    background-color: #0b9d1a;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $dark-bg;
+  }
+}

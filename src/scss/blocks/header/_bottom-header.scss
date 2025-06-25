@@ -1,0 +1,8 @@
+.bottom-header {
+    background-color: $grey-bg;
+    padding: 0.625rem 0;
+    &__mobile-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}

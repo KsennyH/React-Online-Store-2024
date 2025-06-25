@@ -1,0 +1,38 @@
+.dropdown {
+    font-family: 'Scada', sans-serif;
+    font-size: 1.125rem;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    z-index: 3;
+    top: 100%;
+    left: -0.625rem;
+    padding-top: 0.625rem;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    &__menu {
+        background-color: $dark-bg;
+        border-radius: 0px 0px 0.1875rem 0.1875rem;
+        min-width: 12.5rem;
+    }
+    &__list {
+        padding: 0.3125rem;
+    }
+    &__item {
+        width: 100%;
+        &:hover {
+            background-color: $grey-bg;
+            color: $red-hover;
+        }
+    }
+    &__link {
+        padding: 0.5rem 0.9375rem;
+    }
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+
+
