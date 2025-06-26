@@ -37,12 +37,12 @@ function Products() {
     }
 
     const getProducts = async () => {
-        const categorySort = `&categories=${categoryId}`;
-        const sortCr = `&sortBy=${sortType.sort}`;
-        const searchProduct = `&search=${searchValue}`;
+        const categorySort = categoryId ? `&categories=${categoryId}` : '';
+        const sortCr = sortType.sort ? `&sortBy=${sortType.sort}` : '';
+        const searchProduct = searchValue ? `&search=${searchValue}` : '';
         const curPage = `&page=${currentPage}`;
-        const getCardsWithSearch = `https://665b3a2e003609eda4604130.mockapi.io/products?l=6${curPage}${searchProduct ? searchProduct : ''}`;
-        const getCards = `https://665b3a2e003609eda4604130.mockapi.io/products?l=6${curPage}${categorySort ? categorySort : ''}${sortCr ? sortCr : ''}`;
+        const getCardsWithSearch = `https://665b3a2e003609eda4604130.mockapi.io/products?l=6${curPage}${searchProduct}`;
+        const getCards = `https://665b3a2e003609eda4604130.mockapi.io/products?l=6${curPage}${categorySort}${sortCr}`;
     
         try {
             dispatch(
@@ -75,14 +75,15 @@ function Products() {
 
             const sortSortList = sort.find((obj) => obj.sort === params.sortType);
             if(sortSortList) {
-                params.sortSortList = sortSortList;
-                let sortType = params.sortSortList;
+                // params.sortSortList = sortSortList;
+                // let sortType = params.sortSortList;
+                dispatch(setSortType(sortSortList));
                 
             }
 
-            let categoryId = Number(params.categoryId);
-            let currentPage = Number(params.currentPage);
-            let value = searchValue;
+            let categoryId = Number(params.categoryId) || 0;
+            let currentPage = Number(params.currentPage) || 1;
+            let value = searchValue || '';
 
             console.log(params.categoryId);
             console.log(params);
@@ -91,7 +92,7 @@ function Products() {
             dispatch(setFilters({
                 categoryId,
                 currentPage,
-                sortType,
+                sortType: sortSortList || sort[0],
                 value
             }));
 
@@ -118,9 +119,7 @@ function Products() {
                 <div className="products-block">
                     <ul className="products-block__list"> 
                         {products.map((obj) => (
-                            <Link to={`/products/${obj.id}`} key={obj.id}>
-                                <Card {...obj}/>
-                            </Link>
+                            <Card {...obj}/>
                         ))}
                     </ul>
                 </div>
