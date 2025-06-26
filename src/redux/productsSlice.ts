@@ -24,12 +24,14 @@ enum Status {
 
 interface ProductsSliceState {
     items: Product[];
+    totalProducts: number;
     status: Status;
     error: string | null;
 }
 
 const initialState: ProductsSliceState = {
     items: [],
+    totalProducts: 0,
     status: Status.LOADING,
     error: null,
 }
@@ -66,6 +68,7 @@ export const productsSlice = createSlice({
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.items = action.payload;
+                state.totalProducts = action.payload.length;
                 state.status = Status.SUCCESS;
                 state.error = null; 
             })

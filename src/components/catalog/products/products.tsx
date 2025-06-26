@@ -4,21 +4,18 @@ import Sort, { sort } from '../sort/sort';
 import Card from './product-card/card';
 import Pagination from '../pagination/pagination';
 import { useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import React from 'react';
-import { SearchContext } from '../../../App';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { setCategoryId, setSortType, setCurrentPage, setFilters, SortItem } from '../../../redux/filterSlice';
 import { fetchProducts } from '../../../redux/productsSlice';
 import { RootState, useAppDispatch } from '../../../redux/store';
 
 function Products() {
-    // const { searchValue } = React.useContext(SearchContext);
     const categoryId = useSelector((state: RootState) => state.filter.categoryId);  //порядковый номер для сортировки по категориям (мопеды и так далее)
     const sortType = useSelector((state: RootState) => state.filter.sortType);      //объект для типа сортировки (по цене и так далее)
     const currentPage = useSelector((state: RootState) => state.filter.currentPage);//порядковый номер страницы для пагинации
-    const searchValue = useSelector((state: RootState) => state.filter.value);
-    const products = useSelector((state: RootState) => state.products.items);       //массив с карточками товаров
+    const searchValue = useSelector((state: RootState) => state.filter.value);    
+    const {items, totalProducts} = useSelector((state: RootState) => state.products);   //массив с карточками товаров и количество товаров
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const isSearch = useRef(false);
@@ -32,8 +29,8 @@ function Products() {
         dispatch(setSortType(obj));
     }
 
-    const onChangeCurrentPage = (id:number) => {
-        dispatch(setCurrentPage(id));
+    const onChangeCurrentPage = (page:number) => {
+        dispatch(setCurrentPage(page));
     }
 
     const getProducts = async () => {
@@ -41,8 +38,8 @@ function Products() {
         const sortCr = sortType.sort ? `&sortBy=${sortType.sort}` : '';
         const searchProduct = searchValue ? `&search=${searchValue}` : '';
         const curPage = `&page=${currentPage}`;
-        const getCardsWithSearch = `https://665b3a2e003609eda4604130.mockapi.io/products?l=6${curPage}${searchProduct}`;
-        const getCards = `https://665b3a2e003609eda4604130.mockapi.io/products?l=6${curPage}${categorySort}${sortCr}`;
+        const getCardsWithSearch = `https://665b3a2e003609eda4604130.mockapi.io/products?${curPage}${searchProduct}`;
+        const getCards = `https://665b3a2e003609eda4604130.mockapi.io/products?${curPage}${categorySort}${sortCr}`;
     
         try {
             dispatch(
@@ -52,7 +49,7 @@ function Products() {
                 searchValue
             }));
         } catch {
-            console.log('error');
+            console.error('error');
         }
     }
 
@@ -75,19 +72,12 @@ function Products() {
 
             const sortSortList = sort.find((obj) => obj.sort === params.sortType);
             if(sortSortList) {
-                // params.sortSortList = sortSortList;
-                // let sortType = params.sortSortList;
                 dispatch(setSortType(sortSortList));
-                
             }
 
             let categoryId = Number(params.categoryId) || 0;
             let currentPage = Number(params.currentPage) || 1;
-            let value = searchValue || '';
-
-            console.log(params.categoryId);
-            console.log(params);
-            
+            let value = searchValue || '';          
 
             dispatch(setFilters({
                 categoryId,
@@ -107,6 +97,12 @@ function Products() {
         isSearch.current = false;
     }, [categoryId, sortType, searchValue, currentPage]);
 
+    const countPerPage = 9;
+    const totalPages = Math.ceil(totalProducts / countPerPage);
+    const startIndex = (currentPage - 1) * countPerPage;
+    const endIndex = startIndex + countPerPage;
+    const currentProducts = items.slice(startIndex, endIndex);
+
     return(
         <div className="catalog__products">
             <div className="catalog__sorting"> 
@@ -118,14 +114,14 @@ function Products() {
             <div className="catalog__cards"> 
                 <div className="products-block">
                     <ul className="products-block__list"> 
-                        {products.map((obj) => (
-                            <Card {...obj}/>
+                        {currentProducts.map((obj) => (
+                            <Card {...obj} key={obj.id}/>
                         ))}
                     </ul>
                 </div>
             </div> 
             <div className="catalog__pagination">
-                <Pagination current={currentPage} setCurrent={onChangeCurrentPage} />
+                <Pagination current={currentPage} pagesCount={totalPages} setCurrent={onChangeCurrentPage} />
             </div>       
         </div>
     );

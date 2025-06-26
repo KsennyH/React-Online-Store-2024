@@ -1,9 +1,10 @@
 type PaginationProps = {
     current: number;
+    pagesCount: number;
     setCurrent: (num: number) => void
 }
 
-const Pagination: React.FC<PaginationProps> = ({ current, setCurrent }) => {
+const Pagination: React.FC<PaginationProps> = ({ current, pagesCount, setCurrent }) => {
 
     return(
         <div className="pagination"> 
@@ -13,7 +14,7 @@ const Pagination: React.FC<PaginationProps> = ({ current, setCurrent }) => {
                     <path d="M31 8L1 8M1 8L7.5625 15M1 8L7.5625 1" stroke="white"></path>
                     </svg></a>
                 </li>
-                {[...new Array(4)].map((elem, i) => (
+                {[...new Array(pagesCount)].map((elem, i) => (
                     <li onClick={() => setCurrent(i+1)} key={i} className="pagination__item"> <a className={current === i+1 ? 'pagination__link pagination__link--active' : 'pagination__link'}>{i+1}</a>
                     </li>
                 ))}

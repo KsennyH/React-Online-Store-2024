@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 export type SortItem = {
     name: string;
-    sort: 'price' | 'rating' | 'title'
+    sort: 'price' | 'rating' | 'title';
 }
 
 interface FilterSliceState {
     categoryId: number;
     sortType: SortItem;
     currentPage: number;
-    value: string
+    value: string;
 }
 
 const initialState: FilterSliceState = {
@@ -19,7 +19,7 @@ const initialState: FilterSliceState = {
         sort: "price"
     },
     currentPage: 1,
-    value: ''
+    value: '',
 }
 
 export const filterSlice = createSlice({
@@ -36,10 +36,10 @@ export const filterSlice = createSlice({
             state.currentPage = action.payload;
         },
         setFilters: (state, action: PayloadAction<FilterSliceState>) => {
-            state.categoryId = Number(action.payload.categoryId);
-            state.sortType = action.payload.sortType;
-            state.currentPage = Number(action.payload.currentPage);
-            // console.log(action);
+            const {categoryId, sortType, currentPage} = action.payload;
+            state.categoryId = categoryId;
+            state.sortType = sortType;
+            state.currentPage = currentPage;
         },
         setSearchValue: (state, action: PayloadAction<string>) => {
             state.value = action.payload;
