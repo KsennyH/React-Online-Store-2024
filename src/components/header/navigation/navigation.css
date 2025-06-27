@@ -5,6 +5,34 @@
     flex-wrap: wrap;
     margin: 0 -0.625rem;
 }
+.navigation__item {
+    position: relative;
+    margin-right: 0.9375rem;
+  }
+  
+.navigation__item:last-child {
+    margin-right: 0;
+}
+
+.navigation__link {
+    padding: 0.625rem;
+  }
+  
+.navigation__link:hover,
+.navigation__link:active,
+.navigation__link:focus {
+    color: #F24444;
+}
+
+.navigation__link--active span {
+    border-bottom: 0.125rem solid #F30E0E;
+}
+
+@media (max-width: 991.98px) {
+    .navigation__item {
+        margin-right: 0;
+    }   
+}
 
 @media (max-width: 767.98px) {
     .navigation {

@@ -1,26 +1,28 @@
 import './scss/style.scss';
 import {Route, Routes,} from "react-router-dom";
-import Header from './components/header/header';
 import CatalogPage from './pages/catalogPage';
 import CartPage from './pages/cartPage';
 import SingleProduct from './pages/singleProduct';
-import { useState } from 'react';
 import React from 'react';
+import ServicesPage from './pages/ServicesPage';
+import ContactPage from './pages/ContactPage';
+import Layout from './layouts/Layout';
 
 export const SearchContext = React.createContext('');
 
-function App() {
-
-  const [searchValue, setSearchValue] = useState('');    
+function App() {  
 
   return (
     <div className="wrapper">
-        <Header />
-        <Routes>
-          <Route path='/' element={<CatalogPage />}/>
-          <Route path='/products/:id' element={<SingleProduct />}/>
-          <Route path='/cart' element={<CartPage />}/>
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<CatalogPage />}/>
+            <Route path='/products/:id' element={<SingleProduct />}/>
+            <Route path='/services' element={<ServicesPage />}/>
+            <Route path='/contacts' element={<ContactPage />}/>
+            <Route path='/cart' element={<CartPage />}/>
+          </Routes>
+        </Layout>
     </div>
   );
 }

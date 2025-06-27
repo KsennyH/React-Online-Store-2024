@@ -1,10 +1,16 @@
+import { useEffect } from 'react';
 import Breadcrumbs from '../components/breadcrumbs/breadcrumbs';
 import Filters from '../components/catalog/filters/filters';
 import Products from '../components/catalog/products/products';
 
 function CatalogPage() {
+
+   useEffect(() => {
+    document.title = "Каталог товаров";
+   }, []);
+
     return (
-        <main className="main"> 
+        <> 
             <Breadcrumbs />
             <div className="catalog">
                 <div className="container">
@@ -17,7 +23,7 @@ function CatalogPage() {
                     </div>
                 </div>
             </div>
-        </main>
+        </>
     );
 }
 
