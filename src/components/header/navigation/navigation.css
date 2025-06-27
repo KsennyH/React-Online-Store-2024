@@ -19,12 +19,11 @@
   }
   
 .navigation__link:hover,
-.navigation__link:active,
 .navigation__link:focus {
     color: #F24444;
 }
 
-.navigation__link--active span {
+.navigation__link .active {
     border-bottom: 0.125rem solid #F30E0E;
 }
 
