@@ -1,6 +1,6 @@
-import styles from './Breadcrumbs.module.scss';
+import styles from './Breadcrumb.module.scss';
 
-function Breadcrumbs() {
+function Breadcrumb() {
     return (
         <div className={styles.breadcrumbs}> 
           <div className="container"> 
@@ -17,4 +17,4 @@ function Breadcrumbs() {
     );
 }
 
-export default Breadcrumbs;
+export default Breadcrumb;

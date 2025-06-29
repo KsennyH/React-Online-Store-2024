@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import Breadcrumbs from '../../components/breadcrumbs/Breadcrumbs';
+import Breadcrumb from '../../components/breadcrumbs/Breadcrumb';
 import Filter from '../../components/catalog/filters/Filter';
 import ProductsList from '../../components/catalog/products/ProductsList';
 import styles from './CatalogPage.module.scss';
@@ -94,7 +94,7 @@ function CatalogPage() {
 
     return (
         <> 
-            <Breadcrumbs />
+            <Breadcrumb />
             <div className={styles.catalog}>
                 <div className="container">
                     <div className={styles.catalog__inner}>
