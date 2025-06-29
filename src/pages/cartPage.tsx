@@ -1,4 +1,4 @@
-import Breadcrumbs from '../components/breadcrumbs/breadcrumbs';
+import Breadcrumbs from '../components/breadcrumbs/Breadcrumb';
 import { useDispatch, useSelector } from "react-redux";
 import Cart from '../components/catalog/cart/cart';
 import EmptyCart from '../components/catalog/cart/emptyCart';

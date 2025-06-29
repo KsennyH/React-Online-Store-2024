@@ -1,7 +1,7 @@
-import Header from "../components/header/header";
+import Header from "../components/header/Header";
 
-export default function Layout({children}) {
-    return(
+export default function Layout({ children }) {
+    return (
         <>
             <Header />
             <main className="main">

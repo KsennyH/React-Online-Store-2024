@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import styles from './Navigation.module.scss';
 
 function Navigation() {
 
@@ -18,10 +19,10 @@ function Navigation() {
     ];
 
     return (
-        <div className="navigation"> 
-            <ul className="navigation__list">
+        <div className={styles.navigation}> 
+            <ul className={styles.navigation__list}>
                 {
-                    navlist.map((navElem, i) => <li key={i} className="navigation__item"><NavLink to={navElem.path} className="navigation__link">{navElem.link}</NavLink></li>)
+                    navlist.map((navElem, i) => <li key={i} className={styles.navigation__item}><NavLink to={navElem.path} className={({isActive}) => isActive ? `${styles.navigation__link} ${styles.active}` : styles.navigation__link}>{navElem.link}</NavLink></li>)
                 }
             </ul>
         </div>
