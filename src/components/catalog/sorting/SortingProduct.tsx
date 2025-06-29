@@ -8,7 +8,7 @@ type SortingProps = {
 
 const SortingProduct: React.FC<SortingProps> = ({sort, sortChange}) => {
 
-    const sortingArray: string[] = ['Все', 'Мотоциклы', 'Мопеды', 'Кроссовые', 'Спортивные'];
+    const sortingArray: string[] = ['Все', 'Мотоциклы', 'Мопеды', 'Скутеры'];
     
 
     return(

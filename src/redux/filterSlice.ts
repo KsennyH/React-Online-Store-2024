@@ -10,6 +10,7 @@ interface FilterSliceState {
     sortType: SortItem;
     currentPage: number;
     value: string;
+    types: string[];
 }
 
 const initialState: FilterSliceState = {
@@ -20,6 +21,7 @@ const initialState: FilterSliceState = {
     },
     currentPage: 1,
     value: '',
+    types: []
 }
 
 export const filterSlice = createSlice({
@@ -43,10 +45,13 @@ export const filterSlice = createSlice({
         },
         setSearchValue: (state, action: PayloadAction<string>) => {
             state.value = action.payload;
+        },
+        setTypes: (state, action: PayloadAction<string[]>) => {
+            state.types = action.payload;
         }
     }
 })
 
-export const { setCategoryId, setSortType, setCurrentPage, setFilters, setSearchValue } = filterSlice.actions;
+export const { setCategoryId, setSortType, setCurrentPage, setFilters, setSearchValue, setTypes } = filterSlice.actions;
 
 export default filterSlice.reducer;

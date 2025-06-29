@@ -19,7 +19,7 @@ function CatalogPage() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     
-    const { categoryId, sortType, currentPage, value: searchValue } = useSelector((state: RootState) => state.filter);  
+    const { categoryId, sortType, currentPage, value: searchValue, types } = useSelector((state: RootState) => state.filter);  
     const {items, totalProducts} = useSelector((state: RootState) => state.products);
 
     const isFirstMount = useRef(true);
@@ -44,6 +44,7 @@ function CatalogPage() {
                 currentPage: Number(params.currentPage) || 1,
                 sortType: sortItem,
                 value: searchValue,
+                types: params.type || ''
             }));
         }
     }, []);
@@ -54,7 +55,8 @@ function CatalogPage() {
                 page: currentPage,
                 ...(categoryId ? { categories: categoryId } : {}),
                 ...(sortType.sort ? { sortBy: sortType.sort } : {}),
-                ...(searchValue ? { search: searchValue } : {})
+                ...(searchValue ? { search: searchValue } : {}),
+                ...(types ? { type: types } : {})
             };
 
             const queryString = qs.stringify(queryParams);
@@ -66,7 +68,8 @@ function CatalogPage() {
                     categoryId,
                     sortType: sortType.sort,
                     searchValue,
-                    currentPage
+                    currentPage,
+                    types
                  }));
             } catch {
                 console.error('Ошибка загрузки');
@@ -83,7 +86,7 @@ function CatalogPage() {
             navigate(`?${query}`);
         }
         isFirstMount.current = false;
-    }, [categoryId, sortType, searchValue, currentPage]);
+    }, [categoryId, sortType, searchValue, currentPage, types]);
 
     const onChangeCategory = (id:number) => dispatch(setCategoryId(id));
     const onChangeSort = (obj: SortItem) => dispatch(setSortType(obj));

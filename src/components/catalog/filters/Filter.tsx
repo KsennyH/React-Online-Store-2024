@@ -1,8 +1,21 @@
+import { useDispatch, useSelector } from 'react-redux';
+import CheckboxFilterBlock from './Checkbox/CheckboxFilterBlock';
 import styles from './Filter.module.scss';
+import { RootState } from '../../../redux/store';
+import { setTypes } from '../../../redux/filterSlice';
+
+const typesMoto = ['Спортивный', 'Дорожный', 'Эндуро', 'Питбайк'];
+const brands = ['Honda', 'Irbis', 'Bse', 'Rockot', 'Bmw', 'Kawasaki', 'Suzuki'];
 function Filter() {
+    const dispatch = useDispatch();
+    const selectedTypes = useSelector((state: RootState) => state.filter.types);
+    const handleTypeChange = (value: string, checked: boolean) => {
+        const updated = checked ? [...selectedTypes, value] : selectedTypes.filter((v) => v !== value);
+        dispatch(setTypes(updated));
+    }
     return(
-        <form className={styles.filter} action="/">
-            <div className={styles.filter__item}>
+        <div className={styles.filter}>
+            {/* <div className={styles.filter__item}>
             <div className="toggle-block"> 
                 <h5 className="toggle-block__title filter-title">Цена (руб)</h5>
                 <div className="toggle-block__body"> 
@@ -17,8 +30,8 @@ function Filter() {
                 <div className="toggle-block__range" id="price-slider"></div>
                 </div>
             </div>
-            </div>
-            <div className={styles.filter__item}>
+            </div> */}
+            {/* <div className={styles.filter__item}>
             <div className="checkbox-block"> 
                 <h5 className="checkbox-block__title filter-title">Техника</h5>
                 <ul className="checkbox-block__list">
@@ -54,92 +67,14 @@ function Filter() {
                 </li>
                 </ul>
             </div>
-            </div>
+            </div> */}
             <div className={styles.filter__item}> 
-            <div className="checkbox-block"> 
-                <h5 className="checkbox-block__title filter-title">Тип мотоцикла</h5>
-                <ul className="checkbox-block__list">
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Спортивный</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Спортивный</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Дорожный</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Чоппер</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Туристический</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Эндуро</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Питбайк</span>
-                    </label>
-                </li>
-                </ul>
-            </div>
+                <CheckboxFilterBlock variants={typesMoto} selectedValues={selectedTypes} onChange={handleTypeChange}>Тип мотоцикла</CheckboxFilterBlock>
             </div>
             <div className={styles.filter__item}>
-            <div className="checkbox-block"> 
-                <h5 className="checkbox-block__title filter-title">Бренд</h5>
-                <ul className="checkbox-block__list">
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Baltmotors</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Stels</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Wels</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Irbis</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Racer</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">MotoLand</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Lifan</span>
-                    </label>
-                </li>
-                </ul>
+                {/* <CheckboxFilterBlock variants={brands}>Бренд</CheckboxFilterBlock> */}
             </div>
-            </div>
-            <div className={styles.filter__item}>
+            {/* <div className={styles.filter__item}>
             <div className="toggle-block"> 
                 <h5 className="toggle-block__title filter-title">Объём двигателя (куб. см)</h5>
                 <div className="toggle-block__body"> 
@@ -154,8 +89,8 @@ function Filter() {
                 <div className="toggle-block__range"></div>
                 </div>
             </div>
-            </div>
-            <div className={styles.filter__item}>
+            </div> */}
+            {/* <div className={styles.filter__item}>
             <div className="radio-block"> 
                 <h5 className="radio-block__title filter-title">Пробег (км)</h5>
                 <ul className="radio-block__list"> 
@@ -171,14 +106,14 @@ function Filter() {
                 </li>
                 </ul>
             </div>
-            </div>
-            <div className={styles.filter__btn}> 
+            </div> */}
+            {/* <div className={styles.filter__btn}> 
                 <button className="btn btn--small" type="submit">Показать</button>
             </div>
             <div className={styles.filter__reset}> 
                 <button className={styles.filter__resetBtn}>Сбросить настройки</button>
-            </div>
-        </form>
+            </div> */}
+        </div>
     );
 }
 
