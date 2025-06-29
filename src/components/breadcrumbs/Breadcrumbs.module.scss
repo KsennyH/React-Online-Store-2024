@@ -14,7 +14,7 @@
     &::after {
       content: '';
       position: absolute;
-      // background-image: url(../img/breadcrumbs-arrow.svg);
+      background-image: url('./breadcrumbs-arrow.svg');
       background-repeat: no-repeat;
       width: 1rem;
       height: 0.5rem;
@@ -33,5 +33,9 @@
     &[href]:active {
       text-decoration: underline;
     }
+  }
+  @media (max-width: 767.98px) {
+    font-size: 1rem;
+    padding: 0.9375rem 0;
   }
 }

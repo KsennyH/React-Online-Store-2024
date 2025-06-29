@@ -1,33 +1,35 @@
 import Logo from "./logo/Logo";
-import Address from "./address/address";
-import Actions from "./actions/actions";
+import AddressInfo from "./address/AddressInfo";
+import UserActions from "./actions/UserActions";
 import Navigation from "./navigation/Navigation";
-import Search from './search/search';
+import Search from './search/Search';
 import styles from './Header.module.scss';
 
 function Header() {
 
     return (
-        <header className="header">
-            <div className="top-header">
+        <header className={styles.header}>
+            <div className={styles.header__top}>
                 <div className="container">
-                    <div className="top-header__inner">
-                        <div className="top-header__logo">   
+                    <div className={styles.header__inner}>
+                        <div className={styles.header__logo}>   
                             <Logo />
                         </div>
-                        <div className="top-header__actions">
-                            <div className="top-header__form">
+                        <div className={styles.header__actions}>
+                            <div className={styles.header__form}>
                                 <Search />
-                                <Actions />
+                                <div className={styles.header__userActions}>
+                                    <UserActions />
+                                </div>
                             </div>
                         </div>
-                        <div className="top-header__info">
-                            <Address />
+                        <div className={styles.header__info}>
+                            <AddressInfo />
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="bottom-header"> 
+            <div className={styles.header__bottom}> 
                 <div className="container"> 
                     <Navigation />
                 </div>

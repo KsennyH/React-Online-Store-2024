@@ -1,7 +1,8 @@
-function Filters() {
+import styles from './Filter.module.scss';
+function Filter() {
     return(
-        <form className="filter js-filter" action="/">
-            <div className="filter__item">
+        <form className={styles.filter} action="/">
+            <div className={styles.filter__item}>
             <div className="toggle-block"> 
                 <h5 className="toggle-block__title filter-title">Цена (руб)</h5>
                 <div className="toggle-block__body"> 
@@ -17,7 +18,7 @@ function Filters() {
                 </div>
             </div>
             </div>
-            <div className="filter__item">
+            <div className={styles.filter__item}>
             <div className="checkbox-block"> 
                 <h5 className="checkbox-block__title filter-title">Техника</h5>
                 <ul className="checkbox-block__list">
@@ -54,7 +55,7 @@ function Filters() {
                 </ul>
             </div>
             </div>
-            <div className="filter__item"> 
+            <div className={styles.filter__item}> 
             <div className="checkbox-block"> 
                 <h5 className="checkbox-block__title filter-title">Тип мотоцикла</h5>
                 <ul className="checkbox-block__list">
@@ -96,7 +97,7 @@ function Filters() {
                 </ul>
             </div>
             </div>
-            <div className="filter__item">
+            <div className={styles.filter__item}>
             <div className="checkbox-block"> 
                 <h5 className="checkbox-block__title filter-title">Бренд</h5>
                 <ul className="checkbox-block__list">
@@ -138,7 +139,7 @@ function Filters() {
                 </ul>
             </div>
             </div>
-            <div className="filter__item">
+            <div className={styles.filter__item}>
             <div className="toggle-block"> 
                 <h5 className="toggle-block__title filter-title">Объём двигателя (куб. см)</h5>
                 <div className="toggle-block__body"> 
@@ -154,7 +155,7 @@ function Filters() {
                 </div>
             </div>
             </div>
-            <div className="filter__item">
+            <div className={styles.filter__item}>
             <div className="radio-block"> 
                 <h5 className="radio-block__title filter-title">Пробег (км)</h5>
                 <ul className="radio-block__list"> 
@@ -171,14 +172,14 @@ function Filters() {
                 </ul>
             </div>
             </div>
-            <div className="filter__btn"> 
+            <div className={styles.filter__btn}> 
                 <button className="btn btn--small" type="submit">Показать</button>
             </div>
-            <div className="filter__reset"> 
-                <button className="filter__reset-btn">Сбросить настройки</button>
+            <div className={styles.filter__reset}> 
+                <button className={styles.filter__resetBtn}>Сбросить настройки</button>
             </div>
         </form>
     );
 }
 
-export default Filters;
+export default Filter;

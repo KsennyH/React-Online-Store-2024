@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { SortItem } from "../../../redux/filterSlice";
+import styles from './SortBy.module.scss';
 
 export const sort: SortItem[] = [{name: 'цене', sort: 'price'}, {name: 'популярности', sort: 'rating'}, {name: 'алфавиту', sort: 'title'}];
 
@@ -8,7 +9,7 @@ type SortProps = {
     sortCriterionChange: (obj: SortItem) => void
 }
 
-const Sort: React.FC<SortProps> = ({sortCriterion, sortCriterionChange}) => {
+const SortBy: React.FC<SortProps> = ({sortCriterion, sortCriterionChange}) => {
 
     const [openSort, setOpenSort] = useState(false);
     const sortRef = useRef(null);
@@ -33,12 +34,12 @@ const Sort: React.FC<SortProps> = ({sortCriterion, sortCriterionChange}) => {
     }
 
     return(
-        <div className="sort" ref={sortRef}>
+        <div className={styles.sort} ref={sortRef}>
             Сортировать по:
-            <span onClick={() => setOpenSort(!openSort)} className='sort__criterion'>{sortCriterion.name}</span>
-            {openSort && (<ul className="sort__list">
+            <span onClick={() => setOpenSort(!openSort)} className={styles.sort__criterion}>{sortCriterion.name}</span>
+            {openSort && (<ul className={styles.sort__list}>
                 {sort.map((obj) => (
-                    <li onClick={() => onClickCriterion(obj)} key={obj.name} className={sortCriterion.name === obj.name ? "sort__item sort__item_active" : "sort__item"}>
+                    <li onClick={() => onClickCriterion(obj)} key={obj.name} className={sortCriterion.name === obj.name ? `${styles.sort__item} ${styles.active}` : `${styles.sort__item}`}>
                         {obj.name}
                     </li>
                 ))}
@@ -47,4 +48,4 @@ const Sort: React.FC<SortProps> = ({sortCriterion, sortCriterionChange}) => {
     );
 }
 
-export default Sort;
+export default SortBy;

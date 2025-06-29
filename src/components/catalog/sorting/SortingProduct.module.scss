@@ -1,0 +1,36 @@
+.sorting {
+  font-family: 'Scada', sans-serif;
+  font-size: 1.125rem;
+  padding: 0.9375rem 0;
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 0.3125rem;
+    column-gap: 0.9375rem;
+  }
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 2rem;
+    min-width: 200px;
+    background-color: #fff;
+    padding: 0.3125rem 2rem;
+    border-radius: 1.875rem;
+    color: #000;
+    &:hover,
+    &:focus {
+      box-shadow: -0.125rem 0.125rem 1.1875rem 0.0625rem #ffcbcb;
+    }
+    &.active {
+      background-color: #414141;
+      color: #fff;
+      box-shadow: none;
+    }
+  }
+  @media (max-width: 767.98px) {
+    font-size: 1rem;
+  }
+}
