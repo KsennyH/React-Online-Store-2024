@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { addProduct, CartItem } from '../../../../redux/cartSlice';
+import { addProduct, CartItem } from '@/redux/cartSlice';
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from '../../../../redux/store';
-import { Product } from '../../../../redux/productsSlice';
+import { RootState } from '@/redux/store';
+import { Product } from '@/redux/productsSlice';
 import { Link } from 'react-router-dom';
 
 const Card: React.FC<Product> = ({id, img, title, article, price, colors}) => {

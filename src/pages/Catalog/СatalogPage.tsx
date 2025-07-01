@@ -1,18 +1,18 @@
 import { useEffect, useRef } from 'react';
-import Breadcrumb from '../../components/breadcrumbs/Breadcrumb';
-import Filter from '../../components/catalog/filters/Filter';
-import ProductsList from '../../components/catalog/products/ProductsList';
+import Breadcrumb from '@/components/breadcrumbs/Breadcrumb';
+import Filter from '@/components/catalog/filters/Filter';
+import ProductsList from '@/components/catalog/products/ProductsList';
 import styles from './CatalogPage.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { setCategoryId, setCurrentPage, setFilters, setSortType, SortItem } from '../../redux/filterSlice';
-import SortingProduct from '../../components/catalog/sorting/SortingProduct';
-import SortBy from '../../components/catalog/sort/SortBy';
-import PaginationButtons from '../../components/catalog/pagination/PaginationButtons';
+import { setCategoryId, setCurrentPage, setFilters, setSortType, SortItem } from '@/redux/filterSlice';
+import SortingProduct from '@/components/catalog/sorting/SortingProduct';
+import SortBy from '@/components/catalog/sort/SortBy';
+import PaginationButtons from '@/components/catalog/pagination/PaginationButtons';
 import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
-import { sort } from '../../components/catalog/sort/SortBy';
-import { fetchProducts } from '../../redux/productsSlice';
+import { sort } from '@/components/catalog/sort/sortOptions';
+import { fetchProducts } from '@/redux/productsSlice';
 
 function CatalogPage() {
     

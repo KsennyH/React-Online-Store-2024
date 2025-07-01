@@ -1,5 +1,5 @@
 import Card from './product-card/card';
-import { Product } from '../../../redux/productsSlice';
+import { Product } from '@/redux/productsSlice';
 import styles from './ProductsList.module.scss';
 
 interface ProductsListProps {
