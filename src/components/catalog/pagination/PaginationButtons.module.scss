@@ -5,12 +5,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-  }
-  &__item {
-    margin: 0 0.3125rem 0.3125rem 0;
-    &:last-child {
-      margin-right: 0;
-    }
+    gap: 0.3125rem;
   }
   &__link {
     display: flex;
@@ -21,27 +16,30 @@
     width: 2.125rem;
     height: 2.125rem;
     border: 0.0625rem solid #ffffff;
+    color: #fff;
     padding: 0.3125rem;
     border-radius: 0.1875rem;
-    &--active {
-      background-color: $red;
-      border-color: $red;
+    &.active {
+      background-color: #f30e0e;
+      border-color: #f30e0e;
     }
     &:hover {
-      background-color: $red;
-      border-color: $red;
+      background-color: #f30e0e;
+      border-color: #f30e0e;
+    }
+    &--noBorder {
+      border: none;
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
-  &__link-icon--disabled {
-    path,
-    rect {
-      stroke: #b1b9b9;
-    }
-  }
-  &__link--no-border {
-    border: none;
-    &:hover {
-      background-color: transparent;
+  &__icon {
+    &--disabled {
+      path,
+      rect {
+        stroke: #b1b9b9;
+      }
     }
   }
 }

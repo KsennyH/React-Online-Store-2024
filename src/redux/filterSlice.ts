@@ -38,10 +38,12 @@ export const filterSlice = createSlice({
             state.currentPage = action.payload;
         },
         setFilters: (state, action: PayloadAction<FilterSliceState>) => {
-            const {categoryId, sortType, currentPage} = action.payload;
+            const {categoryId, sortType, currentPage, value, types} = action.payload;
             state.categoryId = categoryId;
             state.sortType = sortType;
             state.currentPage = currentPage;
+            state.value = value;
+            state.types = types;
         },
         setSearchValue: (state, action: PayloadAction<string>) => {
             state.value = action.payload;
