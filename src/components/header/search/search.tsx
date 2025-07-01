@@ -5,6 +5,7 @@ import searchClose from './close.svg';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 import { setSearchValue } from '../../../redux/filterSlice';
+import styles from './Search.module.scss';
 
 
 const Search = () => {
@@ -33,16 +34,16 @@ const Search = () => {
     }
 
     return (
-        <form className="search-form" action="/">
-            <input ref={inputRef} onChange={(event) => onChangeValue(event)} value={value} className="search-form__input" type="text"/>
+        <form className={styles.search} action="/">
+            <input ref={inputRef} onChange={(event) => onChangeValue(event)} value={value} className={styles.search__input} type="text"/>
             {!value && (
-                <button className="search-form__button">
-                    <img className="search-form__icon" src={searchIcon} alt="Logo"/>
+                <button className={styles.search__button}>
+                    <img className={styles.search__icon} src={searchIcon} alt="Иконка поиска"/>
                 </button>
             )}
             {value && (
-                <button onClick={onClickClear} className="search-form__button">
-                    <img className="search-form__icon" src={searchClose} alt="Logo"/>
+                <button onClick={onClickClear} className={styles.search__button}>
+                    <img className={styles.search__icon} src={searchClose} alt="Сброс поискового запроса"/>
                 </button>
             )}
         </form>

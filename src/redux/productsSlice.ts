@@ -2,9 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from 'axios';
 
 type FetchProductsArgs = {
-    getCards: string;
-    getCardsWithSearch: string;
+    categoryId: number;
+    sortType: string;
     searchValue: string;
+    currentPage: number;
+    types: string[];
 };
 
 export type Product = {
@@ -13,7 +15,7 @@ export type Product = {
     title: string;
     article: string;
     price: number;
-    colors: string[]
+    colors: string[];
 }
 
 enum Status {
@@ -38,10 +40,17 @@ const initialState: ProductsSliceState = {
 
 export const fetchProducts = createAsyncThunk<Product[],FetchProductsArgs>(
     'products/fetchProductsStatus',
-    async (params, { rejectWithValue }) => {
+    async ({ categoryId, sortType, searchValue, currentPage, types }, { rejectWithValue }) => {
         try {
-            const { getCards, getCardsWithSearch, searchValue } = params;
-            const { data } = await axios.get<Product[]>(`${searchValue ? getCardsWithSearch : getCards}`);
+            const params = new URLSearchParams();
+            params.append('page', String(currentPage));
+            if (categoryId) params.append('categories', String(categoryId));
+            if (sortType) params.append('sortBy', sortType);
+            if (searchValue) params.append('search', searchValue);
+            if (types.length > 0) {
+                params.append('type', types[0]);
+            }
+            const { data } = await axios.get<Product[]>(`https://665b3a2e003609eda4604130.mockapi.io/products?${params.toString()}`);
             return data;
         } catch (err: unknown) {
             if (err instanceof Error) {
