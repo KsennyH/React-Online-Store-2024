@@ -29,32 +29,34 @@ export const cartSlice = createSlice({
             const findItem = state.products.find((obj) => obj.id === action.payload.id);
             if(findItem) {
                 findItem.productCount++;
-                state.count = state.count + 1;
-                state.price = state.price + action.payload.price;
             } else {
                 state.products.push({
                     ...action.payload,
                     productCount: 1
                 });
-                state.count = state.count + 1;
-                state.price = state.price + action.payload.price;
-            }           
+            }  
+            state.count = state.count + 1;   
+            state.price = state.products.reduce((prev, obj) => prev + obj.price * obj.productCount, 0);    
         },
-        productDecrement: (state, action: PayloadAction<CartItem>) => {
-            const findItem = state.products.find((obj) => obj.id === action.payload.id);
-            if(findItem) {
+        productDecrement: (state, action: PayloadAction<string>) => {
+            const findItem = state.products.find((item) => item.id === action.payload);
+            if(!findItem) return;
+            if(findItem.productCount > 1) {
                 findItem.productCount--;
+                state.count--;
+                state.price = state.price - findItem.price;
+            } else {
+                state.products = state.products.filter((obj) => obj.id !== action.payload);
+                state.count--;
+                state.price = state.price - findItem.price;
             }
-            state.count = state.count - 1;
-            state.price = state.price - action.payload.price;
         },
-        removeProduct: (state, action: PayloadAction<CartItem>) => {
-            const findItem = state.products.find((obj) => obj.id === action.payload.id);
-            if(findItem) {
-                state.count = state.count - findItem.productCount;
-                state.price = state.price - findItem.price * findItem.productCount;
-            }
-            state.products = state.products.filter((obj) => obj.id !== action.payload.id);
+        removeProduct: (state, action: PayloadAction<string>) => {
+            const findItem = state.products.find((item) => item.id === action.payload);
+            if(!findItem) return;
+            state.count = state.count - findItem.productCount;
+            state.price = state.price - findItem.price * findItem.productCount;
+            state.products = state.products.filter((obj) => obj.id !== action.payload);
         },
         clearCart: (state) => {
             state.products = [];

@@ -16,4 +16,36 @@
     background-color: #0b9d1a;
     color: #fff;
   }
+  &.close {
+    background-color: #fff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    min-width: unset;
+    min-height: unset;
+    padding: 0;
+    & > * {
+      pointer-events: none;
+    }
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background-color: #414141;
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
 }
