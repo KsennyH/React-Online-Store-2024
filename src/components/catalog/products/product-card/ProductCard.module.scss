@@ -1,0 +1,88 @@
+.productCard {
+  font-family: 'Scada', sans-serif;
+  font-size: 1rem;
+  position: relative;
+  background-color: #fff;
+  border-radius: 1.125rem;
+  padding: 0.625rem;
+  color: #000;
+  box-shadow: none;
+  transition: box-shadow 0.7s ease-out;
+  &:hover {
+    box-shadow: -0.125rem 0.125rem 1.1875rem 0.0625rem #ffcbcb;
+  }
+  & > a {
+    display: block;
+  }
+  &__img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.625rem;
+    img {
+      height: 9.375rem;
+      object-fit: contain;
+    }
+  }
+  &__info {
+    display: grid;
+    row-gap: 10px;
+    grid-template-rows: 0.5fr 1fr;
+  }
+  &__title {
+    font-weight: 700;
+    text-align: center;
+    font-size: 1rem;
+    text-decoration: underline;
+  }
+  &__colors {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 5px;
+    padding-bottom: 15px;
+  }
+  &__color {
+    color: #888;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    &.active {
+      border: 1px solid #0b9d1a;
+      border-radius: 10px;
+      color: #000;
+    }
+  }
+  &__information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.9375rem;
+  }
+  &__article {
+    display: block;
+    font-size: 0.875rem;
+    color: #888;
+  }
+  &__text {
+    font-size: 0.875rem;
+    color: #888;
+  }
+  &__price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 2rem;
+    min-width: 200px;
+    background-color: #414141;
+    padding: 0.3125rem 2rem;
+    border-radius: 1.875rem;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+  &__btn {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+}

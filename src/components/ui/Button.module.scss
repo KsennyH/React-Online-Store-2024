@@ -1,0 +1,19 @@
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px 20px;
+  min-height: 2rem;
+  min-width: 200px;
+  border-radius: 1.875rem;
+  color: inherit;
+  font-size: 1rem;
+  font-family: 'Scada', sans-serif;
+  transition: background-color 0.5s ease;
+  &.primary {
+    width: 100%;
+    background-color: #0b9d1a;
+    color: #fff;
+  }
+}

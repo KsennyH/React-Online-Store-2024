@@ -1,0 +1,16 @@
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  background-color: #0b9d1a;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 20;
+}
