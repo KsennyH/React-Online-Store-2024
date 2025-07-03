@@ -44,7 +44,9 @@ const Card: React.FC<Product> = ({id, img, title, article, price, colors}) => {
                     <div> 
                         <ul className={styles.productCard__colors}>
                             {colors.map((item, i) => (
-                                <li key={i} onClick={() => setMotoColor(i)} className={motoColor === i ? `${styles.productCard__color} ${styles.active}` : styles.productCard__color}>{item}</li>
+                                <li key={i}>
+                                    <Button variant='outline' onClick={() => setMotoColor(i)} isActive={motoColor === i}>{item}</Button>
+                                </li>
                             ))}
                         </ul>
                         <div className={styles.productCard__information}> 
@@ -56,7 +58,7 @@ const Card: React.FC<Product> = ({id, img, title, article, price, colors}) => {
             <div className={styles.productCard__price}>
                 {price} руб.
             </div>
-            <Button variant="primary" onClick={onClickAddProduct}>
+            <Button onClick={onClickAddProduct}>
                 <span>В корзину</span>
             </Button>
         </article>

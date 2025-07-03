@@ -3,9 +3,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 5px 20px;
-  min-height: 2rem;
-  min-width: 200px;
+  gap: 0.625rem;
   border-radius: 1.875rem;
   color: inherit;
   font-size: 1rem;
@@ -15,15 +13,13 @@
     width: 100%;
     background-color: #0b9d1a;
     color: #fff;
+    padding: 5px 20px;
   }
   &.close {
     background-color: #fff;
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    min-width: unset;
-    min-height: unset;
-    padding: 0;
     & > * {
       pointer-events: none;
     }
@@ -46,6 +42,18 @@
       &::after {
         transform: rotate(-45deg);
       }
+    }
+  }
+  &.outline {
+    color: #888;
+    padding: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    &.outlineActive {
+      border: 1px solid #0b9d1a;
+      color: #000;
     }
   }
 }

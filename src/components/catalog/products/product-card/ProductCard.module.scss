@@ -41,17 +41,6 @@
     row-gap: 5px;
     padding-bottom: 15px;
   }
-  &__color {
-    color: #888;
-    padding: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    &.active {
-      border: 1px solid #0b9d1a;
-      border-radius: 10px;
-      color: #000;
-    }
-  }
   &__information {
     display: flex;
     justify-content: space-between;

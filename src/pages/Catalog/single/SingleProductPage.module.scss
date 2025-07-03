@@ -1,0 +1,80 @@
+.singlePage {
+  font-family: 'Scada', sans-serif;
+  margin-top: 1.5rem;
+  &__feature {
+    margin-bottom: 20px;
+  }
+  &__info {
+    margin-bottom: 3rem;
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__images {
+    flex: 0 0 46%;
+    margin-right: 1.875rem;
+  }
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    max-height: 100%;
+    img {
+      height: 18.375rem;
+      object-fit: contain;
+      display: block;
+    }
+  }
+  &__content {
+    flex: 0 0 35%;
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.25;
+    margin-bottom: 0.625rem;
+  }
+  &__article {
+    display: inline-block;
+    margin-bottom: 2.1875rem;
+  }
+  &__color {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 2.1875rem;
+    column-gap: 2.5rem;
+  }
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+  }
+  &__size {
+    margin-bottom: 2.1875rem;
+  }
+  &__price {
+    font-weight: 700;
+    font-size: 1.25rem;
+    display: inline-block;
+    margin-bottom: 2.1875rem;
+  }
+  &__buttons {
+    display: flex;
+  }
+  &__btn {
+    margin-right: 0.625rem;
+  }
+  &__text {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    text-align: justify;
+    p + p {
+      margin-top: 0.625rem;
+    }
+  }
+}
