@@ -1,6 +1,6 @@
 import './scss/style.scss';
 import {Route, Routes,} from "react-router-dom";
-import CatalogPage from './pages/catalog/Catalog';
+import CatalogPage from './pages/catalog/CatalogPage';
 import CartPage from './pages/cart/CartPage';
 import SingleProduct from './pages/catalog/single/SingleProductPage';
 import React from 'react';
