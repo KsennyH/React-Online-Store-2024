@@ -1,0 +1,14 @@
+.empty {
+  font-family: 'Scada', sans-serif;
+  background-color: #555555;
+  border-radius: 20px;
+  padding: 1.875rem 0;
+  text-align: center;
+  margin: 20px 0;
+  &__title {
+    margin-bottom: 1.875rem;
+  }
+  &__description {
+    margin-bottom: 1.875rem;
+  }
+}

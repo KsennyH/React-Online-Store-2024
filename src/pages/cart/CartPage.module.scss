@@ -1,0 +1,43 @@
+.cart {
+  padding-top: 15px;
+  &__title {
+    margin-bottom: 20px;
+  }
+  &__header {
+    background-color: #555555;
+    font-family: 'Scada', sans-serif;
+    font-size: 1.125rem;
+    display: grid;
+    grid-template-columns: 5fr 3fr 2fr;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  &__name {
+    justify-self: center;
+  }
+  &__count {
+    justify-self: start;
+  }
+  &__price {
+    justify-self: end;
+  }
+  &__footer {
+    display: flex;
+    padding: 20px;
+  }
+  &__total {
+    display: flex;
+    justify-content: end;
+    margin-left: auto;
+    span:first-child {
+      margin-right: 15px;
+    }
+  }
+  &__priceTotal {
+    margin-right: 5px;
+  }
+  &__clear {
+    color: inherit;
+    text-decoration: underline;
+  }
+}

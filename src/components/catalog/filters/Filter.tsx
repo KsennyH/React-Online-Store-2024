@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import CheckboxFilterBlock from './Checkbox/CheckboxFilterBlock';
 import styles from './Filter.module.scss';
-import { RootState } from '../../../redux/store';
-import { setTypes } from '../../../redux/filterSlice';
+import { RootState } from '@/redux/store';
+import { setTypes } from '@/redux/filterSlice';
 
 const typesMoto = ['Спортивный', 'Дорожный', 'Эндуро', 'Питбайк'];
 const brands = ['Honda', 'Irbis', 'Bse', 'Rockot', 'Bmw', 'Kawasaki', 'Suzuki'];

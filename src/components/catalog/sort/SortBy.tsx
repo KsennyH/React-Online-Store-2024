@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { SortItem } from "../../../redux/filterSlice";
+import { SortItem } from "@/redux/filterSlice";
+import { sort } from "./sortOptions";
 import styles from './SortBy.module.scss';
-
-export const sort: SortItem[] = [{name: 'цене', sort: 'price'}, {name: 'популярности', sort: 'rating'}, {name: 'алфавиту', sort: 'title'}];
 
 type SortProps = {
     sortCriterion: SortItem;

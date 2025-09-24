@@ -1,8 +1,8 @@
 import './scss/style.scss';
 import {Route, Routes,} from "react-router-dom";
-import CatalogPage from './pages/Catalog/СatalogPage';
-import CartPage from './pages/cartPage';
-import SingleProduct from './pages/singleProduct';
+import CatalogPage from './pages/catalog/СatalogPage';
+import CartPage from './pages/cart/CartPage';
+import SingleProduct from './pages/catalog/single/SingleProductPage';
 import React from 'react';
 import ServicesPage from './pages/ServicesPage';
 import ContactPage from './pages/ContactPage';

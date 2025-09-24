@@ -1,0 +1,22 @@
+.counter {
+  display: flex;
+  column-gap: 5px;
+  font-size: 1.125rem;
+  &__input {
+    background-color: #fff;
+    color: #414141;
+    width: 70px;
+    height: 30px;
+    padding: 5px 10px;
+  }
+  &__btn {
+    width: 30px;
+    height: 30px;
+    background: #414141;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+  }
+}

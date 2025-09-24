@@ -18,7 +18,7 @@ export type Product = {
     colors: string[];
 }
 
-enum Status {
+export enum Status {
     LOADING = 'loading',
     SUCCESS = 'success',
     ERROR = 'error'
