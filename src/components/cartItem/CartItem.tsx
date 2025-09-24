@@ -20,11 +20,11 @@ const Cart:React.FC<CartItem> = ({ id, title, img, color, price, productCount })
     }
 
     const onClickMinus = () => {
-        dispatch(productDecrement(id))
+        dispatch(productDecrement({id, color}))
     }
 
     const onClickRemove = () => {
-        dispatch(removeProduct(id));
+        dispatch(removeProduct({id, color}));
     }
 
     return (
