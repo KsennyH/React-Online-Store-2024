@@ -1,12 +1,12 @@
 import './scss/style.scss';
 import {Route, Routes,} from "react-router-dom";
-import CatalogPage from './pages/catalog/CatalogPage';
 import CartPage from './pages/cart/CartPage';
 import SingleProduct from './pages/catalog/single/SingleProductPage';
 import React from 'react';
 import ServicesPage from './pages/ServicesPage';
 import ContactPage from './pages/ContactPage';
 import Layout from './layouts/Layout';
+import CatalogPage from './pages/catalog/CatalogPage';
 
 export const SearchContext = React.createContext('');
 
