@@ -1,8 +1,8 @@
 import Logo from "./logo/Logo";
 import AddressInfo from "./address/AddressInfo";
 import UserActions from "./actions/UserActions";
-import Navigation from "./navigation/Navigation";
-import Search from './search/Search';
+import Navigation from "./navigation/navigation";
+import Search from './search/search';
 import styles from './Header.module.scss';
 
 function Header() {
