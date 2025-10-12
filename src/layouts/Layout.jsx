@@ -1,9 +1,9 @@
-import Header from "../components/header/Header";
+import HeaderTemplate from "@/components/header/HeaderTemplate";
 
 export default function Layout({ children }) {
     return (
         <>
-            <Header />
+            <HeaderTemplate />
             <main className="main">
                 {children}
             </main>

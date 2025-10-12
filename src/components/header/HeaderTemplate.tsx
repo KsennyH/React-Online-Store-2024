@@ -1,11 +1,11 @@
-import Logo from "./logo/Logo";
 import AddressInfo from "./address/AddressInfo";
 import UserActions from "./actions/UserActions";
 import Navigation from "./navigation/navigation";
 import Search from './search/search';
 import styles from './Header.module.scss';
+import Logotype from "./logo/Logotype";
 
-function Header() {
+function HeaderTemplate() {
 
     return (
         <header className={styles.header}>
@@ -13,7 +13,7 @@ function Header() {
                 <div className="container">
                     <div className={styles.header__inner}>
                         <div className={styles.header__logo}>   
-                            <Logo />
+                            <Logotype />
                         </div>
                         <div className={styles.header__actions}>
                             <div className={styles.header__form}>
@@ -38,4 +38,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default HeaderTemplate;

@@ -1,7 +1,7 @@
 import logo from './header-logo.png';
 import { Link } from "react-router-dom";
 
-function Logo() {
+function Logotype() {
     return (
         <div className="logo">
             <Link to={'/'} className="logo__link">
@@ -11,4 +11,4 @@ function Logo() {
     );
 }
 
-export default Logo;
+export default Logotype;
