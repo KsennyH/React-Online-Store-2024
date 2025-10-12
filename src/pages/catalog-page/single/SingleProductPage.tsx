@@ -7,7 +7,7 @@ import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
 import { fetchSingleProduct } from "@/redux/singleProductSlice";
 import { useSelector } from "react-redux";
 
-export default function SingleProduct () {
+export default function SingleProductPage () {
   
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
