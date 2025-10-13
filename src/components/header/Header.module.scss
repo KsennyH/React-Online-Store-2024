@@ -16,6 +16,9 @@
     margin-right: 2.5rem;
   }
   &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     margin-bottom: 1.5625rem;
   }
   &__actions {

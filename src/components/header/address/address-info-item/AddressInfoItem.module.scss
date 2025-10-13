@@ -1,0 +1,17 @@
+.addressInfoItem {
+  display: flex;
+  align-items: center;
+  &__icon {
+    margin-right: 0.625rem;
+    width: 16px;
+    height: 21px;
+  }
+  @media (max-width: 850px) {
+    &__icon {
+      margin-right: 0;
+    }
+    &__label {
+      display: none;
+    }
+  }
+}

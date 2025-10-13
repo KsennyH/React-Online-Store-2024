@@ -10,11 +10,11 @@ function UserActions() {
     const priceProduct = useSelector((state: RootState) => state.cart.price);
     return (
         <> 
-            <a className={styles.user} href="#" aria-label="Личный кабинет" data-user="user-login">
+            <a className={styles.user} href="#" aria-label="Личный кабинет">
                 <img className={styles.user__icon} src={userLoginIcon} alt="Logo"/>
                 <span className={styles.user__label}>Личный кабинет</span>
             </a>
-            <Link to={'/cart'} className={styles.user} aria-label="Корзина" data-user="user-cart">
+            <Link to={'/cart'} className={styles.user} aria-label="Корзина">
                 <div className={styles.user__counter}>
                       <img className={styles.user__icon} src={userCartIcon} alt="Logo"/>
                       {countProducts > 0 && (

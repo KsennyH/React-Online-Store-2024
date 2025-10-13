@@ -34,7 +34,7 @@ const Search = () => {
     }
 
     return (
-        <form className={styles.search} action="/">
+        <form className={styles.search}>
             <input ref={inputRef} onChange={(event) => onChangeValue(event)} value={value} className={styles.search__input} type="text"/>
             {!value && (
                 <button className={styles.search__button}>
