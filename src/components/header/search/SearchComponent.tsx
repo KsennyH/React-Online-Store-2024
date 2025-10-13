@@ -1,0 +1,76 @@
+import React, { useCallback, useEffect, useState, useRef } from 'react';
+import searchIcon from './search.svg';
+import searchClose from './close.svg';
+import debounce from 'lodash.debounce';
+import styles from './SearchComponent.module.scss';
+import { setSearchValue } from '@/redux/filterSlice';
+import { searchValueAdded } from '@/redux/searchSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { fetchSearchedData } from '@/redux/productsSlice';
+import SearchOpen from './search-open/SearchOpen';
+import { useClickAway } from "@uidotdev/usehooks";
+
+
+const Search = () => {
+    const dispatch = useAppDispatch();
+    const [value, setValue] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);  
+    const wrapperRef = useClickAway<HTMLDivElement>(() => { setIsOpen(false); });
+    const searchValue = useAppSelector((state) => state.search.searchValue);
+    
+    const updateSearchValue = useCallback(
+        debounce((str: string) => {
+            // dispatch(setSearchValue(str));
+            dispatch(searchValueAdded(str));
+        }, 400 ),
+        [],
+    );
+
+    const onChangeValue = (event:React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        setValue(value);
+        if(value.trim().length > 2) {
+            setIsOpen(true);
+            updateSearchValue(value);
+        } else {
+            setIsOpen(false);
+        }
+    }
+
+    const onClickClear = () => {
+        // dispatch(setSearchValue(''));
+        dispatch(searchValueAdded(''));
+        setValue('');
+        if(inputRef.current) {
+            inputRef.current.focus();
+        }
+    }
+
+    useEffect(() => {
+        dispatch(fetchSearchedData(searchValue));
+    }, [searchValue]);
+
+    return (
+        <div className={styles.searchWrapper} ref={wrapperRef}>
+            <div className={styles.search}>
+                <input ref={inputRef} onChange={onChangeValue} value={value} className={styles.search__input} type="text" placeholder='Поиск'/>
+                {!value && (
+                    <div className={styles.search__button}>
+                        <img className={styles.search__icon} src={searchIcon} alt="Иконка поиска"/>
+                    </div>
+                )}
+                {value && (
+                    <button onClick={onClickClear} className={styles.search__button}>
+                        <img className={styles.search__icon} src={searchClose} alt="Сброс поискового запроса"/>
+                    </button>
+                )}
+            </div>
+            {
+                isOpen && <SearchOpen handleClick={() => setIsOpen(false)} />
+            }
+        </div>
+    );
+}
+
+export default Search;

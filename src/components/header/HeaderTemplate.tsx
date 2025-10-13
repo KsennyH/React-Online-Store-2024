@@ -1,7 +1,7 @@
 import AddressInfo from "./address/AddressInfo";
 import UserActions from "./actions/UserActions";
 import Navigation from "./navigation/navigation";
-import Search from './search/search';
+import SearchComponent from './search/SearchComponent';
 import styles from './Header.module.scss';
 import Logotype from "./logo/Logotype";
 
@@ -17,7 +17,7 @@ function HeaderTemplate() {
                         </div>
                         <div className={styles.header__actions}>
                             <div className={styles.header__form}>
-                                <Search />
+                                <SearchComponent />
                                 <div className={styles.header__userActions}>
                                     <UserActions />
                                 </div>

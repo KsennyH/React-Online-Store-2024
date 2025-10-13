@@ -4,7 +4,7 @@ import Filter from '@/components/catalog/filters/Filter';
 import ProductsList from '@/components/catalog/products/ProductsList';
 import styles from './CatalogPage.module.scss';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../redux/store';
+import { RootState, useAppDispatch } from '@/redux/store';
 import { setCategoryId, setCurrentPage, setFilters, setSortType, SortItem } from '@/redux/filterSlice';
 import SortingProduct from '@/components/catalog/sorting/SortingProduct';
 import SortBy from '@/components/catalog/sort/SortBy';
@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
 import { sort } from '@/components/catalog/sort/sortOptions';
 import { fetchProducts } from '@/redux/productsSlice';
+import { searchValueAdded } from '@/redux/searchSlice';
 
 function CatalogPage() {
     
@@ -34,59 +35,67 @@ function CatalogPage() {
         document.title = "Каталог товаров";
     }, []);
 
+    // useEffect(() => {
+    //     if(window.location.search) {
+    //         const params = qs.parse(window.location.search.substring(1));
+    //         const sortItem = sort.find((s) => s.sort === params.sortType) || sort[0];
+
+    //         dispatch(setFilters({
+    //             categoryId: Number(params.categoryId) || 0,
+    //             currentPage: Number(params.currentPage) || 1,
+    //             sortType: sortItem,
+    //             value: searchValue,
+    //             types: params.type || ''
+    //         }));
+    //     }
+    // }, []);
+
     useEffect(() => {
         if(window.location.search) {
             const params = qs.parse(window.location.search.substring(1));
-            const sortItem = sort.find((s) => s.sort === params.sortType) || sort[0];
-
-            dispatch(setFilters({
-                categoryId: Number(params.categoryId) || 0,
-                currentPage: Number(params.currentPage) || 1,
-                sortType: sortItem,
-                value: searchValue,
-                types: params.type || ''
-            }));
+            const search = typeof params.search === 'string' ? params.search : '';
+            dispatch(searchValueAdded(search))
         }
     }, []);
 
-    useEffect(() => {
-        const getProducts = async () => {
-            const queryParams = {
-                page: currentPage,
-                ...(categoryId ? { categories: categoryId } : {}),
-                ...(sortType.sort ? { sortBy: sortType.sort } : {}),
-                ...(searchValue ? { search: searchValue } : {}),
-                ...(types ? { type: types } : {})
-            };
+    // useEffect(() => {
+    //     const getProducts = async () => {
+    //         const queryParams = {
+    //             page: currentPage,
+    //             ...(categoryId ? { categories: categoryId } : {}),
+    //             ...(sortType.sort ? { sortBy: sortType.sort } : {}),
+    //             ...(searchValue ? { search: searchValue } : {}),
+    //             ...(types ? { type: types } : {})
+    //         };
 
-            const queryString = qs.stringify(queryParams);
+    //         const queryString = qs.stringify(queryParams);
 
-            const url = `https://665b3a2e003609eda4604130.mockapi.io/products?${queryString}`;
+    //         const url = `https://665b3a2e003609eda4604130.mockapi.io/products?${queryString}`;
         
-            try {
-                dispatch(fetchProducts({ 
-                    categoryId,
-                    sortType: sortType.sort,
-                    searchValue,
-                    currentPage,
-                    types
-                 }));
-            } catch {
-                console.error('Ошибка загрузки');
-            }
-        }
-        getProducts();
+    //         try {
+    //             dispatch(fetchProducts({ 
+    //                 categoryId,
+    //                 sortType: sortType.sort,
+    //                 searchValue,
+    //                 currentPage,
+    //                 types
+    //              }));
+    //         } catch {
+    //             console.error('Ошибка загрузки');
+    //         }
+    //     }
+    //     getProducts();
 
-        if (!isFirstMount.current) {
-            const query = qs.stringify({
-                categoryId,
-                sortType: sortType.sort,
-                currentPage,
-            });
-            navigate(`?${query}`);
-        }
-        isFirstMount.current = false;
-    }, [categoryId, sortType, searchValue, currentPage, types]);
+    //     if (!isFirstMount.current) {
+    //         const query = qs.stringify({
+    //             categoryId,
+    //             sortType: sortType.sort,
+    //             currentPage,
+    //         });
+    //         navigate(`?${query}`);
+    //     }
+    //     isFirstMount.current = false;
+    // }, [categoryId, sortType, searchValue, currentPage, types]);
 
     const onChangeCategory = (id:number) => dispatch(setCategoryId(id));
     const onChangeSort = (obj: SortItem) => dispatch(setSortType(obj));
