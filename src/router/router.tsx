@@ -2,12 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "@/App";
 import CatalogPage from "@/pages/catalog-page/CatalogPage";
 import { lazy, Suspense } from "react";
+import Loader from "@/components/ui/loader/Loader";
 
 const SingleProductPage = lazy(() => import ('@/pages/catalog-page/single/SingleProductPage'));
 const ServicesPage = lazy(() => import ('@/pages/ServicesPage'));
 const ContactPage = lazy(() => import ('@/pages/ContactPage'));
 const CartPage = lazy(() => import ('@/pages/cart/CartPage'));
-
 
 export const router = createBrowserRouter([
     {
@@ -18,28 +18,28 @@ export const router = createBrowserRouter([
             { 
                 path: 'products/:id',
                 element: 
-                    <Suspense fallback='Loading'>
+                    <Suspense fallback={<Loader />}>
                         <SingleProductPage />
                     </Suspense>
             },
             { 
                 path: 'services', 
                 element: 
-                    <Suspense fallback='Loading'>
+                    <Suspense fallback={<Loader />}>
                         <ServicesPage />
                     </Suspense>
             },
             { 
                 path: 'contacts', 
                 element: 
-                    <Suspense fallback='Loading'>
+                    <Suspense fallback={<Loader />}>
                         <ContactPage /> 
                     </Suspense>
             },
             { 
                 path: 'cart', 
                 element: 
-                    <Suspense fallback='Loading'>
+                    <Suspense fallback={<Loader />}>
                         <CartPage />
                     </Suspense>
             }
