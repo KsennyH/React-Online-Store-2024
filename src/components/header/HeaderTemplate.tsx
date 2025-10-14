@@ -1,10 +1,9 @@
 import AddressInfo from "./address/AddressInfo";
 import UserActions from "./actions/UserActions";
-import Navigation from "./navigation/navigation";
+import DesktopNav from "./navigation/DesktopNav";
 import SearchComponent from './search/SearchComponent';
 import styles from './Header.module.scss';
 import Logotype from "./logo/Logotype";
-import { Menu } from "lucide-react";
 import MobileNav from "./mobile-nav/MobileNav";
 
 function HeaderTemplate() {
@@ -33,7 +32,7 @@ function HeaderTemplate() {
             </div>
             <div className={styles.header__bottom}> 
                 <div className="container"> 
-                    <Navigation />
+                    <DesktopNav />
                     <MobileNav />
                 </div>
             </div>
