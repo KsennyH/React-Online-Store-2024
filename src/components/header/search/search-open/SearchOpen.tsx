@@ -13,8 +13,8 @@ function SearchOpen({ handleClick }: SearchOpenProps) {
 
     return(
 
-        searched.length > 0 && (
-            <div className={styles.searchOpen} >
+        <div className={styles.searchOpen} >
+            {searched.length > 0 ? (
                 <ul>
                     {
                         searched.map((el) => (
@@ -27,8 +27,10 @@ function SearchOpen({ handleClick }: SearchOpenProps) {
                         ))
                     }
                 </ul>
-            </div>
-        )            
+            ) : 
+            <p className={styles.searchOpen__notFound}>Ничего не найдено</p>
+            }
+        </div>           
     );
 }
 

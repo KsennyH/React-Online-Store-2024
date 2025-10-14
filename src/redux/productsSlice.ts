@@ -72,7 +72,6 @@ export const fetchSearchedData = createAppAsyncThunk(
         try{
             if(value.trim().length <= 2) return;
             const { data } = await axios.get<Product[]>(`https://665b3a2e003609eda4604130.mockapi.io/products?search=${value}`);
-            console.log(data);
             return data;
         } catch(err: unknown) {
             if (err instanceof Error) {

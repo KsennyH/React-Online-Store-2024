@@ -4,6 +4,8 @@ import Navigation from "./navigation/navigation";
 import SearchComponent from './search/SearchComponent';
 import styles from './Header.module.scss';
 import Logotype from "./logo/Logotype";
+import { Menu } from "lucide-react";
+import MobileNav from "./mobile-nav/MobileNav";
 
 function HeaderTemplate() {
 
@@ -32,6 +34,7 @@ function HeaderTemplate() {
             <div className={styles.header__bottom}> 
                 <div className="container"> 
                     <Navigation />
+                    <MobileNav />
                 </div>
             </div>
         </header>

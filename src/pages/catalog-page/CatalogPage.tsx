@@ -12,7 +12,7 @@ import PaginationButtons from '@/components/catalog/pagination/PaginationButtons
 import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
 import { sort } from '@/components/catalog/sort/sortOptions';
-import { fetchProducts } from '@/redux/productsSlice';
+// import { fetchProducts } from '@/redux/productsSlice';
 import { searchValueAdded } from '@/redux/searchSlice';
 
 function CatalogPage() {
