@@ -1,19 +1,19 @@
 export type NavItem = {
-    link: string,
+    title: string,
     path: string
 }
 
 export const NAVIGATION: NavItem[] = [
     {
-        link: "Каталог",
+        title: "Каталог",
         path: "/",
     },
     {
-        link: "Сервис",
+        title: "Сервис",
         path: "/services",
     },
     {
-        link: "Контакты",
+        title: "Контакты",
         path: "/contacts",
     },
 ]

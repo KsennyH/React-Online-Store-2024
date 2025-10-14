@@ -2,14 +2,11 @@ import { Menu, X } from "lucide-react";
 import styles from "./MobileNav.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
+import { NAVIGATION } from "@/constants/navigation";
 
 function MobileNav() {
-    const navList = [
-        { link: "Каталог", path: "/" },
-        { link: "Сервис", path: "/services" },
-        { link: "Контакты", path: "/contacts" },
-    ];
-    const [isOpen, setIsOpen] = useState(false);
+    
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(prev => !prev);
   const closeMenu = () => setIsOpen(false);
@@ -25,7 +22,7 @@ function MobileNav() {
       {isOpen && (
         <div className={styles.mobileNav__menu}>
           <ul className={styles.mobileNav__list}>
-            {navList.map((item, index) => (
+            {NAVIGATION.map((item, index) => (
               <li key={index} className={styles.mobileNav__item}>
                 <NavLink
                   to={item.path}
@@ -36,7 +33,7 @@ function MobileNav() {
                   }
                   onClick={closeMenu}
                 >
-                  {item.link}
+                  {item.title}
                 </NavLink>
               </li>
             ))}

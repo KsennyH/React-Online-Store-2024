@@ -2,14 +2,8 @@
   body {
     font-size: 0.875rem;
   }
-  .header,
-  .footer {
+  .header {
     font-size: 1rem;
-  }
-  .footer {
-    &__content {
-      padding: 40px 0;
-    }
   }
   .navigation {
     &__item {
@@ -29,22 +23,6 @@
         display: none;
       }
     }
-  }
-  .footer-nav {
-    flex-direction: column;
-    &__list {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-    &__label {
-      cursor: pointer;
-    }
-    &__label::before {
-      display: block;
-    }
-  }
-  .spoiler {
-    display: none;
   }
   .characteristics {
     font-size: 0.875rem;
@@ -251,26 +229,6 @@
 @media (max-width: 575.98px) {
   .title {
     font-size: 1rem;
-  }
-  .footer {
-    &__social-info {
-      flex-direction: column;
-    }
-    &__logo {
-      margin-bottom: 1.125rem;
-    }
-    &__info-content {
-      flex-direction: column;
-      align-items: center;
-    }
-    &__contacts {
-      margin: 0 0 1.125rem 0;
-      text-align: center;
-    }
-    &__copyright {
-      font-size: 0.875rem;
-      padding: 1.125rem 0;
-    }
   }
   .address-information {
     &__item {

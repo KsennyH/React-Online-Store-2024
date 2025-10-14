@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import userLoginIcon from './user-login.svg';
-import userCartIcon from './user-cart.svg';
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { RootState } from "@/redux/store";
 import styles from './UserActions.module.scss';
+import { CircleUser, ShoppingCart } from "lucide-react";
 
 function UserActions() {
     const countProducts = useSelector((state: RootState) => state.cart.count);
@@ -11,12 +10,12 @@ function UserActions() {
     return (
         <> 
             <a className={styles.user} href="#" aria-label="Личный кабинет">
-                <img className={styles.user__icon} src={userLoginIcon} alt="Logo"/>
+                <CircleUser color="#ffffff" />
                 <span className={styles.user__label}>Личный кабинет</span>
             </a>
             <Link to={'/cart'} className={styles.user} aria-label="Корзина">
                 <div className={styles.user__counter}>
-                      <img className={styles.user__icon} src={userCartIcon} alt="Logo"/>
+                      <ShoppingCart color="#ffffff" />
                       {countProducts > 0 && (
                         <span className={styles.user__quantity}>{countProducts}</span>
                       )}

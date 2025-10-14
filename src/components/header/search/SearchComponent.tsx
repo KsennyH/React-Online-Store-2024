@@ -1,6 +1,4 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
-import searchIcon from './search.svg';
-import searchClose from './close.svg';
 import debounce from 'lodash.debounce';
 import styles from './SearchComponent.module.scss';
 import { setSearchValue } from '@/redux/filterSlice';
@@ -9,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { fetchSearchedData } from '@/redux/productsSlice';
 import SearchOpen from './search-open/SearchOpen';
 import { useClickAway } from "@uidotdev/usehooks";
+import { SearchCheck, X } from 'lucide-react';
 
 
 const Search = () => {
@@ -57,12 +56,12 @@ const Search = () => {
                 <input ref={inputRef} onChange={onChangeValue} value={value} className={styles.search__input} type="text" placeholder='Поиск'/>
                 {!value && (
                     <div className={styles.search__button}>
-                        <img className={styles.search__icon} src={searchIcon} alt="Иконка поиска"/>
+                        <SearchCheck color="#ffffff" />
                     </div>
                 )}
                 {value && (
                     <button onClick={onClickClear} className={styles.search__button}>
-                        <img className={styles.search__icon} src={searchClose} alt="Сброс поискового запроса"/>
+                        <X color="#ffffff" />
                     </button>
                 )}
             </div>
