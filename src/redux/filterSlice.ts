@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { RootState } from "./store";
 
 export type SortItem = {
     name: string;
@@ -7,21 +8,21 @@ export type SortItem = {
 
 interface FilterSliceState {
     categoryId: number;
-    sortType: SortItem;
-    currentPage: number;
-    value: string;
-    types: string[];
+    sortTypeValue: SortItem;
+    // currentPage: number;
+    // value: string;
+    typesChecked: string[];
 }
 
 const initialState: FilterSliceState = {
     categoryId: 0,
-    sortType: {
+    sortTypeValue: {
         name: "цене",
         sort: "price"
     },
-    currentPage: 1,
-    value: '',
-    types: []
+    // currentPage: 1,
+    // value: '',
+    typesChecked: []
 }
 
 export const filterSlice = createSlice({
@@ -32,28 +33,31 @@ export const filterSlice = createSlice({
             state.categoryId = action.payload;
         },
         setSortType: (state, action: PayloadAction<SortItem>) => {
-            state.sortType = action.payload;
+            state.sortTypeValue = action.payload;
         },
-        setCurrentPage: (state, action: PayloadAction<number>) => {
-            state.currentPage = action.payload;
-        },
-        setFilters: (state, action: PayloadAction<FilterSliceState>) => {
-            const {categoryId, sortType, currentPage, value, types} = action.payload;
-            state.categoryId = categoryId;
-            state.sortType = sortType;
-            state.currentPage = currentPage;
-            state.value = value;
-            state.types = types;
-        },
-        setSearchValue: (state, action: PayloadAction<string>) => {
-            state.value = action.payload;
-        },
-        setTypes: (state, action: PayloadAction<string[]>) => {
-            state.types = action.payload;
+        // setCurrentPage: (state, action: PayloadAction<number>) => {
+        //     state.currentPage = action.payload;
+        // },
+        // setFilters: (state, action: PayloadAction<FilterSliceState>) => {
+        //     const {categoryId, sortType, currentPage, value, types} = action.payload;
+        //     state.categoryId = categoryId;
+        //     state.sortType = sortType;
+        //     state.currentPage = currentPage;
+        //     state.value = value;
+        //     state.types = types;
+        // },
+        // setSearchValue: (state, action: PayloadAction<string>) => {
+        //     state.value = action.payload;
+        // },
+        setTypesChecked: (state, action: PayloadAction<string[]>) => {
+            state.typesChecked = action.payload;
         }
     }
 })
 
-export const { setCategoryId, setSortType, setCurrentPage, setFilters, setSearchValue, setTypes } = filterSlice.actions;
+// export const { setCategoryId, setSortType, setCurrentPage, setFilters, setSearchValue, setTypes } = filterSlice.actions;
+export const { setSortType, setCategoryId, setTypesChecked } = filterSlice.actions;
+
+export const getFiltersValue = (state: RootState) => state.filter;
 
 export default filterSlice.reducer;

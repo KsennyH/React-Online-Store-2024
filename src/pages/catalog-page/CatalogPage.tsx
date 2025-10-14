@@ -4,32 +4,35 @@ import Filter from '@/components/catalog/filters/Filter';
 import ProductsList from '@/components/catalog/products/ProductsList';
 import styles from './CatalogPage.module.scss';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '@/redux/store';
-import { setCategoryId, setCurrentPage, setFilters, setSortType, SortItem } from '@/redux/filterSlice';
+import { RootState, useAppDispatch, useAppSelector } from '@/redux/store';
+// import { setCategoryId, setCurrentPage, setFilters, setSortType, SortItem } from '@/redux/filterSlice';
+import { getFiltersValue, setSortType, setCategoryId, SortItem } from '@/redux/filterSlice';
 import SortingProduct from '@/components/catalog/sorting/SortingProduct';
 import SortBy from '@/components/catalog/sort/SortBy';
 import PaginationButtons from '@/components/catalog/pagination/PaginationButtons';
 import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
-import { sort } from '@/components/catalog/sort/sortOptions';
+// import { sort } from '@/constants/sortOptions';
 // import { fetchProducts } from '@/redux/productsSlice';
 import { searchValueAdded } from '@/redux/searchSlice';
+import Checkbox from '@/components/ui/checkbox/Checkbox';
 
 function CatalogPage() {
     
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
-    const { categoryId, sortType, currentPage, value: searchValue, types } = useSelector((state: RootState) => state.filter);  
-    const {items, totalProducts} = useSelector((state: RootState) => state.products);
+    // const { categoryId, sortType, currentPage, value: searchValue, types } = useSelector((state: RootState) => state.filter);  
+    const { sortTypeValue, categoryId } = useAppSelector((state) => getFiltersValue(state));
+    // const {items, totalProducts} = useSelector((state: RootState) => state.products);
 
-    const isFirstMount = useRef(true);
+    // const isFirstMount = useRef(true);
 
-    const countPerPage = 9;
-    const totalPages = Math.ceil(totalProducts / countPerPage);
-    const startIndex = (currentPage - 1) * countPerPage;
-    const endIndex = startIndex + countPerPage;
-    const currentProducts = items.slice(startIndex, endIndex);
+    // const countPerPage = 9;
+    // const totalPages = Math.ceil(totalProducts / countPerPage);
+    // const startIndex = (currentPage - 1) * countPerPage;
+    // const endIndex = startIndex + countPerPage;
+    // const currentProducts = items.slice(startIndex, endIndex);
 
     useEffect(() => {
         document.title = "Каталог товаров";
@@ -49,14 +52,6 @@ function CatalogPage() {
     //         }));
     //     }
     // }, []);
-
-    useEffect(() => {
-        if(window.location.search) {
-            const params = qs.parse(window.location.search.substring(1));
-            const search = typeof params.search === 'string' ? params.search : '';
-            dispatch(searchValueAdded(search))
-        }
-    }, []);
 
     // useEffect(() => {
     //     const getProducts = async () => {
@@ -98,8 +93,8 @@ function CatalogPage() {
     // }, [categoryId, sortType, searchValue, currentPage, types]);
 
     const onChangeCategory = (id:number) => dispatch(setCategoryId(id));
-    const onChangeSort = (obj: SortItem) => dispatch(setSortType(obj));
-    const onChangeCurrentPage = (page:number) => dispatch(setCurrentPage(page));
+    const onChangeSort = (item: SortItem) => dispatch(setSortType(item));
+    // const onChangeCurrentPage = (page:number) => dispatch(setCurrentPage(page));
 
     return (
         <> 
@@ -112,14 +107,16 @@ function CatalogPage() {
                             <Filter />
                         </aside>
                         <div className={styles.catalog__products}>
-                            <SortingProduct sort={categoryId} sortChange={onChangeCategory}/>
+                            {/* <SortingProduct sort={categoryId} sortChange={onChangeCategory}/> */}
+                            <SortingProduct category={categoryId} handleCategoryChange={onChangeCategory}/>
                             <div className={styles.catalog__sort}>
-                                <SortBy sortCriterion={sortType} sortCriterionChange={onChangeSort}/>
+                                {/* <SortBy sortCriterion={sortType} sortCriterionChange={onChangeSort}/> */}
+                                <SortBy sortCriterion={sortTypeValue} handleSortChange={onChangeSort}/>
                             </div>
-                            <ProductsList products={currentProducts} />
-                            {
+                            {/* <ProductsList products={currentProducts} /> */}
+                            {/* {
                                 totalPages > 1 && (<PaginationButtons current={currentPage} pagesCount={totalPages} setCurrent={onChangeCurrentPage} />)
-                            }
+                            } */}
                         </div>
                     </div>
                 </div>

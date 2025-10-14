@@ -1,22 +1,20 @@
 import React from "react";
 import styles from './SortingProduct.module.scss';
+import { CATEGORIES } from "@/constants/categories";
 
 type SortingProps = {
-    sort: number;
-    sortChange: (i:number) => void
+    category: number;
+    handleCategoryChange: (item: number) => void
 }
 
-const SortingProduct: React.FC<SortingProps> = ({sort, sortChange}) => {
-
-    const sortingArray: string[] = ['Все', 'Мотоциклы', 'Мопеды', 'Скутеры'];
-    
+const SortingProduct: React.FC<SortingProps> = ({category, handleCategoryChange}) => {    
 
     return(
         <nav className={styles.sorting}> 
             <ul className={styles.sorting__list}> 
-                {sortingArray.map((elem, i) => (
+                {CATEGORIES.map((elem, i) => (
                     <li key={i}> 
-                        <button onClick={() => sortChange(i)} className={sort === i ? `${styles.sorting__btn} ${styles.active}` : `${styles.sorting__btn}`}>
+                        <button onClick={() => handleCategoryChange(i)} className={category === i ? `${styles.sorting__btn} ${styles.active}` : `${styles.sorting__btn}`}>
                             <span>{elem}</span>
                         </button>
                     </li>

@@ -5,6 +5,7 @@ import styles from "./Footer.module.scss";
 import Schedule from "./schedule/Schedule";
 
 function Footer() {
+    const currentYear = new Date().getFullYear();
     return(
         <footer className={styles.footer}>
             <div className={styles.footer__content}>
@@ -28,7 +29,7 @@ function Footer() {
             </div>
             <div className={styles.footer__copyright}>
                 <div className="container">
-                    <p>© Магазин мототехники в Иваново 2018 - 2022</p>
+                    <p>© Магазин мототехники в Иваново 2018 - {currentYear}</p>
                 </div>
             </div>
         </footer>

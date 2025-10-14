@@ -1,14 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { JSX, useEffect, useRef, useState } from "react";
 import { SortItem } from "@/redux/filterSlice";
-import { sort } from "./sortOptions";
+import { SORT_OPTIONS } from "@/constants/sortOptions";
 import styles from './SortBy.module.scss';
 
 type SortProps = {
     sortCriterion: SortItem;
-    sortCriterionChange: (obj: SortItem) => void
+    handleSortChange: (item: SortItem) => void
 }
 
-const SortBy: React.FC<SortProps> = ({sortCriterion, sortCriterionChange}) => {
+const SortBy = ({sortCriterion, handleSortChange}: SortProps): JSX.Element => {
 
     const [openSort, setOpenSort] = useState(false);
     const sortRef = useRef(null);
@@ -28,16 +28,16 @@ const SortBy: React.FC<SortProps> = ({sortCriterion, sortCriterionChange}) => {
     }, []);
     
     const onClickCriterion = (obj: SortItem) => {
-        sortCriterionChange(obj);
+        handleSortChange(obj);
         setOpenSort(false);
     }
 
     return(
         <div className={styles.sort} ref={sortRef}>
             Сортировать по:
-            <span onClick={() => setOpenSort(!openSort)} className={styles.sort__criterion}>{sortCriterion.name}</span>
+            <span onClick={() => setOpenSort(prev => !prev)} className={styles.sort__criterion}>{sortCriterion.name}</span>
             {openSort && (<ul className={styles.sort__list}>
-                {sort.map((obj) => (
+                {SORT_OPTIONS.map((obj) => (
                     <li onClick={() => onClickCriterion(obj)} key={obj.name} className={sortCriterion.name === obj.name ? `${styles.sort__item} ${styles.active}` : `${styles.sort__item}`}>
                         {obj.name}
                     </li>

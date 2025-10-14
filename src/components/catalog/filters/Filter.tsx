@@ -1,17 +1,19 @@
-import { useDispatch, useSelector } from 'react-redux';
 import CheckboxFilterBlock from './Checkbox/CheckboxFilterBlock';
 import styles from './Filter.module.scss';
-import { RootState } from '@/redux/store';
-import { setTypes } from '@/redux/filterSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { getFiltersValue, setTypesChecked } from '@/redux/filterSlice';
+import { VARIANTS } from '@/constants/variants';
 
-const typesMoto = ['Спортивный', 'Дорожный', 'Эндуро', 'Питбайк'];
-const brands = ['Honda', 'Irbis', 'Bse', 'Rockot', 'Bmw', 'Kawasaki', 'Suzuki'];
+// const typesMoto = ['Спортивный', 'Дорожный', 'Эндуро', 'Питбайк'];
+// const brands = ['Honda', 'Irbis', 'Bse', 'Rockot', 'Bmw', 'Kawasaki', 'Suzuki'];
 function Filter() {
-    const dispatch = useDispatch();
-    const selectedTypes = useSelector((state: RootState) => state.filter.types);
+    const dispatch = useAppDispatch();
+    // const selectedTypes = useSelector((state: RootState) => state.filter.types);
+    const { typesChecked } = useAppSelector((state) => getFiltersValue(state));
+
     const handleTypeChange = (value: string, checked: boolean) => {
-        const updated = checked ? [...selectedTypes, value] : selectedTypes.filter((v) => v !== value);
-        dispatch(setTypes(updated));
+        const checkedProducts = checked ? [...typesChecked, value] : typesChecked.filter((v) => v !== value);
+        dispatch(setTypesChecked(checkedProducts));
     }
     return(
         <div className={styles.filter}>
@@ -69,7 +71,7 @@ function Filter() {
             </div>
             </div> */}
             <div className={styles.filter__item}> 
-                <CheckboxFilterBlock variants={typesMoto} selectedValues={selectedTypes} onChange={handleTypeChange}>Тип мотоцикла</CheckboxFilterBlock>
+                <CheckboxFilterBlock title="Тип мотоцикла" headers={VARIANTS.typesMoto} typesChecked={typesChecked} onChange={handleTypeChange} />
             </div>
             <div className={styles.filter__item}>
                 {/* <CheckboxFilterBlock variants={brands}>Бренд</CheckboxFilterBlock> */}
