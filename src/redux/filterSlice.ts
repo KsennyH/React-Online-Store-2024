@@ -6,13 +6,30 @@ export type SortItem = {
     sort: 'price' | 'rating' | 'title';
 }
 
+export enum FilterKey {
+  TYPES = "typesChecked",
+  BRANDS = "brandsChecked",
+}
+
+type CheckboxGroupKey = keyof Pick<
+  FilterSliceState['selected'],
+  FilterKey.TYPES | FilterKey.BRANDS
+>;
+
+interface SetCheckedPayload {
+  key: CheckboxGroupKey;
+  values: string[];
+}
+
 interface FilterSliceState {
     categoryId: number;
     sortTypeValue: SortItem;
     // currentPage: number;
     // value: string;
-    typesChecked: string[];
-    brandsChecked: string[];
+    selected: {
+        typesChecked: string[];
+        brandsChecked: string[];   
+    }
 }
 
 const initialState: FilterSliceState = {
@@ -23,8 +40,10 @@ const initialState: FilterSliceState = {
     },
     // currentPage: 1,
     // value: '',
-    typesChecked: [],
-    brandsChecked: []
+    selected: {
+        typesChecked: [],
+        brandsChecked: []
+    }
 }
 
 export const filterSlice = createSlice({
@@ -51,17 +70,20 @@ export const filterSlice = createSlice({
         // setSearchValue: (state, action: PayloadAction<string>) => {
         //     state.value = action.payload;
         // },
-        setTypesChecked: (state, action: PayloadAction<string[]>) => {
-            state.typesChecked = action.payload;
-        },
-        setBrandsChecked: (state, action: PayloadAction<string[]>) => {
-            state.brandsChecked = action.payload;
-        },
+        setSelectedFilters: (state, action: PayloadAction<SetCheckedPayload>) => {
+            state.selected[action.payload.key] = action.payload.values
+        }
+        // setTypesChecked: (state, action: PayloadAction<string[]>) => {
+        //     state.typesChecked = action.payload;
+        // },
+        // setBrandsChecked: (state, action: PayloadAction<string[]>) => {
+        //     state.brandsChecked = action.payload;
+        // },
     }
 })
 
 // export const { setCategoryId, setSortType, setCurrentPage, setFilters, setSearchValue, setTypes } = filterSlice.actions;
-export const { setSortType, setCategoryId, setTypesChecked, setBrandsChecked } = filterSlice.actions;
+export const { setSortType, setCategoryId, setSelectedFilters } = filterSlice.actions;
 
 export const getFiltersValue = (state: RootState) => state.filter;
 

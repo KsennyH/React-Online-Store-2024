@@ -5,7 +5,7 @@ interface CheckboxFilterBlockProps {
     headers: string[];
     title: string;
     typesChecked: string[];
-    handleCheckboxChange: (value: string, checked: boolean, type: string[]) => void;
+    handleCheckboxChange: (value: string, checked: boolean, key: "typesChecked" | "brandsChecked" ) => void;
 }
 
 export default function CheckboxFilterBlock ({headers, title, typesChecked, handleCheckboxChange} : CheckboxFilterBlockProps) {
@@ -17,7 +17,7 @@ export default function CheckboxFilterBlock ({headers, title, typesChecked, hand
                 {
                     headers.map((el, i:number) => (
                         <li className={styles.checkboxBlock__item} key={i}> 
-                            <Checkbox name={el} checked={typesChecked.includes(el)} onChange={(checked) => handleCheckboxChange(el, checked, typesChecked)} />
+                            <Checkbox name={el} checked={typesChecked.includes(el)} onChange={(checked) => handleCheckboxChange(el, checked, "typesChecked")} />
                         </li>
                     ))
                 }

@@ -1,25 +1,27 @@
 import CheckboxFilterBlock from './Checkbox/CheckboxFilterBlock';
 import styles from './Filter.module.scss';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
-import { getFiltersValue, setTypesChecked } from '@/redux/filterSlice';
+import { FilterKey, getFiltersValue, setSelectedFilters } from '@/redux/filterSlice';
 import { VARIANTS } from '@/constants/variants';
 
 function Filter() {
     const dispatch = useAppDispatch();
-    const { typesChecked, brandsChecked } = useAppSelector((state) => getFiltersValue(state));
+    const { selected } = useAppSelector((state) => getFiltersValue(state));
 
-    const handleTypeChange = (value: string, checked: boolean, type: string[]) => {
-        const checkedProducts = checked ? [...type, value] : type.filter((v) => v !== value);
-        dispatch(setTypesChecked(checkedProducts));
+    const handleTypeChange = (value: string, checked: boolean, key: FilterKey ) => {
+        const checkedProducts = checked ? [...selected[key], value] : selected[key].filter((v) => v !== value);
+        dispatch(setSelectedFilters({ key, values: checkedProducts }));
     }
 
     return(
         <div className={styles.filter}>
             <div className={styles.filter__item}> 
-                <CheckboxFilterBlock title="Тип мотоцикла" headers={VARIANTS.typesMoto} typesChecked={typesChecked} handleCheckboxChange={handleTypeChange} />
+                <CheckboxFilterBlock title="Тип мотоцикла" headers={VARIANTS.typesMoto} typesChecked={selected.typesChecked} handleCheckboxChange={(value, checked) => handleTypeChange(value, checked, FilterKey.TYPES)} />
             </div>
             <div className={styles.filter__item}>
-                <CheckboxFilterBlock title="Бренд" headers={VARIANTS.brands} typesChecked={brandsChecked} handleCheckboxChange={handleTypeChange} />
+                <CheckboxFilterBlock title="Бренд" headers={VARIANTS.brands} typesChecked={selected.brandsChecked} handleCheckboxChange={(value, checked) =>
+                    handleTypeChange(value, checked, FilterKey.BRANDS)
+                } />
             </div>
             {/* <div className={styles.filter__item}>
             <div className="toggle-block"> 
@@ -35,43 +37,6 @@ function Filter() {
                 </div>
                 <div className="toggle-block__range" id="price-slider"></div>
                 </div>
-            </div>
-            </div> */}
-            {/* <div className={styles.filter__item}>
-            <div className="checkbox-block"> 
-                <h5 className="checkbox-block__title filter-title">Техника</h5>
-                <ul className="checkbox-block__list">
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Мотоциклы</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Мопеды</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Скутеры</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Квадроциклы</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Гидроциклы</span>
-                    </label>
-                </li>
-                <li className="checkbox-block__item"> 
-                    <label className="checkbox">
-                    <input className="checkbox__input" type="checkbox"/><span className="checkbox__custom custom-checkbox"></span><span className="checkbox__name">Снегоходы</span>
-                    </label>
-                </li>
-                </ul>
             </div>
             </div> */}
             {/* <div className={styles.filter__item}>
@@ -106,12 +71,6 @@ function Filter() {
                 </li>
                 </ul>
             </div>
-            </div> */}
-            {/* <div className={styles.filter__btn}> 
-                <button className="btn btn--small" type="submit">Показать</button>
-            </div>
-            <div className={styles.filter__reset}> 
-                <button className={styles.filter__resetBtn}>Сбросить настройки</button>
             </div> */}
         </div>
     );
