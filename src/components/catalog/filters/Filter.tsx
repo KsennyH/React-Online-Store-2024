@@ -4,19 +4,23 @@ import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { getFiltersValue, setTypesChecked } from '@/redux/filterSlice';
 import { VARIANTS } from '@/constants/variants';
 
-// const typesMoto = ['Спортивный', 'Дорожный', 'Эндуро', 'Питбайк'];
-// const brands = ['Honda', 'Irbis', 'Bse', 'Rockot', 'Bmw', 'Kawasaki', 'Suzuki'];
 function Filter() {
     const dispatch = useAppDispatch();
-    // const selectedTypes = useSelector((state: RootState) => state.filter.types);
-    const { typesChecked } = useAppSelector((state) => getFiltersValue(state));
+    const { typesChecked, brandsChecked } = useAppSelector((state) => getFiltersValue(state));
 
-    const handleTypeChange = (value: string, checked: boolean) => {
-        const checkedProducts = checked ? [...typesChecked, value] : typesChecked.filter((v) => v !== value);
+    const handleTypeChange = (value: string, checked: boolean, type: string[]) => {
+        const checkedProducts = checked ? [...type, value] : type.filter((v) => v !== value);
         dispatch(setTypesChecked(checkedProducts));
     }
+
     return(
         <div className={styles.filter}>
+            <div className={styles.filter__item}> 
+                <CheckboxFilterBlock title="Тип мотоцикла" headers={VARIANTS.typesMoto} typesChecked={typesChecked} handleCheckboxChange={handleTypeChange} />
+            </div>
+            <div className={styles.filter__item}>
+                <CheckboxFilterBlock title="Бренд" headers={VARIANTS.brands} typesChecked={brandsChecked} handleCheckboxChange={handleTypeChange} />
+            </div>
             {/* <div className={styles.filter__item}>
             <div className="toggle-block"> 
                 <h5 className="toggle-block__title filter-title">Цена (руб)</h5>
@@ -70,12 +74,6 @@ function Filter() {
                 </ul>
             </div>
             </div> */}
-            <div className={styles.filter__item}> 
-                <CheckboxFilterBlock title="Тип мотоцикла" headers={VARIANTS.typesMoto} typesChecked={typesChecked} onChange={handleTypeChange} />
-            </div>
-            <div className={styles.filter__item}>
-                {/* <CheckboxFilterBlock variants={brands}>Бренд</CheckboxFilterBlock> */}
-            </div>
             {/* <div className={styles.filter__item}>
             <div className="toggle-block"> 
                 <h5 className="toggle-block__title filter-title">Объём двигателя (куб. см)</h5>

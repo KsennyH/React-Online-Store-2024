@@ -34,10 +34,6 @@ function CatalogPage() {
     // const endIndex = startIndex + countPerPage;
     // const currentProducts = items.slice(startIndex, endIndex);
 
-    useEffect(() => {
-        document.title = "Каталог товаров";
-    }, []);
-
     // useEffect(() => {
     //     if(window.location.search) {
     //         const params = qs.parse(window.location.search.substring(1));

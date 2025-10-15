@@ -12,6 +12,7 @@ interface FilterSliceState {
     // currentPage: number;
     // value: string;
     typesChecked: string[];
+    brandsChecked: string[];
 }
 
 const initialState: FilterSliceState = {
@@ -22,7 +23,8 @@ const initialState: FilterSliceState = {
     },
     // currentPage: 1,
     // value: '',
-    typesChecked: []
+    typesChecked: [],
+    brandsChecked: []
 }
 
 export const filterSlice = createSlice({
@@ -51,12 +53,15 @@ export const filterSlice = createSlice({
         // },
         setTypesChecked: (state, action: PayloadAction<string[]>) => {
             state.typesChecked = action.payload;
-        }
+        },
+        setBrandsChecked: (state, action: PayloadAction<string[]>) => {
+            state.brandsChecked = action.payload;
+        },
     }
 })
 
 // export const { setCategoryId, setSortType, setCurrentPage, setFilters, setSearchValue, setTypes } = filterSlice.actions;
-export const { setSortType, setCategoryId, setTypesChecked } = filterSlice.actions;
+export const { setSortType, setCategoryId, setTypesChecked, setBrandsChecked } = filterSlice.actions;
 
 export const getFiltersValue = (state: RootState) => state.filter;
 
