@@ -11,7 +11,7 @@ function useSetQueryParams( sortTypeValue: SortItem, categoryId: number, paginat
     const navigate = useNavigate();
 
     useEffect(() => {
-    
+        
         dispatch(
             fetchProducts({
                 sortTypeValue, 

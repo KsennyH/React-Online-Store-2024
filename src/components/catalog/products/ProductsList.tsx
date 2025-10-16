@@ -6,7 +6,6 @@ interface ProductsListProps {
     products: Product[];
 }
 function ProductsList({products}: ProductsListProps) {
-    
     return(
         <> 
             <div className={styles.products}>

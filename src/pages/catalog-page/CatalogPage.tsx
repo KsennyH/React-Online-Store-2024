@@ -8,7 +8,6 @@ import { getFiltersValue, setSortType, setCategoryId, SortItem, setCurrentPage, 
 import SortingProduct from '@/components/catalog/sorting/SortingProduct';
 import SortBy from '@/components/catalog/sort/SortBy';
 import PaginationButtons from '@/components/catalog/pagination/PaginationButtons';
-import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
 import { fetchProducts, getProducts, Status } from '@/redux/productsSlice';
 import { RingLoader } from 'react-spinners';
@@ -18,18 +17,13 @@ import useSetQueryParams from '@/hooks/useSetQueryParams';
 function CatalogPage() {
     
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
       
     const { sortTypeValue, categoryId, pagination } = useAppSelector((state) => getFiltersValue(state));
     const { items, status, error } = useAppSelector((state) => getProducts(state));
     const TOTAL = 18; //Mockapi не возвращает total при пагинации, поэтому пока константа
     const LIMIT = pagination.limit;
     const pagesCount = Math.ceil(TOTAL / LIMIT);
-
-    useEffect(() => {
-        dispatch(fetchProducts({ sortTypeValue, categoryId, pagination }));
-    }, [sortTypeValue, categoryId, pagination])
-
+    
     const isFirstMount = useRef(true);
 
     useEffect(() => {
@@ -49,10 +43,6 @@ function CatalogPage() {
     }, []);
 
     useSetQueryParams( sortTypeValue, categoryId, pagination, isFirstMount );
-
-    useEffect(() => {
-        dispatch(setCurrentPage({ currentPage: 1, limit: pagination.limit }));
-    }, [categoryId, sortTypeValue]);
 
     const onChangeCategory = (id:number) => dispatch(setCategoryId(id));
     const onChangeSort = (item: SortItem) => dispatch(setSortType(item));

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { JSX, memo, useState } from 'react';
 import { addProduct, CartItem } from '@/redux/cartSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from '@/redux/store';
@@ -8,7 +8,7 @@ import styles from './ProductCard.module.scss';
 import Button from '@/components/ui/Button';
 import Count from '../count/Count';
 
-const Card: React.FC<Product> = ({id, img, title, article, price, colors}) => {
+const Card = memo(({id, img, title, article, price, colors}: Product): JSX.Element => {
 
     const [motoColor, setMotoColor] = useState(0);
     const color = colors[motoColor];
@@ -16,7 +16,6 @@ const Card: React.FC<Product> = ({id, img, title, article, price, colors}) => {
     const dispatch = useDispatch();
 
     const addedCount:number = itemInCart ? itemInCart.productCount : 0;
-    console.log("here");
     
     const onClickAddProduct = () => {
         const item: CartItem = {
@@ -63,7 +62,7 @@ const Card: React.FC<Product> = ({id, img, title, article, price, colors}) => {
                 <span>В корзину</span>
             </Button>
         </article>
-    );
-}
+    )
+});
 
 export default Card;
