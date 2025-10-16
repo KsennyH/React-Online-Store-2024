@@ -6,6 +6,11 @@ export type SortItem = {
     sort: 'price' | 'rating' | 'title';
 }
 
+export type PaginationType = {
+    currentPage: number,
+    limit: number
+}
+
 export enum FilterKey {
   TYPES = "typesChecked",
   BRANDS = "brandsChecked",
@@ -21,11 +26,12 @@ interface SetCheckedPayload {
   values: string[];
 }
 
+type QueryParamsFromUrl = Partial<Pick<FilterSliceState, 'categoryId' | 'sortTypeValue' | 'pagination'>>;
+
 interface FilterSliceState {
     categoryId: number;
     sortTypeValue: SortItem;
-    // currentPage: number;
-    // value: string;
+    pagination: PaginationType;
     selected: {
         typesChecked: string[];
         brandsChecked: string[];   
@@ -38,8 +44,10 @@ const initialState: FilterSliceState = {
         name: "цене",
         sort: "price"
     },
-    // currentPage: 1,
-    // value: '',
+    pagination: {
+        currentPage: 1,
+        limit: 9
+    },
     selected: {
         typesChecked: [],
         brandsChecked: []
@@ -56,34 +64,37 @@ export const filterSlice = createSlice({
         setSortType: (state, action: PayloadAction<SortItem>) => {
             state.sortTypeValue = action.payload;
         },
-        // setCurrentPage: (state, action: PayloadAction<number>) => {
-        //     state.currentPage = action.payload;
-        // },
-        // setFilters: (state, action: PayloadAction<FilterSliceState>) => {
-        //     const {categoryId, sortType, currentPage, value, types} = action.payload;
-        //     state.categoryId = categoryId;
-        //     state.sortType = sortType;
-        //     state.currentPage = currentPage;
-        //     state.value = value;
-        //     state.types = types;
-        // },
+        setCurrentPage: (state, action: PayloadAction<PaginationType>) => {
+            state.pagination = {
+                ...state.pagination,
+                ...action.payload
+            };
+        },
+        setQueryFromUrl: (state, action: PayloadAction<QueryParamsFromUrl>) => {
+            const { categoryId, sortTypeValue, pagination } = action.payload;
+            if (categoryId !== undefined) {
+                state.categoryId = categoryId;
+            }
+            if (sortTypeValue !== undefined) {
+                state.sortTypeValue = sortTypeValue;
+            }
+            if (pagination !== undefined) {
+                state.pagination = {
+                    ...state.pagination,
+                    ...action.payload.pagination
+                };
+            }
+        },
         // setSearchValue: (state, action: PayloadAction<string>) => {
         //     state.value = action.payload;
         // },
         setSelectedFilters: (state, action: PayloadAction<SetCheckedPayload>) => {
             state.selected[action.payload.key] = action.payload.values
         }
-        // setTypesChecked: (state, action: PayloadAction<string[]>) => {
-        //     state.typesChecked = action.payload;
-        // },
-        // setBrandsChecked: (state, action: PayloadAction<string[]>) => {
-        //     state.brandsChecked = action.payload;
-        // },
     }
 })
 
-// export const { setCategoryId, setSortType, setCurrentPage, setFilters, setSearchValue, setTypes } = filterSlice.actions;
-export const { setSortType, setCategoryId, setSelectedFilters } = filterSlice.actions;
+export const { setSortType, setCategoryId, setSelectedFilters, setCurrentPage, setQueryFromUrl } = filterSlice.actions;
 
 export const getFiltersValue = (state: RootState) => state.filter;
 

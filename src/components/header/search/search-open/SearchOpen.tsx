@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/redux/store";
 import styles from "./SearchOpen.module.scss";
-import { searchedProducts } from "@/redux/productsSlice";
 import { Link } from "react-router-dom";
+import { searchedProducts } from "@/redux/searchSlice";
 
 type SearchOpenProps = {
     handleClick: () => void

@@ -1,14 +1,13 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 import axios from 'axios';
 import { createAppAsyncThunk } from "./redux-types/types";
 import { RootState } from "./store";
+import { PaginationType, SortItem } from "./filterSlice";
 
 type FetchProductsArgs = {
     categoryId: number;
-    sortType: string;
-    searchValue: string;
-    currentPage: number;
-    types: string[];
+    pagination: PaginationType,
+    sortTypeValue: SortItem
 };
 
 export type Product = {
@@ -28,7 +27,6 @@ export enum Status {
 
 interface ProductsSliceState {
     items: Product[];
-    searchedItems: Product[];
     totalProducts: number;
     status: Status;
     error: string | null;
@@ -36,47 +34,29 @@ interface ProductsSliceState {
 
 const initialState: ProductsSliceState = {
     items: [],
-    searchedItems: [],
     totalProducts: 0,
     status: Status.LOADING,
     error: null,
 }
 
-// export const fetchProducts = createAsyncThunk<Product[],FetchProductsArgs>(
-//     'products/fetchProductsStatus',
-//     async ({ categoryId, sortType, searchValue, currentPage, types }, { rejectWithValue }) => {
-//         try {
-//             const params = new URLSearchParams();
-//             params.append('page', String(currentPage));
-//             if (categoryId) params.append('categories', String(categoryId));
-//             if (sortType) params.append('sortBy', sortType);
-//             if (searchValue) params.append('search', searchValue);
-//             if (types.length > 0) {
-//                 params.append('type', types[0]);
-//             }
-//             const { data } = await axios.get<Product[]>(`https://665b3a2e003609eda4604130.mockapi.io/products?${params.toString()}`);
-//             return data;
-//         } catch (err: unknown) {
-//             if (err instanceof Error) {
-//                 return rejectWithValue(err.message);
-//             }
-//             return rejectWithValue('Что-то пошло не так');
-//         }
-        
-//     },
-//   )
+export const fetchProducts = createAppAsyncThunk<Product[],FetchProductsArgs>(
+    'products/fetchProducts',
+    async ({ sortTypeValue, categoryId, pagination }, { rejectWithValue }) => {
+    
+        const queryString = new URLSearchParams();
+        categoryId && queryString.append('categories', String(categoryId));
+        sortTypeValue && queryString.append('sortBy', sortTypeValue.sort);
+        pagination.currentPage && queryString.append('page', String(pagination.currentPage));
+        pagination.limit && queryString.append('limit', String(pagination.limit));
 
-export const fetchSearchedData = createAppAsyncThunk(
-    'products/fetchSearchedData',
-    async ( value: string ) => {
         try{
-            if(value.trim().length <= 2) return;
-            const { data } = await axios.get<Product[]>(`https://665b3a2e003609eda4604130.mockapi.io/products?search=${value}`);
+            const { data } = await axios.get<Product[]>(`https://665b3a2e003609eda4604130.mockapi.io/products?${queryString.toString()}`);
             return data;
         } catch(err: unknown) {
-            if (err instanceof Error) {
-                console.error(err.message);
+            if (err instanceof Error) {  
+                return rejectWithValue(err.message);
             }
+            return rejectWithValue("Ошибка при загрузке товаров");
         }
     }
 )
@@ -84,41 +64,22 @@ export const fetchSearchedData = createAppAsyncThunk(
 export const productsSlice = createSlice({
     name: 'products',
     initialState,
-    reducers: {
-        setProducts: (state, action) => {
-            state.items = action.payload;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
-            // .addCase(fetchProducts.pending, (state) => {
-            //     state.status = Status.LOADING;
-            // })
-            // .addCase(fetchProducts.fulfilled, (state, action) => {
-            //     state.items = action.payload;
-            //     state.totalProducts = action.payload.length;
-            //     state.status = Status.SUCCESS;
-            //     state.error = null; 
-            // })
-            // .addCase(fetchProducts.rejected, (state, action) => {
-            //     state.status = Status.ERROR;
-            //     state.error = action.payload as string;
-            // });
-            .addCase(fetchSearchedData.pending, (state) => {
+            .addCase(fetchProducts.pending, (state) => {
                 state.status = Status.LOADING;
             })
-            .addCase(fetchSearchedData.fulfilled, (state, action) => {
-                state.searchedItems = action.payload || [];
+             .addCase(fetchProducts.fulfilled, (state, action) => {
+                state.items = action.payload || [];
                 state.status = Status.SUCCESS;
             })
-            .addCase(fetchSearchedData.rejected, (state) => {
+            .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = Status.ERROR;
-                state.error = "Ошибка при поиске товара";
-            })
+                state.error = "Ошибка при загрузке товаров";
+            });
     },
 })
 
-export const { setProducts } = productsSlice.actions;
-export const searchedProducts = (state: RootState) => state.products.searchedItems;
-
+export const getProducts = (state: RootState) => state.products;
 export default productsSlice.reducer;

@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import styles from './SearchComponent.module.scss';
-import { setSearchValue } from '@/redux/filterSlice';
-import { searchValueAdded } from '@/redux/searchSlice';
+// import { setSearchValue } from '@/redux/filterSlice';
+import { fetchSearchedData, searchValueAdded } from '@/redux/searchSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
-import { fetchSearchedData } from '@/redux/productsSlice';
 import SearchOpen from './search-open/SearchOpen';
 import { useClickAway } from "@uidotdev/usehooks";
 import { SearchCheck, X } from 'lucide-react';

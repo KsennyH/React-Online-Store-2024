@@ -3,94 +3,60 @@ import Breadcrumb from '@/components/breadcrumbs/Breadcrumb';
 import Filter from '@/components/catalog/filters/Filter';
 import ProductsList from '@/components/catalog/products/ProductsList';
 import styles from './CatalogPage.module.scss';
-import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch, useAppSelector } from '@/redux/store';
-// import { setCategoryId, setCurrentPage, setFilters, setSortType, SortItem } from '@/redux/filterSlice';
-import { getFiltersValue, setSortType, setCategoryId, SortItem } from '@/redux/filterSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { getFiltersValue, setSortType, setCategoryId, SortItem, setCurrentPage, PaginationType, setQueryFromUrl } from '@/redux/filterSlice';
 import SortingProduct from '@/components/catalog/sorting/SortingProduct';
 import SortBy from '@/components/catalog/sort/SortBy';
 import PaginationButtons from '@/components/catalog/pagination/PaginationButtons';
 import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
-// import { sort } from '@/constants/sortOptions';
-// import { fetchProducts } from '@/redux/productsSlice';
-import { searchValueAdded } from '@/redux/searchSlice';
-import Checkbox from '@/components/ui/checkbox/Checkbox';
+import { fetchProducts, getProducts, Status } from '@/redux/productsSlice';
+import { RingLoader } from 'react-spinners';
+import { SORT_OPTIONS } from '@/constants/sortOptions';
+import useSetQueryParams from '@/hooks/useSetQueryParams';
 
 function CatalogPage() {
     
     const dispatch = useAppDispatch();
-    // const navigate = useNavigate();
-    
-    // const { categoryId, sortType, currentPage, value: searchValue, types } = useSelector((state: RootState) => state.filter);  
-    const { sortTypeValue, categoryId } = useAppSelector((state) => getFiltersValue(state));
-    // const {items, totalProducts} = useSelector((state: RootState) => state.products);
+    const navigate = useNavigate();
+      
+    const { sortTypeValue, categoryId, pagination } = useAppSelector((state) => getFiltersValue(state));
+    const { items, status, error } = useAppSelector((state) => getProducts(state));
+    const TOTAL = 18; //Mockapi не возвращает total при пагинации, поэтому пока константа
+    const LIMIT = pagination.limit;
+    const pagesCount = Math.ceil(TOTAL / LIMIT);
 
-    // const isFirstMount = useRef(true);
+    useEffect(() => {
+        dispatch(fetchProducts({ sortTypeValue, categoryId, pagination }));
+    }, [sortTypeValue, categoryId, pagination])
 
-    // const countPerPage = 9;
-    // const totalPages = Math.ceil(totalProducts / countPerPage);
-    // const startIndex = (currentPage - 1) * countPerPage;
-    // const endIndex = startIndex + countPerPage;
-    // const currentProducts = items.slice(startIndex, endIndex);
+    const isFirstMount = useRef(true);
 
-    // useEffect(() => {
-    //     if(window.location.search) {
-    //         const params = qs.parse(window.location.search.substring(1));
-    //         const sortItem = sort.find((s) => s.sort === params.sortType) || sort[0];
+    useEffect(() => {
+        if(window.location.search) {
+            const params = qs.parse(window.location.search.substring(1));
+            const sortItem = SORT_OPTIONS.find((s) => s.sort === params.sortTypeValue) || SORT_OPTIONS[0];
 
-    //         dispatch(setFilters({
-    //             categoryId: Number(params.categoryId) || 0,
-    //             currentPage: Number(params.currentPage) || 1,
-    //             sortType: sortItem,
-    //             value: searchValue,
-    //             types: params.type || ''
-    //         }));
-    //     }
-    // }, []);
+            dispatch(setQueryFromUrl({
+                categoryId: Number(params.categoryId) || 0,
+                pagination: {
+                    currentPage: Number(params.currentPage) || 1,
+                    limit: Number(params.limit) || LIMIT,
+                },
+                sortTypeValue: sortItem,
+            }));
+        }
+    }, []);
 
-    // useEffect(() => {
-    //     const getProducts = async () => {
-    //         const queryParams = {
-    //             page: currentPage,
-    //             ...(categoryId ? { categories: categoryId } : {}),
-    //             ...(sortType.sort ? { sortBy: sortType.sort } : {}),
-    //             ...(searchValue ? { search: searchValue } : {}),
-    //             ...(types ? { type: types } : {})
-    //         };
+    useSetQueryParams( sortTypeValue, categoryId, pagination, isFirstMount );
 
-    //         const queryString = qs.stringify(queryParams);
-
-    //         const url = `https://665b3a2e003609eda4604130.mockapi.io/products?${queryString}`;
-        
-    //         try {
-    //             dispatch(fetchProducts({ 
-    //                 categoryId,
-    //                 sortType: sortType.sort,
-    //                 searchValue,
-    //                 currentPage,
-    //                 types
-    //              }));
-    //         } catch {
-    //             console.error('Ошибка загрузки');
-    //         }
-    //     }
-    //     getProducts();
-
-    //     if (!isFirstMount.current) {
-    //         const query = qs.stringify({
-    //             categoryId,
-    //             sortType: sortType.sort,
-    //             currentPage,
-    //         });
-    //         navigate(`?${query}`);
-    //     }
-    //     isFirstMount.current = false;
-    // }, [categoryId, sortType, searchValue, currentPage, types]);
+    useEffect(() => {
+        dispatch(setCurrentPage({ currentPage: 1, limit: pagination.limit }));
+    }, [categoryId, sortTypeValue]);
 
     const onChangeCategory = (id:number) => dispatch(setCategoryId(id));
     const onChangeSort = (item: SortItem) => dispatch(setSortType(item));
-    // const onChangeCurrentPage = (page:number) => dispatch(setCurrentPage(page));
+    const onChangeCurrentPage = ( pagination : PaginationType) => dispatch(setCurrentPage(pagination));
 
     return (
         <> 
@@ -103,16 +69,22 @@ function CatalogPage() {
                             <Filter />
                         </aside>
                         <div className={styles.catalog__products}>
-                            {/* <SortingProduct sort={categoryId} sortChange={onChangeCategory}/> */}
                             <SortingProduct category={categoryId} handleCategoryChange={onChangeCategory}/>
                             <div className={styles.catalog__sort}>
-                                {/* <SortBy sortCriterion={sortType} sortCriterionChange={onChangeSort}/> */}
                                 <SortBy sortCriterion={sortTypeValue} handleSortChange={onChangeSort}/>
                             </div>
-                            {/* <ProductsList products={currentProducts} /> */}
-                            {/* {
-                                totalPages > 1 && (<PaginationButtons current={currentPage} pagesCount={totalPages} setCurrent={onChangeCurrentPage} />)
-                            } */}
+                            {
+                                status === Status.ERROR && <div style={{padding: 40 + 'px', display: 'flex', justifyContent: 'center' }}><h2>{error}</h2></div>
+                            }
+                            {
+                                status === Status.LOADING ? <div style={{padding: 40 + 'px', display: 'flex', justifyContent: 'center' }}><RingLoader color='#414141' /></div> : (
+                                    <ProductsList products={items} />
+                                )
+                            }
+                            
+                            {
+                                pagesCount > 1 && (<PaginationButtons pagination={pagination} pagesCount={pagesCount} handleCurrentChange={onChangeCurrentPage} />)
+                            }
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ const Card: React.FC<Product> = ({id, img, title, article, price, colors}) => {
     const dispatch = useDispatch();
 
     const addedCount:number = itemInCart ? itemInCart.productCount : 0;
+    console.log("here");
     
     const onClickAddProduct = () => {
         const item: CartItem = {
