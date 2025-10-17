@@ -65,10 +65,7 @@ export const filterSlice = createSlice({
             state.sortTypeValue = action.payload;
         },
         setCurrentPage: (state, action: PayloadAction<PaginationType>) => {
-            state.pagination = {
-                ...state.pagination,
-                ...action.payload
-            };
+            state.pagination = action.payload;
         },
         setQueryFromUrl: (state, action: PayloadAction<QueryParamsFromUrl>) => {
             const { categoryId, sortTypeValue, pagination } = action.payload;
