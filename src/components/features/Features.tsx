@@ -1,4 +1,4 @@
-import { CirclePlus } from "lucide-react";
+import { CircleMinus, CirclePlus } from "lucide-react";
 import styles from "./Features.module.scss";
 import { FEATURE } from "@/constants/feature";
 import FeaturesList from "./features-list/FeaturesList";
@@ -12,7 +12,7 @@ function Features(): JSX.Element {
             <div className="container">
                 <div className={styles.feature__top}>
                     <h4 className={styles.feature__title}>Технические характеристики</h4>
-                    <button type="button" onClick={() => setIsOpen(prev => !prev)}><CirclePlus color="#ffffff" /></button>
+                    <button type="button" onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <CircleMinus color="#ffffff" /> : <CirclePlus color="#ffffff" />}</button>
                 </div>
                 <AnimatePresence initial={false}>
                     {

@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import filter from './filterSlice';
 import cart from './cartSlice';
 import products from './productsSlice';
-import singleProduct from './singleProductSlice';
 import search from './searchSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,7 +10,6 @@ export const store = configureStore({
     filter,
     cart,
     products,
-    singleProduct,
     search
   },
 })

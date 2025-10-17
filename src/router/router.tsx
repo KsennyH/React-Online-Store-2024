@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "@/App";
 import CatalogPage from "@/pages/catalog-page/CatalogPage";
-import { lazy, Suspense } from "react";
-import Loader from "@/components/ui/loader/Loader";
+import { lazy } from "react";
+import { fetchSingleProduct } from "@/api/product";
 
 const SingleProductPage = lazy(() => import ('@/pages/catalog-page/single/SingleProductPage'));
 const ServicesPage = lazy(() => import ('@/pages/ServicesPage'));
@@ -12,37 +12,29 @@ const CartPage = lazy(() => import ('@/pages/cart/CartPage'));
 export const router = createBrowserRouter([
     {
         path: '/',
-        Component: App,
+        element: <App />,
         children: [
-            { index: true, Component: CatalogPage },
+            { index: true, element: <CatalogPage /> },
             { 
                 path: 'products/:id',
-                element: 
-                    <Suspense fallback={<Loader />}>
-                        <SingleProductPage />
-                    </Suspense>
+                loader: async ({ params }) => {
+                    const product = await fetchSingleProduct(params.id!);
+                    return { product };
+                },
+                element: <SingleProductPage />
             },
             { 
                 path: 'services', 
-                element: 
-                    <Suspense fallback={<Loader />}>
-                        <ServicesPage />
-                    </Suspense>
+                element: <ServicesPage />
             },
             { 
                 path: 'contacts', 
-                element: 
-                    <Suspense fallback={<Loader />}>
-                        <ContactPage /> 
-                    </Suspense>
+                element: <ContactPage /> 
             },
             { 
                 path: 'cart', 
-                element: 
-                    <Suspense fallback={<Loader />}>
-                        <CartPage />
-                    </Suspense>
+                element: <CartPage />
             }
-        ]
-    }
-]);
+        ],
+    },
+],);

@@ -10,6 +10,13 @@ type FetchProductsArgs = {
     sortTypeValue: SortItem
 };
 
+type ProductVariant = {
+    available: boolean, 
+    color: string,
+    images: string[],
+    stock: number
+}
+
 export type Product = {
     id: string;
     img: string;
@@ -17,6 +24,7 @@ export type Product = {
     article: string;
     price: number;
     colors: string[];
+    variants: ProductVariant[]
 }
 
 export enum Status {

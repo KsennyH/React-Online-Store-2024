@@ -1,0 +1,12 @@
+import { Product } from "@/redux/productsSlice";
+import axios from "axios";
+
+export const fetchSingleProduct = async (id: string): Promise<Product> => {
+    try {
+        const {data} = await axios.get<Product>(`https://665b3a2e003609eda4604130.mockapi.io/products/${id}`);
+        return data;
+    } catch (err) {
+        throw new Error("Ошибка загрузки продукта");
+    }
+}
+
