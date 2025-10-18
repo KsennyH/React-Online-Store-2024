@@ -1,4 +1,5 @@
 import { useKeenSlider } from "keen-slider/react";
+import 'keen-slider/keen-slider.min.css'
 import { useState } from "react";
 import styles from "./SliderProductCard.module.scss";
 
@@ -6,6 +7,9 @@ function SliderProductCard({ images }: { images: string[] }) {
 
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
         loop: true,
+        slides: {
+            perView: 1,
+        },
         slideChanged(slider) {
             setCurrentSlide(slider.track.details.rel);
         },
@@ -15,16 +19,16 @@ function SliderProductCard({ images }: { images: string[] }) {
             
     return(
         <div className={styles.sliderImages}>
-            <div ref={sliderRef} className="keen-slider" style={{maxWidth: "100%"}}>
+            <div ref={sliderRef} className={`${styles.sliderImages__wrapper} keen-slider`}>
                 {
-                    images.map((el, i: number) => <div key={i} className="keen-slider__slide"><img style={{height: "380px", objectFit: "contain"}} src={el} /></div>)
+                    images.map((el, i: number) => <div key={i} className="keen-slider__slide"><img src={el} /></div>)
                 }
             </div>
-            <div className={styles.sliderImg}>
+            <div className={styles.sliderImages__pagination}>
                 {
-                    images.map((el, i: number) => <div style={{border: "2px solid transparent", transition: "all 0.5s ease"}} key={i}  onClick={() => instanceRef.current?.moveToIdx(i)} className={`${
-              i === currentSlide ? styles.sliderBorder : ''
-            }`} ><img style={{height: "100px", objectFit: "contain"}} src={el} /></div>)
+                    images.map((el, i: number) => <div key={i}  onClick={() => instanceRef.current?.moveToIdx(i)} className={`${styles.sliderImages__bottom} ${
+              i === currentSlide ? styles.borderActive : ''
+            }`} ><img src={el} /></div>)
                 }
             </div>
         </div> 

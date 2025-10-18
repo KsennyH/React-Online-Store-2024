@@ -12,9 +12,11 @@ import qs from 'qs';
 import { getProducts, Status } from '@/redux/productsSlice';
 import { SORT_OPTIONS } from '@/constants/sortOptions';
 import useSetQueryParams from '@/hooks/useSetQueryParams';
+import { FunnelPlus } from 'lucide-react';
 
 function CatalogPage() {
     const [isSearchLoaded, setIsSearchLoaded] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const dispatch = useAppDispatch();
       
     const { sortTypeValue, categoryId, pagination } = useAppSelector((state) => getFiltersValue(state));
@@ -54,9 +56,9 @@ function CatalogPage() {
             <section className={styles.catalog}>
                 <div className="container">
                     <div className={styles.catalog__inner}>
-                        <button className={styles.catalog__filterBtn} type="button"><img src="img/filter.svg" alt="Фильтр"/></button>
+                        <button className={styles.catalog__filterBtn} type="button" onClick={() => setIsOpen(prev => !prev)}><FunnelPlus color="#ffffff" /></button>
                         <aside className={styles.catalog__filter}>
-                            <Filter />
+                            <Filter isOpen={isOpen} />
                         </aside>
                         <div className={styles.catalog__products}>
                             <SortingProduct category={categoryId} handleCategoryChange={onChangeCategory}/>

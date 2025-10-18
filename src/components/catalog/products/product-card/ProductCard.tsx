@@ -1,4 +1,4 @@
-import React, { JSX, memo, useState } from 'react';
+import { JSX, memo, useState } from 'react';
 import { addProduct, CartItem } from '@/redux/cartSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from '@/redux/store';
@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.scss';
 import Button from '@/components/ui/Button';
 import Count from '../count/Count';
+import { formatPrice } from '@/lib/formatPrice';
 
-const Card = memo(({id, img, title, article, price, colors}: Product): JSX.Element => {
+const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element => {
+    const { id, img, title, article, price, colors, variants } = singleProduct;
 
     const [motoColor, setMotoColor] = useState(0);
     const color = colors[motoColor];
@@ -42,21 +44,24 @@ const Card = memo(({id, img, title, article, price, colors}: Product): JSX.Eleme
                         <h3 className={styles.productCard__title}>{title}</h3>
                     </Link>
                     <div> 
-                        <ul className={styles.productCard__colors}>
-                            {colors.map((item, i) => (
-                                <li key={i}>
-                                    <Button variant='outline' onClick={() => setMotoColor(i)} isActive={motoColor === i}>{item}</Button>
-                                </li>
-                            ))}
-                        </ul>
+                        <div className={styles.colors}>
+                            <div className={styles.colors__label}>Цвет:</div>
+                            <ul className={styles.colors__list}>
+                                {variants.map((el, i: number) => (
+                                    <li key={i}>
+                                        <button type="button" onClick={() => setMotoColor(i)} className={`${styles.colors__color} ${motoColor === i ? styles.active : ''}`} style={{ backgroundColor: el.color }}></button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                         <div className={styles.productCard__information}> 
                             <span className={styles.productCard__article}>Артикул: {article}</span>
-                            <span className={styles.productCard__text}>В наличии</span>
+                            <span className={styles.productCard__text}>{variants[motoColor].available ? `В наличии: ${variants[motoColor].stock}` : "Под заказ"}</span>
                         </div>
                     </div>
                 </div>
             <div className={styles.productCard__price}>
-                {price} руб.
+                { formatPrice(price) } руб.
             </div>
             <Button onClick={onClickAddProduct}>
                 <span>В корзину</span>

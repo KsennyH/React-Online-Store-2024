@@ -75,3 +75,24 @@
     column-gap: 10px;
   }
 }
+
+.colors {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  &__color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    &.active {
+      border: 2px solid #414141;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { FilterKey, getFiltersValue, setSelectedFilters } from '@/redux/filterSlice';
 import { VARIANTS } from '@/constants/variants';
 
-function Filter() {
+function Filter({ isOpen }: { isOpen: boolean }) {
     const dispatch = useAppDispatch();
     const { selected } = useAppSelector((state) => getFiltersValue(state));
 
@@ -14,7 +14,7 @@ function Filter() {
     }
 
     return(
-        <div className={styles.filter}>
+        <div className={`${styles.filter} ${isOpen ? styles.active : ''}`}>
             <div className={styles.filter__item}> 
                 <CheckboxFilterBlock title="Тип мотоцикла" headers={VARIANTS.typesMoto} typesChecked={selected.typesChecked} handleCheckboxChange={(value, checked) => handleTypeChange(value, checked, FilterKey.TYPES)} />
             </div>

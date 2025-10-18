@@ -17,7 +17,9 @@ function ProductsList ({products, limit}: ProductsListProps) {
                     !products || products.length === 0 ? [...Array(limit)].map((_, i) => (
                         <li key={i}><ProductCardSkeleton /></li>
                     )) : products.map((product) => (
-                        <li key={product.id}><ProductCard {...product}/></li>
+                        <li key={product.id}>
+                            <ProductCard singleProduct={product}/>
+                        </li>
                     ))
                 }
                 </ul>
