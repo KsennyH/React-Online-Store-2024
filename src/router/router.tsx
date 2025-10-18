@@ -8,6 +8,7 @@ const SingleProductPage = lazy(() => import ('@/pages/catalog-page/single/Single
 const ServicesPage = lazy(() => import ('@/pages/ServicesPage'));
 const ContactPage = lazy(() => import ('@/pages/ContactPage'));
 const CartPage = lazy(() => import ('@/pages/cart/CartPage'));
+const Articles = lazy(() => import ('@/pages/blog/Articles'));
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
                     return { product };
                 },
                 element: <SingleProductPage />
+            },
+            { 
+                path: 'blog', 
+                element: <Articles />
             },
             { 
                 path: 'services', 

@@ -1,0 +1,25 @@
+.articles {
+  padding: 48px 0;
+  &__wrapper {
+    display: flex;
+    gap: 24px;
+    @media (max-width: 767.98px) {
+      flex-direction: column;
+    }
+  }
+  &__title {
+    margin-bottom: 24px;
+  }
+  &__news {
+    width: 100%;
+  }
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 300px;
+    @media (max-width: 767.98px) {
+      width: 100%;
+    }
+  }
+}

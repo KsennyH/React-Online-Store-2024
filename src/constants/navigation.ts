@@ -9,6 +9,10 @@ export const NAVIGATION: NavItem[] = [
         path: "/",
     },
     {
+        title: "Блог",
+        path: "/blog",
+    },
+    {
         title: "Сервис",
         path: "/services",
     },

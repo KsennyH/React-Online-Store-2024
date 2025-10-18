@@ -1,0 +1,19 @@
+.category {
+  font-family: 'Scada', sans-serif;
+  font-size: 1rem;
+  &__title {
+    margin-bottom: 20px;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+  }
+  &__link {
+    color: #fff;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: #414141;
+    }
+  }
+}
