@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import Breadcrumb from '@/components/breadcrumbs/Breadcrumb';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Filter from '@/components/catalog/filters/Filter';
 import ProductsList from '@/components/catalog/products/ProductsList';
 import styles from './CatalogPage.module.scss';
@@ -41,40 +40,37 @@ function CatalogPage() {
                 sortTypeValue: sortItem,
             }));
         }
-        setIsSearchLoaded(true);
+        
     }, [dispatch]);
 
-    useSetQueryParams( sortTypeValue, categoryId, pagination, isFirstMount, isSearchLoaded );
+    useSetQueryParams( sortTypeValue, categoryId, pagination, isFirstMount );
 
-    const onChangeCategory = (id:number) => dispatch(setCategoryId(id));
-    const onChangeSort = (item: SortItem) => dispatch(setSortType(item));
-    const onChangeCurrentPage = ( pagination : PaginationType) => dispatch(setCurrentPage(pagination));
+    const onChangeCategory = useCallback((id:number) => dispatch(setCategoryId(id)), [categoryId]);
+    const onChangeSort = useCallback((item: SortItem) => dispatch(setSortType(item)), [sortTypeValue]);
+    const onChangeCurrentPage = useCallback(( pagination : PaginationType) => dispatch(setCurrentPage(pagination)), [pagination]);
 
     return (
-        <> 
-            {/* <Breadcrumb /> */}
-            <section className={styles.catalog}>
-                <div className="container">
-                    <div className={styles.catalog__inner}>
-                        <button className={styles.catalog__filterBtn} type="button" onClick={() => setIsOpen(prev => !prev)}><FunnelPlus color="#ffffff" /></button>
-                        <aside className={styles.catalog__filter}>
-                            <Filter isOpen={isOpen} />
-                        </aside>
-                        <div className={styles.catalog__products}>
-                            <SortingProduct category={categoryId} handleCategoryChange={onChangeCategory}/>
-                            <div className={styles.catalog__sort}>
-                                <SortBy sortCriterion={sortTypeValue} handleSortChange={onChangeSort}/>
-                            </div>
-                            { status === Status.ERROR && <div style={{padding: 40 + 'px', display: 'flex', justifyContent: 'center' }}><h2>{error}</h2></div> }  
-                            <ProductsList products={items} limit={LIMIT} />
-                            {
-                                pagesCount > 1 && (<PaginationButtons pagination={pagination} pagesCount={pagesCount} handleCurrentChange={onChangeCurrentPage} />)
-                            }
+        <section className={styles.catalog}>
+            <div className="container">
+                <div className={styles.catalog__inner}>
+                    <button className={styles.catalog__filterBtn} type="button" onClick={() => setIsOpen(prev => !prev)}><FunnelPlus color="#ffffff" /></button>
+                    <aside className={styles.catalog__filter}>
+                        <Filter isOpen={isOpen} />
+                    </aside>
+                    <div className={styles.catalog__products}>
+                        <SortingProduct category={categoryId} handleCategoryChange={onChangeCategory}/>
+                        <div className={styles.catalog__sort}>
+                            <SortBy sortCriterion={sortTypeValue} handleSortChange={onChangeSort}/>
                         </div>
+                        { status === Status.ERROR && <div style={{padding: 40 + 'px', display: 'flex', justifyContent: 'center' }}><h2>{error}</h2></div> }  
+                        <ProductsList products={items} limit={LIMIT} />
+                        {
+                            pagesCount > 1 && (<PaginationButtons pagination={pagination} pagesCount={pagesCount} handleCurrentChange={onChangeCurrentPage} />)
+                        }
                     </div>
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
 }
 

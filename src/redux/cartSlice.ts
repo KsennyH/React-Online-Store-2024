@@ -1,15 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { ProductVariant } from "./productsSlice";
+import { RootState } from "./store";
+import { calculateCart } from "@/lib/calculateCart";
 
 export type CartItem = {
     id: string;
     img: string;
     title: string;
     price: number;
-    color: string;
-    productCount: number
+    variant: ProductVariant;
+    productCount: number;
+    totalPrice: number
 }
 
-interface CartSliceState {
+export interface CartSliceState {
     count: number;
     price: number;
     products: CartItem[]
@@ -26,37 +30,44 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addProduct: (state, action: PayloadAction<CartItem>) => {
-            const findItem = state.products.find((obj) => obj.id === action.payload.id && obj.color === action.payload.color);
+            const findItem = state.products.find((obj) => obj.variant.article === action.payload.variant.article);
             if(findItem) {
                 findItem.productCount++;
+                findItem.totalPrice = findItem.totalPrice + action.payload.price;
             } else {
                 state.products.push({
-                    ...action.payload,
-                    productCount: 1
+                    ...action.payload
                 });
-            }  
-            state.count = state.count + 1;   
-            state.price = state.products.reduce((prev, obj) => prev + obj.price * obj.productCount, 0);    
+            }
+
+            calculateCart(state); 
         },
-        productDecrement: (state, action: PayloadAction<{ id: string; color: string }>) => {
-            const findItem = state.products.find((obj) => obj.id === action.payload.id && obj.color === action.payload.color);
+        productDecrement: (state, action: PayloadAction<{ id: string; currentVariant: string, price: number }>) => {
+            const findItem = state.products.find((obj) => obj.variant.article === action.payload.currentVariant);
+
             if(!findItem) return;
+        
             if(findItem.productCount > 1) {
                 findItem.productCount--;
-                state.count--;
-                state.price = state.price - findItem.price;
-            } else {
-                state.products = state.products.filter((obj) => !(obj.id === action.payload.id && obj.color === action.payload.color));
-                state.count--;
-                state.price = state.price - findItem.price;
+                findItem.totalPrice -= action.payload.price;
             }
+            
+            calculateCart(state);
         },
-        removeProduct: (state, action: PayloadAction<{ id: string; color: string }>) => {
-            const findItem = state.products.find((obj) => obj.id === action.payload.id && obj.color === action.payload.color);
+        productIncrement: (state, action: PayloadAction<{ id: string; currentVariant: string, price: number }>) => {
+            const findItem = state.products.find((obj) => obj.variant.article === action.payload.currentVariant);
+
             if(!findItem) return;
-            state.count = state.count - findItem.productCount;
-            state.price = state.price - findItem.price * findItem.productCount;
-            state.products = state.products.filter((obj) => !(obj.id === action.payload.id && obj.color === action.payload.color));
+
+            findItem.productCount++;
+            findItem.totalPrice += action.payload.price;
+
+            calculateCart(state);
+        },
+        removeProduct: (state, action: PayloadAction<{ currentVariant: string }>) => {
+            state.products = state.products.filter((obj) => obj.variant.article !== action.payload.currentVariant);
+
+            calculateCart(state);
         },
         clearCart: (state) => {
             state.products = [];
@@ -66,6 +77,9 @@ export const cartSlice = createSlice({
     }
 })
 
-export const { addProduct, removeProduct, productDecrement, clearCart } = cartSlice.actions;
+export const { addProduct, clearCart, removeProduct, productDecrement, productIncrement } = cartSlice.actions;
+export const cartProducts = (state: RootState) => state.cart.products;
+export const totalPrice = (state: RootState) => state.cart.price;
+export const totalCount = (state: RootState) => state.cart.count;
 
 export default cartSlice.reducer;

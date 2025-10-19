@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
 import Cart from '@/components/cartItem/CartItem';
 import CartEmpty from '@/components/cartItem/empty/CartEmpty';
-import { clearCart } from '@/redux/cartSlice';
-import { RootState } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
 import styles from './CartPage.module.scss';
+import { cartProducts, clearCart, totalPrice } from "@/redux/cartSlice";
+import Title from "@/components/ui/title/Title";
+import { formatPrice } from '@/lib/formatPrice';
 
 function CartPage() {
-    const productsInCart = useSelector((state: RootState) => state.cart.products);  // массив товаров в корзине (изначально пустой)
-    const count = useSelector((state: RootState) => state.cart.count);              // всего товаров в корзине 
-    const priceTotal = useSelector((state: RootState) => state.cart.price);         // цена всех товаров в корзине
-    const dispatch = useDispatch();
+    const productsInCart = useAppSelector(state => cartProducts(state));
+    const priceTotal = useAppSelector(state => totalPrice(state));
+    const dispatch = useAppDispatch();
 
     const onClickClear = () => {
         if(window.confirm('Очистить корзину?')) {
@@ -17,11 +17,9 @@ function CartPage() {
         }
     }
 
-    if (count === 0) {    // если товары в корзину не добавлены, выводим пустую корзину
+    if (productsInCart.length === 0) {   
         return (
-            <>
-                <CartEmpty />
-            </>
+            <><CartEmpty /></>
         )
     }
 
@@ -30,7 +28,7 @@ function CartPage() {
             <section className={styles.cart}>
                 <div className="container"> 
                     <div className={styles.cart__title}>
-                        <h1 className="title">Корзина товаров</h1>
+                        <Title tag="h1">Корзина товаров</Title>
                     </div>
                     <div className={styles.cart__header}>
                         <div className={styles.cart__name}>Название</div>
@@ -39,15 +37,14 @@ function CartPage() {
                     </div>
                     <ul>
                         {productsInCart.map((obj) => (
-                            <Cart key={obj.id} {...obj} />
+                            <Cart key={obj.variant.article} cartProducts={obj} />
                         ))}
                     </ul>
                     <div className={styles.cart__footer}>
                         <button onClick={onClickClear} className={styles.cart__clear}>Очистить корзину</button>
                         <div className={styles.cart__total}> 
                             <span>Всего:</span>
-                            <span className={styles.cart__priceTotal}>{priceTotal}</span>
-                            <span>руб.</span>
+                            <span className={styles.cart__priceTotal}>{ formatPrice(priceTotal) } руб.</span>
                         </div>
                     </div>
                 </div>

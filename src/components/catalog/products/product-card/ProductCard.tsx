@@ -1,23 +1,18 @@
 import { JSX, memo, useState } from 'react';
 import { addProduct, CartItem } from '@/redux/cartSlice';
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from '@/redux/store';
+import { useAppDispatch } from '@/redux/store';
 import { Product } from '@/redux/productsSlice';
 import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.scss';
 import Button from '@/components/ui/Button';
-import Count from '../count/Count';
 import { formatPrice } from '@/lib/formatPrice';
 
 const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element => {
-    const { id, img, title, article, price, colors, variants } = singleProduct;
+    const { id, img, title, price, colors, variants } = singleProduct;
 
     const [motoColor, setMotoColor] = useState(0);
-    const color = colors[motoColor];
-    const itemInCart = useSelector((state:RootState) => state.cart.products.find((obj) => obj.id === id));
-    const dispatch = useDispatch();
 
-    const addedCount:number = itemInCart ? itemInCart.productCount : 0;
+    const dispatch = useAppDispatch();
     
     const onClickAddProduct = () => {
         const item: CartItem = {
@@ -25,17 +20,15 @@ const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element
             img,
             title,
             price,
-            color,
-            productCount: 0
+            variant: variants[motoColor],
+            productCount: 1,
+            totalPrice: price
         }
         dispatch(addProduct(item));
     }
 
     return(
         <article className={styles.productCard}>
-                {addedCount > 0 && (
-                    <Count count={addedCount} />
-                )}
                 <div className={styles.productCard__img}>
                     <img src={img} alt={title}/>
                 </div>
@@ -55,7 +48,7 @@ const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element
                             </ul>
                         </div>
                         <div className={styles.productCard__information}> 
-                            <span className={styles.productCard__article}>Артикул: {article}</span>
+                            <span className={styles.productCard__article}>Артикул: {variants[motoColor].article}</span>
                             <span className={styles.productCard__text}>{variants[motoColor].available ? `В наличии: ${variants[motoColor].stock}` : "Под заказ"}</span>
                         </div>
                     </div>

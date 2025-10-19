@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import { JSX, memo } from 'react';
 import styles from './PaginationButtons.module.scss';
 import { PaginationType } from '@/redux/filterSlice';
 import { MoveLeft, MoveRight } from 'lucide-react';
@@ -9,7 +9,7 @@ type PaginationProps = {
     handleCurrentChange: (pagination: PaginationType) => void
 }
 
-const Pagination = ({ pagesCount, pagination, handleCurrentChange }: PaginationProps): JSX.Element => {
+const Pagination = memo(({ pagesCount, pagination, handleCurrentChange }: PaginationProps): JSX.Element => {
 
     const { currentPage, limit } = pagination;
 
@@ -34,6 +34,6 @@ const Pagination = ({ pagesCount, pagination, handleCurrentChange }: PaginationP
             </ul>
         </div>
     );
-}
+})
 
 export default Pagination;

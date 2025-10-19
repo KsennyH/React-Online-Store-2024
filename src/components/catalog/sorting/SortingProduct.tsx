@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX, memo } from "react";
 import styles from './SortingProduct.module.scss';
 import { CATEGORIES } from "@/constants/categories";
 
@@ -7,7 +7,7 @@ type SortingProps = {
     handleCategoryChange: (item: number) => void
 }
 
-const SortingProduct: React.FC<SortingProps> = ({category, handleCategoryChange}) => {    
+const SortingProduct = memo(({category, handleCategoryChange}: SortingProps): JSX.Element => {    
 
     return(
         <nav className={styles.sorting}> 
@@ -22,6 +22,6 @@ const SortingProduct: React.FC<SortingProps> = ({category, handleCategoryChange}
             </ul>
         </nav>
     );
-}
+});
 
 export default SortingProduct;

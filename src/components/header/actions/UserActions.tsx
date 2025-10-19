@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useAppSelector } from "@/redux/store";
 import styles from './UserActions.module.scss';
 import { CircleUser, ShoppingCart } from "lucide-react";
+import { totalCount, totalPrice } from "@/redux/cartSlice";
+import { formatPrice } from "@/lib/formatPrice";
 
 function UserActions() {
-    const countProducts = useSelector((state: RootState) => state.cart.count);
-    const priceProduct = useSelector((state: RootState) => state.cart.price);
+    const countProducts = useAppSelector(state => totalCount(state));
+    const priceProduct = useAppSelector(state => totalPrice(state));
     return (
         <> 
             <a className={styles.user} href="#" aria-label="Личный кабинет">
@@ -20,7 +21,7 @@ function UserActions() {
                         <span className={styles.user__quantity}>{countProducts}</span>
                       )}
                 </div>
-                <span className={styles.user__label}>{priceProduct} руб.</span>
+                <span className={styles.user__label}>{ formatPrice(priceProduct) } руб.</span>
             </Link>
         </>
     );

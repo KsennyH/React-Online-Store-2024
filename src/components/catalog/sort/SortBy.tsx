@@ -1,4 +1,4 @@
-import { JSX, useEffect, useRef, useState } from "react";
+import { JSX, memo, useEffect, useRef, useState } from "react";
 import { SortItem } from "@/redux/filterSlice";
 import { SORT_OPTIONS } from "@/constants/sortOptions";
 import styles from './SortBy.module.scss';
@@ -8,7 +8,7 @@ type SortProps = {
     handleSortChange: (item: SortItem) => void
 }
 
-const SortBy = ({sortCriterion, handleSortChange}: SortProps): JSX.Element => {
+const SortBy = memo(({sortCriterion, handleSortChange}: SortProps): JSX.Element => {
 
     const [openSort, setOpenSort] = useState(false);
     const sortRef = useRef(null);
@@ -45,6 +45,6 @@ const SortBy = ({sortCriterion, handleSortChange}: SortProps): JSX.Element => {
             </ul>)}
         </div>
     );
-}
+})
 
 export default SortBy;

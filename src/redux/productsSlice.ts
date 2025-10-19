@@ -10,7 +10,8 @@ type FetchProductsArgs = {
     sortTypeValue: SortItem
 };
 
-type ProductVariant = {
+export type ProductVariant = {
+    article: string,
     available: boolean, 
     color: string,
     images: string[],
@@ -21,7 +22,6 @@ export type Product = {
     id: string;
     img: string;
     title: string;
-    article: string;
     price: number;
     colors: string[];
     variants: ProductVariant[]
