@@ -1,6 +1,7 @@
 import { JSX } from "react";
 import styles from "./Post.module.scss";
 import Title from "@/components/ui/title/Title";
+import { Link } from "react-router-dom";
 
 export type Post = {
     id: string,
@@ -10,7 +11,8 @@ export type Post = {
     author: string,
     date: string,
     category: number,
-    tags: string[]
+    tags: string[],
+    content: string
 }
 
 function Post({ post }: { post: Post }): JSX.Element {
@@ -23,9 +25,9 @@ function Post({ post }: { post: Post }): JSX.Element {
                 <img className={styles.article__img} src={image} alt={title} />
             </div>
             <div className={styles.article__content}>
-                <a className={styles.article__contentTitle} href="article.html">
+                <Link className={styles.article__contentTitle} to={`/blog/${post.id}`}>
                     <Title tag="h2">{title}</Title>
-                </a>
+                </Link>
                 <div className={styles.article__text}>
                     <p>{intro}</p>
                 </div>

@@ -1,5 +1,5 @@
-.articles {
-  padding: 48px 0;
+.blogPage {
+  padding: 40px 0;
   &__wrapper {
     display: flex;
     gap: 24px;
@@ -7,10 +7,7 @@
       flex-direction: column;
     }
   }
-  &__title {
-    margin-bottom: 24px;
-  }
-  &__news {
+  &__content {
     width: 100%;
   }
   &__aside {

@@ -1,7 +1,7 @@
-import PostCategories from "./post-category/PostCategories";
-import PostList from "./post-list/PostList";
+import PostCategories from "@/components/post-category/PostCategories";
+import PostList from "@/components/post-list/PostList";
 import Title from "@/components/ui/title/Title";
-import Tags from "./tags/Tags";
+import Tags from "@/components/tags/Tags";
 import styles from "./Articles.module.scss";
 
 function Articles() {

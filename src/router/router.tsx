@@ -9,6 +9,7 @@ const ServicesPage = lazy(() => import ('@/pages/ServicesPage'));
 const ContactPage = lazy(() => import ('@/pages/ContactPage'));
 const CartPage = lazy(() => import ('@/pages/cart/CartPage'));
 const Articles = lazy(() => import ('@/pages/blog/Articles'));
+const SingleArticle = lazy(() => import('@/pages/blog/single/SingleArticle'));
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
             { 
                 path: 'blog', 
                 element: <Articles />
+            },
+            {
+                path: 'blog/:id',
+                element: <SingleArticle />
             },
             { 
                 path: 'services', 
