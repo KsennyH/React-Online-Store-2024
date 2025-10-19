@@ -5,8 +5,8 @@ import { lazy } from "react";
 import { fetchSingleProduct } from "@/api/product";
 
 const SingleProductPage = lazy(() => import ('@/pages/catalog-page/single/SingleProductPage'));
-const ServicesPage = lazy(() => import ('@/pages/ServicesPage'));
-const ContactPage = lazy(() => import ('@/pages/ContactPage'));
+const ServicesPage = lazy(() => import ('@/pages/services/ServicesPage'));
+const ContactPage = lazy(() => import ('@/pages/contacts/ContactPage'));
 const CartPage = lazy(() => import ('@/pages/cart/CartPage'));
 const Articles = lazy(() => import ('@/pages/blog/Articles'));
 const SingleArticle = lazy(() => import('@/pages/blog/single/SingleArticle'));

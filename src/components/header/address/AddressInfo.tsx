@@ -6,7 +6,7 @@ function AddressInfo() {
     return (
         <ul className={styles.addressInformation}>
             <li className={styles.addressInformation__item}> 
-                <AddressInfoItem href="contacts.html" text="Иваново, ул. Сакко, 54"><MapPinHouse color="#ffffff" size={24} /></AddressInfoItem>
+                <AddressInfoItem href="contacts.html" text="Иваново, Посадский переулок, 8"><MapPinHouse color="#ffffff" size={24} /></AddressInfoItem>
             </li>
             <li className={styles.addressInformation__item}>
                 <AddressInfoItem href="tel:84932134581" text="Тел. 8 (4932) 134-581"><PhoneIncoming color="#ffffff" size={24} /></AddressInfoItem>

@@ -1,0 +1,25 @@
+.balloon {
+    padding: 10px;
+}
+.balloon__title {
+    margin-bottom: 12px;
+    text-align: center;
+}
+.balloon__info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.balloon h3 {
+    font-size: 22px;
+}
+.balloon a,
+.balloon p {
+font-size: 1rem;
+line-height: 1.2;
+color: #414141;
+}
+
+.balloon a:hover {
+color: #f24444;
+}
