@@ -1,11 +1,13 @@
-import { PaginationType, SortItem } from "@/redux/filterSlice";
+import { FilterSliceState, PaginationType, SortItem } from "@/redux/filterSlice";
 import { fetchProducts } from "@/redux/productsSlice";
 import { useAppDispatch } from "@/redux/store";
 import qs from 'qs';
-import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function useSetQueryParams( sortTypeValue: SortItem, categoryId: number, pagination: PaginationType, isFirstMountRef: RefObject<boolean> ) {
+type SelectedFilters = FilterSliceState['selected'];
+
+function useSetQueryParams( sortTypeValue: SortItem, categoryId: number, pagination: PaginationType, selected: SelectedFilters, isFirstMountRef: RefObject<boolean> ) {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -19,8 +21,10 @@ function useSetQueryParams( sortTypeValue: SortItem, categoryId: number, paginat
                 page: pagination.currentPage,
                 limit: pagination.limit,
                 categoryId,
-                sortBy: sortTypeValue.sort
-            });
+                sortBy: sortTypeValue.sort,
+                brand: selected.brandsChecked,
+                type: selected.typesChecked
+            }, { arrayFormat: 'brackets' });
 
             navigate(`?${query}`);
 
@@ -29,7 +33,7 @@ function useSetQueryParams( sortTypeValue: SortItem, categoryId: number, paginat
         isFirstMountRef.current = false;
         
         
-    }, [sortTypeValue, categoryId, pagination.currentPage, pagination.limit]);
+    }, [sortTypeValue, categoryId, pagination.currentPage, pagination.limit, selected]);
 
     useEffect(() => {
         dispatch(
@@ -39,11 +43,12 @@ function useSetQueryParams( sortTypeValue: SortItem, categoryId: number, paginat
                 pagination: {
                     currentPage: pagination.currentPage,
                     limit: pagination.limit
-                }
+                },
+                selected
             })
         );
         
-    }, [sortTypeValue, categoryId, pagination.currentPage, pagination.limit]);
+    }, [sortTypeValue, categoryId, pagination.currentPage, pagination.limit, selected]);
 }
 
 export default useSetQueryParams;

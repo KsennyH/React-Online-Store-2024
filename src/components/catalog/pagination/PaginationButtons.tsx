@@ -4,12 +4,12 @@ import { PaginationType } from '@/redux/filterSlice';
 import { MoveLeft, MoveRight } from 'lucide-react';
 
 type PaginationProps = {
-    pagesCount: number;
+    totalPages: number;
     pagination: PaginationType;
     handleCurrentChange: (pagination: PaginationType) => void
 }
 
-const Pagination = memo(({ pagesCount, pagination, handleCurrentChange }: PaginationProps): JSX.Element => {
+const Pagination = memo(({ totalPages, pagination, handleCurrentChange }: PaginationProps): JSX.Element => {
 
     const { currentPage, limit } = pagination;
 
@@ -21,14 +21,14 @@ const Pagination = memo(({ pagesCount, pagination, handleCurrentChange }: Pagina
                         <MoveLeft color="#ffffff" stroke={currentPage <= 1 ? '#b1b9b9' : '#fff'} />
                     </button>
                 </li>
-                {[...new Array(pagesCount)].map((_, i: number) => (
+                {[...new Array(totalPages)].map((_, i: number) => (
                     <li key={`page-${i+1}`}> 
                         <button className={currentPage === i+1 ? `${styles.pagination__link} ${styles.active}` : styles.pagination__link} onClick={() => handleCurrentChange({ currentPage: i + 1, limit })}>{i + 1}</button>
                     </li>
                 ))}
                 <li> 
-                    <button className={`${styles.pagination__link} ${styles["pagination__link--noBorder"]}`} onClick={() =>  handleCurrentChange({currentPage: currentPage + 1, limit})} disabled={currentPage >= pagesCount}>
-                        <MoveRight color="#ffffff" stroke={currentPage >= pagesCount ? '#b1b9b9' : '#fff'}/>
+                    <button className={`${styles.pagination__link} ${styles["pagination__link--noBorder"]}`} onClick={() =>  handleCurrentChange({currentPage: currentPage + 1, limit})} disabled={currentPage >= totalPages}>
+                        <MoveRight color="#ffffff" stroke={currentPage >= totalPages ? '#b1b9b9' : '#fff'}/>
                     </button>
                 </li>
             </ul>

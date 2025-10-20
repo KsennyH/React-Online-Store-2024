@@ -8,7 +8,7 @@ import Button from '@/components/ui/Button';
 import { formatPrice } from '@/lib/formatPrice';
 
 const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element => {
-    const { id, img, title, price, colors, variants } = singleProduct;
+    const { id, img, title, price, variants } = singleProduct;
 
     const [motoColor, setMotoColor] = useState(0);
 

@@ -9,11 +9,27 @@ import { Product } from "@/redux/productsSlice";
 import { formatPrice } from "@/lib/formatPrice";
 import SliderProductCard from "@/components/slider-product-card/SliderProductCard";
 import Loader from "@/components/ui/loader/Loader";
+import { addProduct, CartItem } from "@/redux/cartSlice";
+import { useAppDispatch } from "@/redux/store";
 
 export default function SingleProductPage () {
   
   const { product } = useLoaderData() as { product: Product };
   const [motoColor, setMotoColor] = useState(0);
+  const dispatch = useAppDispatch();
+
+  const onClickAddProduct = () => {
+    const item: CartItem = {
+        id: product.id,
+        img: product.img,
+        title: product.title,
+        price: product.price,
+        variant: product.variants[motoColor],
+        productCount: 1,
+        totalPrice: product.price
+      }
+      dispatch(addProduct(item));
+    }
    
   if (!product) {
     return <Loader />;
@@ -27,7 +43,7 @@ export default function SingleProductPage () {
             <SliderProductCard images={product.variants[motoColor].images} />
             <div className={styles.singlePage__content}>
               <h2 className={styles.singlePage__title}>{product.title}</h2>
-              <div className={styles.singlePage__article}>Артикул: {product.article}</div>
+              <div className={styles.singlePage__article}>Артикул: {product.variants[motoColor].article}</div>
               <div className={styles.singlePage__colors}>
                   <div className={styles.singlePage__label}>Цвет:</div>
                   <ul className={styles.singlePage__colorList}>
@@ -41,7 +57,7 @@ export default function SingleProductPage () {
               </div>
               <span className={styles.singlePage__price}>{formatPrice(product.price)} руб.</span>
               <div className={styles.singlePage__buttons}>
-                <Button>
+                <Button type="button" onClick={ onClickAddProduct }>
                     <ShoppingCart color="#ffffff" />
                     <span>В корзину</span>
                 </Button>

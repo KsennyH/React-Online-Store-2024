@@ -4,7 +4,7 @@ import { RootState } from "./store";
 import { calculateCart } from "@/lib/calculateCart";
 
 export type CartItem = {
-    id: string;
+    id: number;
     img: string;
     title: string;
     price: number;
@@ -33,7 +33,7 @@ export const cartSlice = createSlice({
             const findItem = state.products.find((obj) => obj.variant.article === action.payload.variant.article);
             if(findItem) {
                 findItem.productCount++;
-                findItem.totalPrice = findItem.totalPrice + action.payload.price;
+                findItem.totalPrice += action.payload.price;
             } else {
                 state.products.push({
                     ...action.payload
@@ -42,7 +42,7 @@ export const cartSlice = createSlice({
 
             calculateCart(state); 
         },
-        productDecrement: (state, action: PayloadAction<{ id: string; currentVariant: string, price: number }>) => {
+        productDecrement: (state, action: PayloadAction<{ id: number; currentVariant: string, price: number }>) => {
             const findItem = state.products.find((obj) => obj.variant.article === action.payload.currentVariant);
 
             if(!findItem) return;
@@ -54,7 +54,7 @@ export const cartSlice = createSlice({
             
             calculateCart(state);
         },
-        productIncrement: (state, action: PayloadAction<{ id: string; currentVariant: string, price: number }>) => {
+        productIncrement: (state, action: PayloadAction<{ id: number; currentVariant: string, price: number }>) => {
             const findItem = state.products.find((obj) => obj.variant.article === action.payload.currentVariant);
 
             if(!findItem) return;

@@ -5,7 +5,7 @@ interface Variants {
 
 export const VARIANTS: Variants = {
         typesMoto: ['Спортивный', 'Дорожный', 'Эндуро', 'Питбайк'],
-        brands: ['Honda', 'Irbis', 'Bse', 'Rockot', 'Bmw', 'Kawasaki', 'Suzuki']
+        brands: [ 'DUCATI', 'HONDA', 'KAWASAKI', 'KTM', 'SUZUKI', 'YAMAHA' ]
     }
 
 

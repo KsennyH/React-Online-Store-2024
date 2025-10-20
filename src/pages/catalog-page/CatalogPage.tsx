@@ -14,15 +14,19 @@ import useSetQueryParams from '@/hooks/useSetQueryParams';
 import { FunnelPlus } from 'lucide-react';
 
 function CatalogPage() {
-    const [isSearchLoaded, setIsSearchLoaded] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useAppDispatch();
       
-    const { sortTypeValue, categoryId, pagination } = useAppSelector((state) => getFiltersValue(state));
-    const { items, status, error } = useAppSelector((state) => getProducts(state));
-    const TOTAL = 18; //Mockapi не возвращает total при пагинации, поэтому пока константа
+    const { sortTypeValue, categoryId, pagination, selected } = useAppSelector((state) => getFiltersValue(state));
+    const { items, totalPages, currentPage, status, error } = useAppSelector((state) => getProducts(state));
+
     const LIMIT = pagination.limit;
-    const pagesCount = Math.ceil(TOTAL / LIMIT);
+
+    const normalizeToArray = (value: unknown): string[] => {
+        if (Array.isArray(value)) return value;
+        if (typeof value === 'string') return [value];
+        return [];
+    };
 
     const isFirstMount = useRef(true);
 
@@ -34,16 +38,20 @@ function CatalogPage() {
             dispatch(setQueryFromUrl({
                 categoryId: Number(params.categoryId) || 0,
                 pagination: {
-                    currentPage: Number(params.currentPage) || 1,
+                    currentPage: Number(params.currentPage) || currentPage,
                     limit: Number(params.limit) || LIMIT,
                 },
                 sortTypeValue: sortItem,
+                selected: {
+                    brandsChecked: normalizeToArray(params.brandsChecked),
+                    typesChecked: normalizeToArray(params.typesChecked)
+                }
             }));
         }
         
     }, [dispatch]);
 
-    useSetQueryParams( sortTypeValue, categoryId, pagination, isFirstMount );
+    useSetQueryParams( sortTypeValue, categoryId, pagination, selected, isFirstMount );
 
     const onChangeCategory = useCallback((id:number) => dispatch(setCategoryId(id)), [categoryId]);
     const onChangeSort = useCallback((item: SortItem) => dispatch(setSortType(item)), [sortTypeValue]);
@@ -65,7 +73,7 @@ function CatalogPage() {
                         { status === Status.ERROR && <div style={{padding: 40 + 'px', display: 'flex', justifyContent: 'center' }}><h2>{error}</h2></div> }  
                         <ProductsList products={items} limit={LIMIT} />
                         {
-                            pagesCount > 1 && (<PaginationButtons pagination={pagination} pagesCount={pagesCount} handleCurrentChange={onChangeCurrentPage} />)
+                            totalPages > 1 && (<PaginationButtons pagination={pagination} totalPages={totalPages} handleCurrentChange={onChangeCurrentPage} />)
                         }
                     </div>
                 </div>

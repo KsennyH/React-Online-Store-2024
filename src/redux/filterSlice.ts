@@ -26,9 +26,7 @@ interface SetCheckedPayload {
   values: string[];
 }
 
-type QueryParamsFromUrl = Partial<Pick<FilterSliceState, 'categoryId' | 'sortTypeValue' | 'pagination'>>;
-
-interface FilterSliceState {
+export interface FilterSliceState {
     categoryId: number;
     sortTypeValue: SortItem;
     pagination: PaginationType;
@@ -67,8 +65,8 @@ export const filterSlice = createSlice({
         setCurrentPage: (state, action: PayloadAction<PaginationType>) => {
             state.pagination = action.payload;
         },
-        setQueryFromUrl: (state, action: PayloadAction<QueryParamsFromUrl>) => {
-            const { categoryId, sortTypeValue, pagination } = action.payload;
+        setQueryFromUrl: (state, action: PayloadAction<FilterSliceState>) => {
+            const { categoryId, sortTypeValue, pagination, selected } = action.payload;
             if (categoryId !== undefined) {
                 state.categoryId = categoryId;
             }
@@ -81,6 +79,12 @@ export const filterSlice = createSlice({
                     ...action.payload.pagination
                 };
             }
+            if (selected !== undefined) {
+                state.selected = {
+                    ...state.selected,
+                    ...action.payload.selected
+                };
+            } 
         },
         // setSearchValue: (state, action: PayloadAction<string>) => {
         //     state.value = action.payload;
