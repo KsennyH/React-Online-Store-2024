@@ -18,7 +18,7 @@ function CatalogPage() {
     const dispatch = useAppDispatch();
       
     const { sortTypeValue, categoryId, pagination, selected } = useAppSelector((state) => getFiltersValue(state));
-    const { items, totalPages, currentPage, status, error } = useAppSelector((state) => getProducts(state));
+    const { items, totalPages, totalProducts, currentPage, status, error } = useAppSelector((state) => getProducts(state));
 
     const LIMIT = pagination.limit;
 
@@ -71,7 +71,7 @@ function CatalogPage() {
                             <SortBy sortCriterion={sortTypeValue} handleSortChange={onChangeSort}/>
                         </div>
                         { status === Status.ERROR && <div style={{padding: 40 + 'px', display: 'flex', justifyContent: 'center' }}><h2>{error}</h2></div> }  
-                        <ProductsList products={items} limit={LIMIT} />
+                        <ProductsList products={items} status={status} />
                         {
                             totalPages > 1 && (<PaginationButtons pagination={pagination} totalPages={totalPages} handleCurrentChange={onChangeCurrentPage} />)
                         }

@@ -6,6 +6,7 @@ import { JSX } from "react";
 import { useAppDispatch } from "@/redux/store";
 import Title from "../ui/title/Title";
 import { formatPrice } from "@/lib/formatPrice";
+import toast from "react-hot-toast";
 
 const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
 
@@ -28,6 +29,10 @@ const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
 
     const onClickRemove = () => {
         dispatch(removeProduct({ currentVariant }));
+        toast.success('Товар удален', {
+            position: 'top-right',
+            duration: 2000
+        });
     }
 
     return (

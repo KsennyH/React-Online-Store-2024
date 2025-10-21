@@ -5,6 +5,7 @@ import styles from './CartPage.module.scss';
 import { cartProducts, clearCart, totalPrice } from "@/redux/cartSlice";
 import Title from "@/components/ui/title/Title";
 import { formatPrice } from '@/lib/formatPrice';
+import toast from 'react-hot-toast';
 
 function CartPage() {
     const productsInCart = useAppSelector(state => cartProducts(state));
@@ -14,6 +15,10 @@ function CartPage() {
     const onClickClear = () => {
         if(window.confirm('Очистить корзину?')) {
             dispatch(clearCart());
+            toast.success('Корзина очищена', {
+                position: 'top-right',
+                duration: 2000
+            });
         }
     }
 

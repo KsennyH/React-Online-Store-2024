@@ -23,7 +23,7 @@ export const fetchSearchedData = createAppAsyncThunk(
     async ( value: string ) => {
         try{
             if(value.trim().length <= 2) return;
-            const { data } = await axios.get<Product[]>(`https://665b3a2e003609eda4604130.mockapi.io/products?search=${value}`);
+            const { data } = await axios.get<Product[]>(`https://7dad84242a49210a.mokky.dev/products?title=${value}*`);
             return data;
         } catch(err: unknown) {
             if (err instanceof Error) {

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.scss';
 import Button from '@/components/ui/Button';
 import { formatPrice } from '@/lib/formatPrice';
+import toast from 'react-hot-toast';
 
 const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element => {
     const { id, img, title, price, variants } = singleProduct;
@@ -25,12 +26,16 @@ const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element
             totalPrice: price
         }
         dispatch(addProduct(item));
+        toast.success('Товар добавлен в корзину', {
+            position: 'top-right',
+            duration: 2000
+        });
     }
 
     return(
         <article className={styles.productCard}>
                 <div className={styles.productCard__img}>
-                    <img src={img} alt={title}/>
+                    <img src={variants[motoColor].images[0]} alt={title}/>
                 </div>
                 <div className={styles.productCard__info}> 
                     <Link to={`/products/${id}`} key={id}>

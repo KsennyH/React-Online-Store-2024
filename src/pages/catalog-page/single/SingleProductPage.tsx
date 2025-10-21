@@ -11,6 +11,7 @@ import SliderProductCard from "@/components/slider-product-card/SliderProductCar
 import Loader from "@/components/ui/loader/Loader";
 import { addProduct, CartItem } from "@/redux/cartSlice";
 import { useAppDispatch } from "@/redux/store";
+import toast from "react-hot-toast";
 
 export default function SingleProductPage () {
   
@@ -29,6 +30,10 @@ export default function SingleProductPage () {
         totalPrice: product.price
       }
       dispatch(addProduct(item));
+      toast.success('Товар добавлен в корзину', {
+        position: 'top-right',
+        duration: 2000
+      })
     }
    
   if (!product) {
