@@ -1,27 +1,55 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { RootState } from "./store";
 
 export type SortItem = {
     name: string;
     sort: 'price' | 'rating' | 'title';
 }
 
-interface FilterSliceState {
+export type PaginationType = {
+    currentPage: number,
+    limit: number
+}
+
+export enum FilterKey {
+  TYPES = "typesChecked",
+  BRANDS = "brandsChecked",
+}
+
+type CheckboxGroupKey = keyof Pick<
+  FilterSliceState['selected'],
+  FilterKey.TYPES | FilterKey.BRANDS
+>;
+
+interface SetCheckedPayload {
+  key: CheckboxGroupKey;
+  values: string[];
+}
+
+export interface FilterSliceState {
     categoryId: number;
-    sortType: SortItem;
-    currentPage: number;
-    value: string;
-    types: string[];
+    sortTypeValue: SortItem;
+    pagination: PaginationType;
+    selected: {
+        typesChecked: string[];
+        brandsChecked: string[];   
+    }
 }
 
 const initialState: FilterSliceState = {
     categoryId: 0,
-    sortType: {
+    sortTypeValue: {
         name: "цене",
         sort: "price"
     },
-    currentPage: 1,
-    value: '',
-    types: []
+    pagination: {
+        currentPage: 1,
+        limit: 9
+    },
+    selected: {
+        typesChecked: [],
+        brandsChecked: []
+    }
 }
 
 export const filterSlice = createSlice({
@@ -32,28 +60,43 @@ export const filterSlice = createSlice({
             state.categoryId = action.payload;
         },
         setSortType: (state, action: PayloadAction<SortItem>) => {
-            state.sortType = action.payload;
+            state.sortTypeValue = action.payload;
         },
-        setCurrentPage: (state, action: PayloadAction<number>) => {
-            state.currentPage = action.payload;
+        setCurrentPage: (state, action: PayloadAction<PaginationType>) => {
+            state.pagination = action.payload;
         },
-        setFilters: (state, action: PayloadAction<FilterSliceState>) => {
-            const {categoryId, sortType, currentPage, value, types} = action.payload;
-            state.categoryId = categoryId;
-            state.sortType = sortType;
-            state.currentPage = currentPage;
-            state.value = value;
-            state.types = types;
+        setQueryFromUrl: (state, action: PayloadAction<FilterSliceState>) => {
+            const { categoryId, sortTypeValue, pagination, selected } = action.payload;
+            if (categoryId !== undefined) {
+                state.categoryId = categoryId;
+            }
+            if (sortTypeValue !== undefined) {
+                state.sortTypeValue = sortTypeValue;
+            }
+            if (pagination !== undefined) {
+                state.pagination = {
+                    ...state.pagination,
+                    ...action.payload.pagination
+                };
+            }
+            if (selected !== undefined) {
+                state.selected = {
+                    ...state.selected,
+                    ...action.payload.selected
+                };
+            } 
         },
-        setSearchValue: (state, action: PayloadAction<string>) => {
-            state.value = action.payload;
-        },
-        setTypes: (state, action: PayloadAction<string[]>) => {
-            state.types = action.payload;
+        // setSearchValue: (state, action: PayloadAction<string>) => {
+        //     state.value = action.payload;
+        // },
+        setSelectedFilters: (state, action: PayloadAction<SetCheckedPayload>) => {
+            state.selected[action.payload.key] = action.payload.values
         }
     }
 })
 
-export const { setCategoryId, setSortType, setCurrentPage, setFilters, setSearchValue, setTypes } = filterSlice.actions;
+export const { setSortType, setCategoryId, setSelectedFilters, setCurrentPage, setQueryFromUrl } = filterSlice.actions;
+
+export const getFiltersValue = (state: RootState) => state.filter;
 
 export default filterSlice.reducer;

@@ -1,0 +1,47 @@
+.commentsForm {
+  max-width: 500px;
+  &__title {
+    margin-bottom: 24px;
+  }
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+    gap: 12px;
+  }
+  &__input {
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    min-height: 2.5rem;
+    width: 100%;
+    border-radius: 1.875rem;
+    padding: 0.3125rem 1.5625rem;
+    color: #fff;
+    &::placeholder {
+      font-family: 'Scada', sans-serif;
+      color: #fff;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: -0.0625rem 0px 0.5rem 0.0625rem #ffcbcb;
+    }
+  }
+  &__textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.3125rem 25px;
+    border-radius: 1.875rem;
+    resize: none;
+    margin-bottom: 1.25rem;
+    color: #414141;
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: -0.0625rem 0px 0.5rem 0.0625rem #ffcbcb;
+    }
+  }
+  &__btn {
+    max-width: 300px;
+  }
+}

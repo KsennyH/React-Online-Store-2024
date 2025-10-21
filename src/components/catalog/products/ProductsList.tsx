@@ -1,23 +1,31 @@
 import ProductCard from './product-card/ProductCard';
-import { Product } from '@/redux/productsSlice';
+import { Product, Status } from '@/redux/productsSlice';
 import styles from './ProductsList.module.scss';
+import { ProductCardSkeleton } from '@/components/ui/skeleton/ProductCardSkeleton';
+import { memo } from 'react';
 
 interface ProductsListProps {
     products: Product[];
+    status: Status;
 }
-function ProductsList({products}: ProductsListProps) {
-    
+const ProductsList = memo(({ products, status}: ProductsListProps) => {
+
     return(
-        <> 
-            <div className={styles.products}>
-                <ul className={styles.products__list}> 
-                    {products.map((product) => (
-                        <li key={product.id}><ProductCard {...product}/></li>
-                    ))}
-                </ul>
-            </div>     
-        </>
+        <div className={styles.products}>
+            <ul className={styles.products__list}>
+            {
+                status === Status.LOADING ? [...Array(6)].map((_, i) => (
+                    <li key={i}><ProductCardSkeleton /></li>
+                ))
+                 : products.map((product) => (
+                    <li key={product.id}>
+                        <ProductCard singleProduct={product}/>
+                    </li>
+                ))
+            }
+            </ul>
+        </div>     
     );
-}
+}) 
 
 export default ProductsList;

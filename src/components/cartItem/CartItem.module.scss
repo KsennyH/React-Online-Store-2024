@@ -6,10 +6,7 @@
   border-bottom: 1px solid #fff;
   padding: 20px;
   &__title {
-    font-family: 'Scada,sans-serif';
-    font-size: 1.125rem;
-    line-height: 1.5;
-    font-weight: 700;
+    margin-bottom: 24px;
   }
   &__img {
     min-width: 120px;
@@ -20,6 +17,16 @@
       border-radius: 5px;
       object-fit: contain;
     }
+  }
+  &__colors {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  &__color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
   }
   &__price {
     font-size: 1.125rem;

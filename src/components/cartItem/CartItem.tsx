@@ -1,44 +1,57 @@
-import { useDispatch } from "react-redux";
-import { addProduct, removeProduct, productDecrement, CartItem } from "@/redux/cartSlice";
+import { CartItem, productDecrement, productIncrement, removeProduct } from "@/redux/cartSlice";
 import styles from './CartItem.module.scss';
 import Counter from "./counter/Counter";
 import Button from "../ui/Button";
+import { JSX } from "react";
+import { useAppDispatch } from "@/redux/store";
+import Title from "../ui/title/Title";
+import { formatPrice } from "@/lib/formatPrice";
+import toast from "react-hot-toast";
 
-const Cart:React.FC<CartItem> = ({ id, title, img, color, price, productCount }) => {
+const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
 
-    const dispatch = useDispatch();
+    const { id, title, price, productCount, variant, totalPrice } = cartProducts;
+    const currentVariant = variant.article;
+    
+    const dispatch = useAppDispatch();
 
-    const onClickPlus = () => {
-        dispatch(addProduct({
+    const increment = () => {
+        dispatch(productIncrement({
             id,
-            title,
-            img,
-            color,
             price,
-            productCount
+            currentVariant
         }));
     }
 
-    const onClickMinus = () => {
-        dispatch(productDecrement({id, color}))
+    const decrement = () => {
+        dispatch(productDecrement({ id, currentVariant, price }));
     }
 
     const onClickRemove = () => {
-        dispatch(removeProduct({id, color}));
+        dispatch(removeProduct({ currentVariant }));
+        toast.success('Товар удален', {
+            position: 'top-right',
+            duration: 2000
+        });
     }
 
     return (
         <div className={styles.cartProduct}> 
             <div className={styles.cartProduct__img}> 
-                <img src={img} alt={title}/>
+                <img src={variant.images[0]} alt={title}/>
             </div>
             <div>
-                <div className={styles.cartProduct__title}>{title}</div>
-                <div>{color}</div>
+                <div className={styles.cartProduct__title}>
+                    <Title tag="h3">{title}</Title>
+                </div>
+                <div className={styles.cartProduct__colors}>
+                    <div>Цвет</div>
+                    <div className={styles.cartProduct__color} style={{backgroundColor: variant.color}}></div>
+                </div>
             </div>
-            <Counter onClickMinus={onClickMinus} onClickPlus={onClickPlus} count={productCount}  />
+            <Counter onClickMinus={ decrement } onClickPlus={ increment } count={ productCount }  />
             <div className={styles.cartProduct__price}> 
-                {price * productCount}
+                {formatPrice(totalPrice)} руб.
             </div>
             <div className={styles.cartProduct__delete}>
                 <Button variant="close" onClick={onClickRemove} type="button"><span> </span></Button>

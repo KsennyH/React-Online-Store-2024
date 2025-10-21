@@ -1,121 +1,84 @@
-import { useEffect, useRef } from 'react';
-import Breadcrumb from '@/components/breadcrumbs/Breadcrumb';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Filter from '@/components/catalog/filters/Filter';
 import ProductsList from '@/components/catalog/products/ProductsList';
 import styles from './CatalogPage.module.scss';
-import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../redux/store';
-import { setCategoryId, setCurrentPage, setFilters, setSortType, SortItem } from '@/redux/filterSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { getFiltersValue, setSortType, setCategoryId, SortItem, setCurrentPage, PaginationType, setQueryFromUrl } from '@/redux/filterSlice';
 import SortingProduct from '@/components/catalog/sorting/SortingProduct';
 import SortBy from '@/components/catalog/sort/SortBy';
 import PaginationButtons from '@/components/catalog/pagination/PaginationButtons';
-import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
-import { sort } from '@/components/catalog/sort/sortOptions';
-import { fetchProducts } from '@/redux/productsSlice';
+import { getProducts, Status } from '@/redux/productsSlice';
+import { SORT_OPTIONS } from '@/constants/sortOptions';
+import useSetQueryParams from '@/hooks/useSetQueryParams';
+import { FunnelPlus } from 'lucide-react';
 
 function CatalogPage() {
-    
+    const [isOpen, setIsOpen] = useState(false);
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-    
-    const { categoryId, sortType, currentPage, value: searchValue, types } = useSelector((state: RootState) => state.filter);  
-    const {items, totalProducts} = useSelector((state: RootState) => state.products);
+      
+    const { sortTypeValue, categoryId, pagination, selected } = useAppSelector((state) => getFiltersValue(state));
+    const { items, totalPages, totalProducts, currentPage, status, error } = useAppSelector((state) => getProducts(state));
+
+    const LIMIT = pagination.limit;
+
+    const normalizeToArray = (value: unknown): string[] => {
+        if (Array.isArray(value)) return value;
+        if (typeof value === 'string') return [value];
+        return [];
+    };
 
     const isFirstMount = useRef(true);
-
-    const countPerPage = 9;
-    const totalPages = Math.ceil(totalProducts / countPerPage);
-    const startIndex = (currentPage - 1) * countPerPage;
-    const endIndex = startIndex + countPerPage;
-    const currentProducts = items.slice(startIndex, endIndex);
-
-    useEffect(() => {
-        document.title = "Каталог товаров";
-    }, []);
 
     useEffect(() => {
         if(window.location.search) {
             const params = qs.parse(window.location.search.substring(1));
-            const sortItem = sort.find((s) => s.sort === params.sortType) || sort[0];
+            const sortItem = SORT_OPTIONS.find((s) => s.sort === params.sortTypeValue) || SORT_OPTIONS[0];
 
-            dispatch(setFilters({
+            dispatch(setQueryFromUrl({
                 categoryId: Number(params.categoryId) || 0,
-                currentPage: Number(params.currentPage) || 1,
-                sortType: sortItem,
-                value: searchValue,
-                types: params.type || ''
+                pagination: {
+                    currentPage: Number(params.currentPage) || currentPage,
+                    limit: Number(params.limit) || LIMIT,
+                },
+                sortTypeValue: sortItem,
+                selected: {
+                    brandsChecked: normalizeToArray(params.brandsChecked),
+                    typesChecked: normalizeToArray(params.typesChecked)
+                }
             }));
         }
-    }, []);
-
-    useEffect(() => {
-        const getProducts = async () => {
-            const queryParams = {
-                page: currentPage,
-                ...(categoryId ? { categories: categoryId } : {}),
-                ...(sortType.sort ? { sortBy: sortType.sort } : {}),
-                ...(searchValue ? { search: searchValue } : {}),
-                ...(types ? { type: types } : {})
-            };
-
-            const queryString = qs.stringify(queryParams);
-
-            const url = `https://665b3a2e003609eda4604130.mockapi.io/products?${queryString}`;
         
-            try {
-                dispatch(fetchProducts({ 
-                    categoryId,
-                    sortType: sortType.sort,
-                    searchValue,
-                    currentPage,
-                    types
-                 }));
-            } catch {
-                console.error('Ошибка загрузки');
-            }
-        }
-        getProducts();
+    }, [dispatch]);
 
-        if (!isFirstMount.current) {
-            const query = qs.stringify({
-                categoryId,
-                sortType: sortType.sort,
-                currentPage,
-            });
-            navigate(`?${query}`);
-        }
-        isFirstMount.current = false;
-    }, [categoryId, sortType, searchValue, currentPage, types]);
+    useSetQueryParams( sortTypeValue, categoryId, pagination, selected, isFirstMount );
 
-    const onChangeCategory = (id:number) => dispatch(setCategoryId(id));
-    const onChangeSort = (obj: SortItem) => dispatch(setSortType(obj));
-    const onChangeCurrentPage = (page:number) => dispatch(setCurrentPage(page));
+    const onChangeCategory = useCallback((id:number) => dispatch(setCategoryId(id)), [categoryId]);
+    const onChangeSort = useCallback((item: SortItem) => dispatch(setSortType(item)), [sortTypeValue]);
+    const onChangeCurrentPage = useCallback(( pagination : PaginationType) => dispatch(setCurrentPage(pagination)), [pagination]);
 
     return (
-        <> 
-            <Breadcrumb />
-            <div className={styles.catalog}>
-                <div className="container">
-                    <div className={styles.catalog__inner}>
-                        <button className={styles.catalog__filterBtn} type="button"><img src="img/filter.svg" alt="Фильтр"/></button>
-                        <aside className={styles.catalog__filter}>
-                            <Filter />
-                        </aside>
-                        <div className={styles.catalog__products}>
-                            <SortingProduct sort={categoryId} sortChange={onChangeCategory}/>
-                            <div className={styles.catalog__sort}>
-                                <SortBy sortCriterion={sortType} sortCriterionChange={onChangeSort}/>
-                            </div>
-                            <ProductsList products={currentProducts} />
-                            {
-                                totalPages > 1 && (<PaginationButtons current={currentPage} pagesCount={totalPages} setCurrent={onChangeCurrentPage} />)
-                            }
+        <section className={styles.catalog}>
+            <div className="container">
+                <div className={styles.catalog__inner}>
+                    <button className={styles.catalog__filterBtn} type="button" onClick={() => setIsOpen(prev => !prev)}><FunnelPlus color="#ffffff" /></button>
+                    <aside className={styles.catalog__filter}>
+                        <Filter isOpen={isOpen} />
+                    </aside>
+                    <div className={styles.catalog__products}>
+                        <SortingProduct category={categoryId} handleCategoryChange={onChangeCategory}/>
+                        <div className={styles.catalog__sort}>
+                            <SortBy sortCriterion={sortTypeValue} handleSortChange={onChangeSort}/>
                         </div>
+                        { status === Status.ERROR && <div style={{padding: 40 + 'px', display: 'flex', justifyContent: 'center' }}><h2>{error}</h2></div> }  
+                        <ProductsList products={items} status={status} />
+                        {
+                            totalPages > 1 && (<PaginationButtons pagination={pagination} totalPages={totalPages} handleCurrentChange={onChangeCurrentPage} />)
+                        }
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     );
 }
 

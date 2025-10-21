@@ -1,42 +1,11 @@
 .addressInformation {
-  &__item {
-    display: flex;
-  }
-  &__item + &__item {
-    margin-top: 0.625rem;
-  }
-  &__link {
-    display: flex;
-  }
-  &__icon {
-    margin-right: 0.625rem;
-    width: 16px;
-    height: 21px;
-  }
-  &__schedule {
-    margin-top: 1.25rem;
-  }
-  @media (max-width: 850px) {
-    &__icon {
-      margin-right: 0;
-    }
-    &__label {
-      display: none;
-    }
-  }
-  @media (max-width: 767.98px) {
-    &__list {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-evenly;
-    }
-    &__item {
-      margin-top: 0;
-    }
-  }
-  @media (max-width: 575.98px) {
-    &__item {
-      justify-content: center;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+@media (max-width: 767.98px) {
+  .addressInformation {
+    flex-direction: row;
+    gap: 24px;
   }
 }

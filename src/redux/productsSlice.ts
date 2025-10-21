@@ -1,21 +1,43 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 import axios from 'axios';
+import { createAppAsyncThunk } from "./redux-types/types";
+import { RootState } from "./store";
+import { FilterSliceState, PaginationType, SortItem } from "./filterSlice";
+
+type MetaProducts = {
+    current_page: number,
+    per_page: number,
+    remaining_count: number,  
+    total_items: number,
+    total_pages: number,
+}
+
+interface FetchProducts{
+    meta: MetaProducts,
+    items: Product[],
+}
 
 type FetchProductsArgs = {
     categoryId: number;
-    sortType: string;
-    searchValue: string;
-    currentPage: number;
-    types: string[];
+    pagination: PaginationType,
+    sortTypeValue: SortItem,
+    selected: FilterSliceState['selected']
 };
 
+export type ProductVariant = {
+    article: string,
+    available: boolean, 
+    color: string,
+    images: string[],
+    stock: number
+}
+
 export type Product = {
-    id: string;
+    id: number;
     img: string;
     title: string;
-    article: string;
     price: number;
-    colors: string[];
+    variants: ProductVariant[]
 }
 
 export enum Status {
@@ -26,6 +48,8 @@ export enum Status {
 
 interface ProductsSliceState {
     items: Product[];
+    totalPages: number;
+    currentPage: number;
     totalProducts: number;
     status: Status;
     error: string | null;
@@ -33,61 +57,63 @@ interface ProductsSliceState {
 
 const initialState: ProductsSliceState = {
     items: [],
+    totalPages: 1,
+    currentPage: 1,
     totalProducts: 0,
     status: Status.LOADING,
     error: null,
 }
 
-export const fetchProducts = createAsyncThunk<Product[],FetchProductsArgs>(
-    'products/fetchProductsStatus',
-    async ({ categoryId, sortType, searchValue, currentPage, types }, { rejectWithValue }) => {
-        try {
-            const params = new URLSearchParams();
-            params.append('page', String(currentPage));
-            if (categoryId) params.append('categories', String(categoryId));
-            if (sortType) params.append('sortBy', sortType);
-            if (searchValue) params.append('search', searchValue);
-            if (types.length > 0) {
-                params.append('type', types[0]);
-            }
-            const { data } = await axios.get<Product[]>(`https://665b3a2e003609eda4604130.mockapi.io/products?${params.toString()}`);
+export const fetchProducts = createAppAsyncThunk<FetchProducts,FetchProductsArgs>(
+    'products/fetchProducts',
+    async ({ sortTypeValue, categoryId, pagination, selected }, { rejectWithValue }) => {
+    
+        const queryString = new URLSearchParams();
+        categoryId && queryString.append('categories[]', String(categoryId));
+        sortTypeValue && queryString.append('sortBy', sortTypeValue.sort);
+        pagination.currentPage && queryString.append('page', String(pagination.currentPage));
+        pagination.limit && queryString.append('limit', String(pagination.limit));
+        selected.brandsChecked.forEach((brand) => {
+            queryString.append('brand[]', brand); 
+        });
+        selected.typesChecked.forEach((type) => {
+            queryString.append('type[]', type);
+        });
+        try{
+            // заменила на другой тестовый сервис для хранения данных, в старом были проблемы с пагинацией, не возвращался объект с количеством страниц
+            // const { data } = await axios.get<Product[]>(`https://665b3a2e003609eda4604130.mockapi.io/products?${queryString.toString()}`);
+            const { data } = await axios.get<FetchProducts>(`https://7dad84242a49210a.mokky.dev/products?${queryString.toString()}`);
             return data;
-        } catch (err: unknown) {
-            if (err instanceof Error) {
+        } catch(err: unknown) {
+            if (err instanceof Error) {  
                 return rejectWithValue(err.message);
             }
-            return rejectWithValue('Что-то пошло не так');
+            return rejectWithValue("Ошибка при загрузке товаров");
         }
-        
-    },
-  )
+    }
+)
 
 export const productsSlice = createSlice({
     name: 'products',
     initialState,
-    reducers: {
-        setProducts: (state, action) => {
-            state.items = action.payload;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchProducts.pending, (state) => {
                 state.status = Status.LOADING;
             })
-            .addCase(fetchProducts.fulfilled, (state, action) => {
-                state.items = action.payload;
-                state.totalProducts = action.payload.length;
+             .addCase(fetchProducts.fulfilled, (state, action) => {
+                state.items = action.payload.items || [];
+                state.totalPages = action.payload.meta.total_pages;
+                state.currentPage = action.payload.meta.current_page;
                 state.status = Status.SUCCESS;
-                state.error = null; 
             })
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = Status.ERROR;
-                state.error = action.payload as string;
+                state.error = "Ошибка при загрузке товаров";
             });
     },
 })
 
-export const { setProducts } = productsSlice.actions;
-
+export const getProducts = (state: RootState) => state.products;
 export default productsSlice.reducer;

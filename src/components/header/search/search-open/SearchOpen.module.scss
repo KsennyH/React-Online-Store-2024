@@ -1,0 +1,31 @@
+.searchOpen {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  background: #fff;
+  max-height: 400px;
+  overflow-y: auto;
+  top: 100%;
+  border-radius: 20px;
+  color: #414141;
+  &__item {
+    padding: 12px;
+    margin: 0 auto;
+    width: 90%;
+    height: 74px;
+    &:not(:last-child) {
+      border-bottom: 1px solid #414141;
+    }
+    img {
+      width: 50px;
+    }
+  }
+  &__link {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  &__notFound {
+    padding: 24px;
+  }
+}

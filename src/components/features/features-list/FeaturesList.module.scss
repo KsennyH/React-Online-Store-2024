@@ -1,0 +1,12 @@
+.featureList {
+  width: 33%;
+  @media (max-width: 575.98px) {
+    width: 100%;
+  }
+  &__title {
+    margin-bottom: 24px;
+  }
+  &__item {
+    padding: 6px 0;
+  }
+}

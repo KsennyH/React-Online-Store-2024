@@ -11,7 +11,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export default function Button ({children, className, variant='primary', isActive, ...rest}: ButtonProps) {
     return (
-        <button className={clsx(styles.btn, styles[variant], variant === 'outline' && isActive && styles.outlineActive, className)} {...rest}>
+        <button className={clsx(styles.btn, styles[variant], 
+        variant === 'outline' && isActive && styles.outlineActive, 
+        isActive && variant === 'secondary' && styles.active,
+        className)} {...rest}>
             {children}
         </button>
     );
