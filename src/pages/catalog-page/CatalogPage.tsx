@@ -12,6 +12,8 @@ import { SORT_OPTIONS } from '@/constants/sortOptions';
 import useSetQueryParams from '@/hooks/useSetQueryParams';
 import { FunnelPlus } from 'lucide-react';
 import { PaginationType, SortItem } from '@/types/filterTypes';
+import { normalizeToArray } from '@/lib/normalizeToArray';
+import { getParamsFromString } from '@/lib/getParamsFromString';
 
 function CatalogPage() {
 
@@ -20,37 +22,18 @@ function CatalogPage() {
       
     const { sortTypeValue, categoryId, pagination, selected } = useAppSelector((state) => getFiltersValue(state));
 
-    const normalizeToArray = (value: unknown): string[] => {
-        if (Array.isArray(value)) return value;
-        if (typeof value === 'string') return [value];
-        return [];
-    };
-
     const isFirstMount = useRef(true);
 
     useEffect(() => {
         if(window.location.search) {
             const params = qs.parse(window.location.search.substring(1));
-            const sortItem = SORT_OPTIONS.find((s) => s.sort === params.sortTypeValue) || SORT_OPTIONS[0];
-
-            dispatch(setQueryFromUrl({
-                categoryId: Number(params.categoryId) || 0,
-                pagination: {
-                    currentPage: Number(params.page) || 1,
-                    limit: Number(params.limit) || pagination.limit,
-                },
-                sortTypeValue: sortItem,
-                selected: {
-                    brandsChecked: normalizeToArray(params.brand),
-                    typesChecked: normalizeToArray(params.type)
-                }
-            }));
+            const filters = getParamsFromString(params);
+            dispatch(setQueryFromUrl(filters));
         }
         
     }, [dispatch]);
 
     const { data, error, isLoading } = useSetQueryParams( sortTypeValue, categoryId, pagination, selected, isFirstMount );
-    console.log(data, error, isLoading);
 
     const onChangeCategory = useCallback((id:number) => dispatch(setCategoryId(id)), [categoryId]);
     const onChangeSort = useCallback((item: SortItem) => dispatch(setSortType(item)), [sortTypeValue]);
