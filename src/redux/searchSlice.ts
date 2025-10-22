@@ -1,8 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Product, Status } from "./productsSlice";
 import { createAppAsyncThunk } from "./redux-types/types";
 import axios from "axios";
 import { RootState } from "./store";
+import { Product } from "@/types/productTypes";
+
+export enum Status {
+    LOADING = 'loading',
+    SUCCESS = 'success',
+    ERROR = 'error'
+}
 
 type SearchSliceState = {
     searchValue: string,

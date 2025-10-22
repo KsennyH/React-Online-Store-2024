@@ -3,24 +3,22 @@ import Filter from '@/components/catalog/filters/Filter';
 import ProductsList from '@/components/catalog/products/ProductsList';
 import styles from './CatalogPage.module.scss';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
-import { getFiltersValue, setSortType, setCategoryId, SortItem, setCurrentPage, PaginationType, setQueryFromUrl } from '@/redux/filterSlice';
+import { getFiltersValue, setSortType, setCategoryId, setCurrentPage, setQueryFromUrl } from '@/redux/filterSlice';
 import SortingProduct from '@/components/catalog/sorting/SortingProduct';
 import SortBy from '@/components/catalog/sort/SortBy';
 import PaginationButtons from '@/components/catalog/pagination/PaginationButtons';
 import qs from 'qs';
-import { getProducts, Status } from '@/redux/productsSlice';
 import { SORT_OPTIONS } from '@/constants/sortOptions';
 import useSetQueryParams from '@/hooks/useSetQueryParams';
 import { FunnelPlus } from 'lucide-react';
+import { PaginationType, SortItem } from '@/types/filterTypes';
 
 function CatalogPage() {
+
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useAppDispatch();
       
     const { sortTypeValue, categoryId, pagination, selected } = useAppSelector((state) => getFiltersValue(state));
-    const { items, totalPages, totalProducts, currentPage, status, error } = useAppSelector((state) => getProducts(state));
-
-    const LIMIT = pagination.limit;
 
     const normalizeToArray = (value: unknown): string[] => {
         if (Array.isArray(value)) return value;
@@ -38,25 +36,26 @@ function CatalogPage() {
             dispatch(setQueryFromUrl({
                 categoryId: Number(params.categoryId) || 0,
                 pagination: {
-                    currentPage: Number(params.currentPage) || currentPage,
-                    limit: Number(params.limit) || LIMIT,
+                    currentPage: Number(params.page) || 1,
+                    limit: Number(params.limit) || pagination.limit,
                 },
                 sortTypeValue: sortItem,
                 selected: {
-                    brandsChecked: normalizeToArray(params.brandsChecked),
-                    typesChecked: normalizeToArray(params.typesChecked)
+                    brandsChecked: normalizeToArray(params.brand),
+                    typesChecked: normalizeToArray(params.type)
                 }
             }));
         }
         
     }, [dispatch]);
 
-    useSetQueryParams( sortTypeValue, categoryId, pagination, selected, isFirstMount );
+    const { data, error, isLoading } = useSetQueryParams( sortTypeValue, categoryId, pagination, selected, isFirstMount );
+    console.log(data, error, isLoading);
 
     const onChangeCategory = useCallback((id:number) => dispatch(setCategoryId(id)), [categoryId]);
     const onChangeSort = useCallback((item: SortItem) => dispatch(setSortType(item)), [sortTypeValue]);
     const onChangeCurrentPage = useCallback(( pagination : PaginationType) => dispatch(setCurrentPage(pagination)), [pagination]);
-
+    
     return (
         <section className={styles.catalog}>
             <div className="container">
@@ -70,10 +69,12 @@ function CatalogPage() {
                         <div className={styles.catalog__sort}>
                             <SortBy sortCriterion={sortTypeValue} handleSortChange={onChangeSort}/>
                         </div>
-                        { status === Status.ERROR && <div style={{padding: 40 + 'px', display: 'flex', justifyContent: 'center' }}><h2>{error}</h2></div> }  
-                        <ProductsList products={items} status={status} />
                         {
-                            totalPages > 1 && (<PaginationButtons pagination={pagination} totalPages={totalPages} handleCurrentChange={onChangeCurrentPage} />)
+                            error && <div style={{padding: 40 + 'px', display: 'flex', justifyContent: 'center' }}>Произошла ошибка: {String(error)}</div>
+                        }
+                        <ProductsList products={data?.items ?? []} isLoading={isLoading} />
+                        {
+                            data && data.meta.total_pages > 1 && (<PaginationButtons pagination={pagination} totalPages={data.meta.total_pages} handleCurrentChange={onChangeCurrentPage} />)
                         }
                     </div>
                 </div>

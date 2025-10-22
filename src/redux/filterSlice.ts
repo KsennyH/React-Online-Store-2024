@@ -1,40 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "./store";
-
-export type SortItem = {
-    name: string;
-    sort: 'price' | 'rating' | 'title';
-}
-
-export type PaginationType = {
-    currentPage: number,
-    limit: number
-}
-
-export enum FilterKey {
-  TYPES = "typesChecked",
-  BRANDS = "brandsChecked",
-}
-
-type CheckboxGroupKey = keyof Pick<
-  FilterSliceState['selected'],
-  FilterKey.TYPES | FilterKey.BRANDS
->;
-
-interface SetCheckedPayload {
-  key: CheckboxGroupKey;
-  values: string[];
-}
-
-export interface FilterSliceState {
-    categoryId: number;
-    sortTypeValue: SortItem;
-    pagination: PaginationType;
-    selected: {
-        typesChecked: string[];
-        brandsChecked: string[];   
-    }
-}
+import { FilterSliceState, PaginationType, SetCheckedPayload, SortItem } from "@/types/filterTypes";
 
 const initialState: FilterSliceState = {
     categoryId: 0,
