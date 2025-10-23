@@ -1,14 +1,6 @@
 import { SORT_OPTIONS } from "@/constants/sortOptions";
 import { normalizeToArray } from "./normalizeToArray";
-
-interface QueryParams {
-  page?: string;
-  limit?: string;
-  sortBy?: string;
-  categoryId?: string;
-  brand?: string | string[]; 
-  type?: string | string[]; 
-}
+import { QueryParams } from "@/types/filterTypes";
 
 export const getParamsFromString = (params: QueryParams) => {
     const sortItem = SORT_OPTIONS.find((s) => s.sort === params.sortBy) || SORT_OPTIONS[0];

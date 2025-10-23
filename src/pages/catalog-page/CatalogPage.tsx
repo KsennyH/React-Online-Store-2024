@@ -8,14 +8,13 @@ import SortingProduct from '@/components/catalog/sorting/SortingProduct';
 import SortBy from '@/components/catalog/sort/SortBy';
 import PaginationButtons from '@/components/catalog/pagination/PaginationButtons';
 import qs from 'qs';
-import { SORT_OPTIONS } from '@/constants/sortOptions';
 import useSetQueryParams from '@/hooks/useSetQueryParams';
 import { FunnelPlus } from 'lucide-react';
-import { PaginationType, SortItem } from '@/types/filterTypes';
-import { normalizeToArray } from '@/lib/normalizeToArray';
+import { PaginationType, QueryParams, SortItem } from '@/types/filterTypes';
 import { getParamsFromString } from '@/lib/getParamsFromString';
 
 function CatalogPage() {
+    console.log("LIST");
 
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useAppDispatch();
@@ -26,12 +25,12 @@ function CatalogPage() {
 
     useEffect(() => {
         if(window.location.search) {
-            const params = qs.parse(window.location.search.substring(1));
+            const params: QueryParams = qs.parse(window.location.search.substring(1));
             const filters = getParamsFromString(params);
             dispatch(setQueryFromUrl(filters));
         }
         
-    }, [dispatch]);
+    }, []);
 
     const { data, error, isLoading } = useSetQueryParams( sortTypeValue, categoryId, pagination, selected, isFirstMount );
 

@@ -33,24 +33,15 @@ export const filterSlice = createSlice({
         },
         setQueryFromUrl: (state, action: PayloadAction<FilterSliceState>) => {
             const { categoryId, sortTypeValue, pagination, selected } = action.payload;
-            if (categoryId !== undefined) {
                 state.categoryId = categoryId;
-            }
-            if (sortTypeValue !== undefined) {
                 state.sortTypeValue = sortTypeValue;
-            }
-            if (pagination !== undefined) {
-                state.pagination = {
-                    ...state.pagination,
-                    ...action.payload.pagination
-                };
-            }
-            if (selected !== undefined) {
-                state.selected = {
-                    ...state.selected,
-                    ...action.payload.selected
-                };
-            } 
+                state.pagination = pagination;
+                if (selected !== undefined) {
+                    state.selected = {
+                        ...state.selected,
+                        ...action.payload.selected
+                    };
+                } 
         },
         // setSearchValue: (state, action: PayloadAction<string>) => {
         //     state.value = action.payload;

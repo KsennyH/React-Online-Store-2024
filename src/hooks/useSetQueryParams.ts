@@ -1,5 +1,4 @@
 import { useGetAllProductsQuery } from "@/api/product/productApi";
-import { useAppDispatch } from "@/redux/store";
 import { FilterSliceState, PaginationType, SortItem } from "@/types/filterTypes";
 import qs from 'qs';
 import { RefObject, useEffect } from "react";
