@@ -1,21 +1,23 @@
-import { JSX, memo } from "react";
+import { JSX } from "react";
 import styles from './SortingProduct.module.scss';
 import { CATEGORIES } from "@/constants/categories";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { getCategory, setCategoryId } from "@/redux/filterSlice";
 
-type SortingProps = {
-    category: number;
-    handleCategoryChange: (item: number) => void
-}
+const SortingProduct = (): JSX.Element => {    
 
-const SortingProduct = memo(({category, handleCategoryChange}: SortingProps): JSX.Element => {    
-    console.log("CATEGORY");
+    const categoryId = useAppSelector((state) => getCategory(state));
+
+    const dispatch = useAppDispatch();
+    const onChangeCategory = (id:number) => dispatch(setCategoryId(id));
+    
 
     return(
         <nav className={styles.sorting}> 
             <ul className={styles.sorting__list}> 
                 {CATEGORIES.map((elem, i) => (
                     <li key={i}> 
-                        <button onClick={() => handleCategoryChange(i)} className={category === i ? `${styles.sorting__btn} ${styles.active}` : `${styles.sorting__btn}`}>
+                        <button onClick={() => onChangeCategory(i)} className={categoryId === i ? `${styles.sorting__btn} ${styles.active}` : `${styles.sorting__btn}`}>
                             <span>{elem}</span>
                         </button>
                     </li>
@@ -23,6 +25,6 @@ const SortingProduct = memo(({category, handleCategoryChange}: SortingProps): JS
             </ul>
         </nav>
     );
-});
+};
 
 export default SortingProduct;

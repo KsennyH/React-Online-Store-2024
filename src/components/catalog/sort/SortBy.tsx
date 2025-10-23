@@ -1,14 +1,15 @@
-import { JSX, memo, useEffect, useRef, useState } from "react";
-import { SortItem } from "@/redux/filterSlice";
+import { JSX, useEffect, useRef, useState } from "react";
 import { SORT_OPTIONS } from "@/constants/sortOptions";
 import styles from './SortBy.module.scss';
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { SortItem } from "@/types/filterTypes";
+import { getSort, setSortType } from "@/redux/filterSlice";
 
-type SortProps = {
-    sortCriterion: SortItem;
-    handleSortChange: (item: SortItem) => void
-}
+const SortBy = (): JSX.Element => {
 
-const SortBy = memo(({sortCriterion, handleSortChange}: SortProps): JSX.Element => {
+    const sortTypeValue = useAppSelector((state) => getSort(state));
+    const dispatch = useAppDispatch();
+    const onChangeSort = (item: SortItem) => dispatch(setSortType(item));
 
     const [openSort, setOpenSort] = useState(false);
     const sortRef = useRef(null);
@@ -28,23 +29,23 @@ const SortBy = memo(({sortCriterion, handleSortChange}: SortProps): JSX.Element 
     }, []);
     
     const onClickCriterion = (obj: SortItem) => {
-        handleSortChange(obj);
+        onChangeSort(obj);
         setOpenSort(false);
     }
 
     return(
         <div className={styles.sort} ref={sortRef}>
             Сортировать по:
-            <span onClick={() => setOpenSort(prev => !prev)} className={styles.sort__criterion}>{sortCriterion.name}</span>
+            <span onClick={() => setOpenSort(prev => !prev)} className={styles.sort__criterion}>{sortTypeValue.name}</span>
             {openSort && (<ul className={styles.sort__list}>
                 {SORT_OPTIONS.map((obj) => (
-                    <li onClick={() => onClickCriterion(obj)} key={obj.name} className={sortCriterion.name === obj.name ? `${styles.sort__item} ${styles.active}` : `${styles.sort__item}`}>
+                    <li onClick={() => onClickCriterion(obj)} key={obj.name} className={sortTypeValue.name === obj.name ? `${styles.sort__item} ${styles.active}` : `${styles.sort__item}`}>
                         {obj.name}
                     </li>
                 ))}
             </ul>)}
         </div>
     );
-})
+}
 
 export default SortBy;

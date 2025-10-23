@@ -1,4 +1,3 @@
-import { useGetAllProductsQuery } from "@/api/product/productApi";
 import { FilterSliceState, PaginationType, SortItem } from "@/types/filterTypes";
 import qs from 'qs';
 import { RefObject, useEffect } from "react";
@@ -23,26 +22,12 @@ function useSetQueryParams( sortTypeValue: SortItem, categoryId: number, paginat
             }, { arrayFormat: 'brackets' });
 
             navigate(`?${query}`);
-
         }
 
         isFirstMountRef.current = false;
         
         
     }, [sortTypeValue, categoryId, pagination.currentPage, pagination.limit, selected]);
-
-    const { data, error, isLoading } = useGetAllProductsQuery({
-        sortTypeValue, 
-        categoryId, 
-        pagination: {
-            currentPage: pagination.currentPage,
-            limit: pagination.limit
-        },
-        selected
-    });
-
-    return { data, error, isLoading };
-
 }
 
 export default useSetQueryParams;
