@@ -1,12 +1,13 @@
 import { JSX, memo, useState } from 'react';
-import { addProduct, CartItem } from '@/redux/cartSlice';
+import { addProduct } from '@/redux/cartSlice';
 import { useAppDispatch } from '@/redux/store';
-import { Product } from '@/redux/productsSlice';
 import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.scss';
 import Button from '@/components/ui/Button';
 import { formatPrice } from '@/lib/formatPrice';
 import toast from 'react-hot-toast';
+import { Product } from '@/types/productTypes';
+import { CartItem } from '@/types/cartTypes';
 
 const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element => {
     const { id, img, title, price, variants } = singleProduct;
