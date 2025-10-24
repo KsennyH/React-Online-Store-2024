@@ -1,25 +1,24 @@
-import React, { useCallback, useEffect, useState, useRef } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import styles from './SearchComponent.module.scss';
-// import { setSearchValue } from '@/redux/filterSlice';
-import { fetchSearchedData, searchValueAdded } from '@/redux/searchSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { searchValueAdded } from '@/redux/searchSlice';
+import { useAppDispatch } from '@/redux/store';
 import SearchOpen from './search-open/SearchOpen';
 import { useClickAway } from "@uidotdev/usehooks";
 import { SearchCheck, X } from 'lucide-react';
 
 
 const Search = () => {
+
     const dispatch = useAppDispatch();
+
     const [value, setValue] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);  
     const wrapperRef = useClickAway<HTMLDivElement>(() => { setIsOpen(false); });
-    const searchValue = useAppSelector((state) => state.search.searchValue);
     
     const updateSearchValue = useCallback(
         debounce((str: string) => {
-            // dispatch(setSearchValue(str));
             dispatch(searchValueAdded(str));
         }, 400 ),
         [],
@@ -37,17 +36,12 @@ const Search = () => {
     }
 
     const onClickClear = () => {
-        // dispatch(setSearchValue(''));
         dispatch(searchValueAdded(''));
         setValue('');
         if(inputRef.current) {
             inputRef.current.focus();
         }
     }
-
-    useEffect(() => {
-        dispatch(fetchSearchedData(searchValue));
-    }, [searchValue]);
 
     return (
         <div className={styles.searchWrapper} ref={wrapperRef}>

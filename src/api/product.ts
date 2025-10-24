@@ -1,4 +1,4 @@
-import { Product } from "@/redux/productsSlice";
+import { Product } from "@/types/productTypes";
 import axios from "axios";
 
 export const fetchSingleProduct = async (id: string): Promise<Product> => {

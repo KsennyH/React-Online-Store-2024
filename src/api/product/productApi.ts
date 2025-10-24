@@ -1,5 +1,5 @@
 import { setQueryStringParams } from '@/lib/setQueryStringParams';
-import { FetchProducts, FetchProductsArgs } from '@/types/productTypes';
+import { FetchProducts, FetchProductsArgs, Product } from '@/types/productTypes';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
  
 export const productApi = createApi({
@@ -11,8 +11,13 @@ export const productApi = createApi({
                 const queryString = setQueryStringParams(sortTypeValue, categoryId, pagination, selected);
                 return `products?${queryString.toString()}`
             }
+        }),
+        getSearchProducts: build.query<Product[],string>({
+            query: (value: string) => {
+                return `products?title=${value}*`
+            }
         })
     })
 });
 
-export const { useGetAllProductsQuery } = productApi;
+export const { useGetAllProductsQuery, useGetSearchProductsQuery } = productApi;

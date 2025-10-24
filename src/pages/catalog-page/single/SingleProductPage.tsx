@@ -5,13 +5,14 @@ import Button from "@/components/ui/Button";
 import { ShoppingCart } from "lucide-react";
 import Features from "@/components/features/Features";
 import { PRODUCT_CARD_CONTENT } from "@/constants/texts";
-import { Product } from "@/redux/productsSlice";
 import { formatPrice } from "@/lib/formatPrice";
 import SliderProductCard from "@/components/slider-product-card/SliderProductCard";
 import Loader from "@/components/ui/loader/Loader";
-import { addProduct, CartItem } from "@/redux/cartSlice";
+import { addProduct } from "@/redux/cartSlice";
 import { useAppDispatch } from "@/redux/store";
 import toast from "react-hot-toast";
+import { CartItem } from "@/types/cartTypes";
+import { Product } from "@/types/productTypes";
 
 export default function SingleProductPage () {
   
