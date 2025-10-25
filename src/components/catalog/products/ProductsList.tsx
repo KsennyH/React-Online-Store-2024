@@ -1,20 +1,20 @@
+import { Product } from '@/types/productTypes';
 import ProductCard from './product-card/ProductCard';
-import { Product, Status } from '@/redux/productsSlice';
 import styles from './ProductsList.module.scss';
 import { ProductCardSkeleton } from '@/components/ui/skeleton/ProductCardSkeleton';
 import { memo } from 'react';
 
 interface ProductsListProps {
     products: Product[];
-    status: Status;
+    isLoading: boolean;
 }
-const ProductsList = memo(({ products, status}: ProductsListProps) => {
+const ProductsList = memo(({ products, isLoading}: ProductsListProps) => {
 
     return(
         <div className={styles.products}>
             <ul className={styles.products__list}>
             {
-                status === Status.LOADING ? [...Array(6)].map((_, i) => (
+                isLoading ? [...Array(6)].map((_, i) => (
                     <li key={i}><ProductCardSkeleton /></li>
                 ))
                  : products.map((product) => (

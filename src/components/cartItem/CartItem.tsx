@@ -1,4 +1,4 @@
-import { CartItem, productDecrement, productIncrement, removeProduct } from "@/redux/cartSlice";
+import { productDecrement, productIncrement, removeProduct } from "@/redux/cartSlice";
 import styles from './CartItem.module.scss';
 import Counter from "./counter/Counter";
 import Button from "../ui/Button";
@@ -7,6 +7,7 @@ import { useAppDispatch } from "@/redux/store";
 import Title from "../ui/title/Title";
 import { formatPrice } from "@/lib/formatPrice";
 import toast from "react-hot-toast";
+import { CartItem } from "@/types/cartTypes";
 
 const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
 
@@ -36,11 +37,11 @@ const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
     }
 
     return (
-        <div className={styles.cartProduct}> 
+        <li className={styles.cartProduct}> 
             <div className={styles.cartProduct__img}> 
                 <img src={variant.images[0]} alt={title}/>
             </div>
-            <div>
+            <div className={styles.cartProduct__info}>
                 <div className={styles.cartProduct__title}>
                     <Title tag="h3">{title}</Title>
                 </div>
@@ -56,7 +57,7 @@ const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
             <div className={styles.cartProduct__delete}>
                 <Button variant="close" onClick={onClickRemove} type="button"><span> </span></Button>
             </div>
-        </div>
+        </li>
     )
 }
 

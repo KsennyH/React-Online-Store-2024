@@ -1,7 +1,8 @@
 import { useAppSelector } from "@/redux/store";
 import styles from "./SearchOpen.module.scss";
 import { Link } from "react-router-dom";
-import { searchedProducts } from "@/redux/searchSlice";
+import { getSearchValue } from "@/redux/searchSlice";
+import { useGetSearchProductsQuery } from "@/api/product/productApi";
 
 type SearchOpenProps = {
     handleClick: () => void
@@ -9,15 +10,16 @@ type SearchOpenProps = {
 
 function SearchOpen({ handleClick }: SearchOpenProps) {
 
-    const searched = useAppSelector((state) => searchedProducts(state));
+    const value = useAppSelector((state) => getSearchValue(state));
+    const { data } = useGetSearchProductsQuery(value);
 
     return(
 
         <div className={styles.searchOpen} >
-            {searched.length > 0 ? (
+            {data && data.length > 0 ? (
                 <ul>
                     {
-                        searched.map((el) => (
+                        data.map((el) => (
                             <li key={el.id} className={styles.searchOpen__item}>
                                 <Link to={`products/${el.id}`} className={styles.searchOpen__link} onClick={handleClick}>
                                     <img src={el.img} alt={el.title} />

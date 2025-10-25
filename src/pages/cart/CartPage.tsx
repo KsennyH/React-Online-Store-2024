@@ -6,6 +6,9 @@ import { cartProducts, clearCart, totalPrice } from "@/redux/cartSlice";
 import Title from "@/components/ui/title/Title";
 import { formatPrice } from '@/lib/formatPrice';
 import toast from 'react-hot-toast';
+import { useEffect } from 'react';
+import Button from '@/components/ui/Button';
+import { Link } from 'react-router-dom';
 
 function CartPage() {
     const productsInCart = useAppSelector(state => cartProducts(state));
@@ -35,22 +38,19 @@ function CartPage() {
                     <div className={styles.cart__title}>
                         <Title tag="h1">Корзина товаров</Title>
                     </div>
-                    <div className={styles.cart__header}>
-                        <div className={styles.cart__name}>Название</div>
-                        <div className={styles.cart__count}>Количество</div>
-                        <div className={styles.cart__price}>Цена</div>
-                    </div>
                     <ul>
                         {productsInCart.map((obj) => (
                             <Cart key={obj.variant.article} cartProducts={obj} />
                         ))}
                     </ul>
                     <div className={styles.cart__footer}>
-                        <button onClick={onClickClear} className={styles.cart__clear}>Очистить корзину</button>
+                        <Button variant='secondary' onClick={onClickClear}>Очистить корзину</Button>
                         <div className={styles.cart__total}> 
-                            <span>Всего:</span>
-                            <span className={styles.cart__priceTotal}>{ formatPrice(priceTotal) } руб.</span>
+                            <div>Всего: <strong>{ formatPrice(priceTotal) } руб.</strong></div>
                         </div>
+                    </div>
+                    <div className={styles.cart__checkout}>
+                        <Link to={'/checkout'}>Оформить заказ</Link>
                     </div>
                 </div>
             </section>

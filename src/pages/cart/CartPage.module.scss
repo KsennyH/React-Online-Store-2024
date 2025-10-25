@@ -1,43 +1,34 @@
 .cart {
-  padding-top: 15px;
+  padding: 48px 0;
   &__title {
-    margin-bottom: 20px;
-  }
-  &__header {
-    background-color: #555555;
-    font-family: 'Scada', sans-serif;
-    font-size: 1.125rem;
-    display: grid;
-    grid-template-columns: 5fr 3fr 2fr;
-    border-radius: 10px;
-    padding: 20px;
-  }
-  &__name {
-    justify-self: center;
-  }
-  &__count {
-    justify-self: start;
-  }
-  &__price {
-    justify-self: end;
+    margin-bottom: 24px;
   }
   &__footer {
     display: flex;
-    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    gap: 24px;
+    padding: 20px 0;
   }
-  &__total {
-    display: flex;
-    justify-content: end;
-    margin-left: auto;
-    span:first-child {
-      margin-right: 15px;
+  &__checkout {
+    max-width: 250px;
+    margin: 24px auto 0;
+    a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      gap: 0.625rem;
+      border-radius: 1.875rem;
+      background-color: #0b9d1a;
+      color: #fff;
+      font-size: 1rem;
+      padding: 10px 20px;
+      font-family: 'Scada', sans-serif;
+      transition: background-color 0.5s ease;
     }
-  }
-  &__priceTotal {
-    margin-right: 5px;
-  }
-  &__clear {
-    color: inherit;
-    text-decoration: underline;
   }
 }
