@@ -8,6 +8,7 @@ import { formatPrice } from '@/lib/formatPrice';
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
 import Button from '@/components/ui/Button';
+import { Link } from 'react-router-dom';
 
 function CartPage() {
     const productsInCart = useAppSelector(state => cartProducts(state));
@@ -47,6 +48,9 @@ function CartPage() {
                         <div className={styles.cart__total}> 
                             <div>Всего: <strong>{ formatPrice(priceTotal) } руб.</strong></div>
                         </div>
+                    </div>
+                    <div className={styles.cart__checkout}>
+                        <Link to={'checkout'}>Оформить заказ</Link>
                     </div>
                 </div>
             </section>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from './SingleProductPage.module.scss';
 import Button from "@/components/ui/Button";
 import { ShoppingCart } from "lucide-react";
@@ -12,23 +12,29 @@ import { addProduct } from "@/redux/cartSlice";
 import { useAppDispatch } from "@/redux/store";
 import toast from "react-hot-toast";
 import { CartItem } from "@/types/cartTypes";
-import { Product } from "@/types/productTypes";
+import { useGetProductQuery } from "@/api/product/productApi";
 
 export default function SingleProductPage () {
+
+  const { id } = useParams();
+  if(!id) return;
   
-  const { product } = useLoaderData() as { product: Product };
+  const { data, isLoading } = useGetProductQuery(id);
+
   const [motoColor, setMotoColor] = useState(0);
   const dispatch = useAppDispatch();
 
+  if(!data) return;
+
   const onClickAddProduct = () => {
     const item: CartItem = {
-        id: product.id,
-        img: product.img,
-        title: product.title,
-        price: product.price,
-        variant: product.variants[motoColor],
+        id: data.id,
+        img: data.img,
+        title: data.title,
+        price: data.price,
+        variant: data.variants[motoColor],
         productCount: 1,
-        totalPrice: product.price
+        totalPrice: data.price
       }
       dispatch(addProduct(item));
       toast.success('Товар добавлен в корзину', {
@@ -37,7 +43,7 @@ export default function SingleProductPage () {
       })
     }
    
-  if (!product) {
+  if (isLoading) {
     return <Loader />;
   }
 
@@ -46,14 +52,14 @@ export default function SingleProductPage () {
       <div className={styles.singlePage__info}>
         <div className="container">
           <div className={styles.singlePage__wrapper}>
-            <SliderProductCard images={product.variants[motoColor].images} />
+            <SliderProductCard images={data.variants[motoColor].images} />
             <div className={styles.singlePage__content}>
-              <h2 className={styles.singlePage__title}>{product.title}</h2>
-              <div className={styles.singlePage__article}>Артикул: {product.variants[motoColor].article}</div>
+              <h2 className={styles.singlePage__title}>{data.title}</h2>
+              <div className={styles.singlePage__article}>Артикул: {data.variants[motoColor].article}</div>
               <div className={styles.singlePage__colors}>
                   <div className={styles.singlePage__label}>Цвет:</div>
                   <ul className={styles.singlePage__colorList}>
-                    {product.variants.map((el, i: number) => (
+                    {data.variants.map((el, i: number) => (
                         <li key={i}>
                             <button className={`${styles.singlePage__color} ${motoColor === i ? styles.active : ''}`} type="button" style={{ backgroundColor: el.color }} onClick={() => setMotoColor(i)}></button>
                         </li>
@@ -61,7 +67,7 @@ export default function SingleProductPage () {
                     ))}
                   </ul>
               </div>
-              <span className={styles.singlePage__price}>{formatPrice(product.price)} руб.</span>
+              <span className={styles.singlePage__price}>{formatPrice(data.price)} руб.</span>
               <div className={styles.singlePage__buttons}>
                 <Button type="button" onClick={ onClickAddProduct }>
                     <ShoppingCart color="#ffffff" />

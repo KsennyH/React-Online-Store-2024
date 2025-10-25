@@ -12,6 +12,11 @@ export const productApi = createApi({
                 return `products?${queryString.toString()}`
             }
         }),
+        getProduct: build.query<Product,string>({
+            query: (id) => {
+                return `products/${id}`
+            }
+        }),
         getSearchProducts: build.query<Product[],string>({
             query: (value: string) => {
                 return `products?title=${value}*`
@@ -20,4 +25,4 @@ export const productApi = createApi({
     })
 });
 
-export const { useGetAllProductsQuery, useGetSearchProductsQuery } = productApi;
+export const { useGetAllProductsQuery, useGetProductQuery, useGetSearchProductsQuery } = productApi;
