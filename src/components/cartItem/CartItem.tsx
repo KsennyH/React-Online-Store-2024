@@ -1,4 +1,4 @@
-import { CartItem, productDecrement, productIncrement, removeProduct } from "@/redux/cartSlice";
+import { productDecrement, productIncrement, removeProduct } from "@/redux/cartSlice";
 import styles from './CartItem.module.scss';
 import Counter from "./counter/Counter";
 import Button from "../ui/Button";
@@ -7,6 +7,7 @@ import { useAppDispatch } from "@/redux/store";
 import Title from "../ui/title/Title";
 import { formatPrice } from "@/lib/formatPrice";
 import toast from "react-hot-toast";
+import { CartItem } from "@/types/cartTypes";
 
 const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
 
