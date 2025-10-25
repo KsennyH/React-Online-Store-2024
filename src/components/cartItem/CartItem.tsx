@@ -37,11 +37,11 @@ const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
     }
 
     return (
-        <div className={styles.cartProduct}> 
+        <li className={styles.cartProduct}> 
             <div className={styles.cartProduct__img}> 
                 <img src={variant.images[0]} alt={title}/>
             </div>
-            <div>
+            <div className={styles.cartProduct__info}>
                 <div className={styles.cartProduct__title}>
                     <Title tag="h3">{title}</Title>
                 </div>
@@ -57,7 +57,7 @@ const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
             <div className={styles.cartProduct__delete}>
                 <Button variant="close" onClick={onClickRemove} type="button"><span> </span></Button>
             </div>
-        </div>
+        </li>
     )
 }
 
