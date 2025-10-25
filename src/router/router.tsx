@@ -9,6 +9,7 @@ const ContactPage = lazy(() => import ('@/pages/contacts/ContactPage'));
 const CartPage = lazy(() => import ('@/pages/cart/CartPage'));
 const Articles = lazy(() => import ('@/pages/blog/Articles'));
 const SingleArticle = lazy(() => import('@/pages/blog/single/SingleArticle'));
+const CheckoutPage = lazy(() => import('@/pages/checkout/CheckoutPage'));
 
 export const router = createBrowserRouter([
     {
@@ -38,7 +39,11 @@ export const router = createBrowserRouter([
             },
             { 
                 path: 'cart', 
-                element: <CartPage />
+                element: <CartPage />,
+            },
+            {
+                path: 'checkout',
+                element: <CheckoutPage />
             }
         ],
     },

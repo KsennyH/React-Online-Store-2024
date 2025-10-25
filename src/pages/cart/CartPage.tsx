@@ -50,7 +50,7 @@ function CartPage() {
                         </div>
                     </div>
                     <div className={styles.cart__checkout}>
-                        <Link to={'checkout'}>Оформить заказ</Link>
+                        <Link to={'/checkout'}>Оформить заказ</Link>
                     </div>
                 </div>
             </section>

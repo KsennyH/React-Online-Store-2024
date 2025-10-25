@@ -17,14 +17,17 @@ import { useGetProductQuery } from "@/api/product/productApi";
 export default function SingleProductPage () {
 
   const { id } = useParams();
-  if(!id) return;
-  
-  const { data, isLoading } = useGetProductQuery(id);
+
+  const { data, isLoading } = useGetProductQuery(String(id));
 
   const [motoColor, setMotoColor] = useState(0);
   const dispatch = useAppDispatch();
 
-  if(!data) return;
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if(!data) return <div style={{textAlign: "center", padding: "40px"}}>Товар не найден</div>;
 
   const onClickAddProduct = () => {
     const item: CartItem = {
@@ -42,10 +45,6 @@ export default function SingleProductPage () {
         duration: 2000
       })
     }
-   
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <div className={styles.singlePage}>
