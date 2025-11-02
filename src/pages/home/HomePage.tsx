@@ -3,7 +3,6 @@ import { MAIN_TEXT } from '@/constants/texts';
 import parse from 'html-react-parser';
 import styles from './HomePage.module.scss';
 import NewsCardList from '@/components/news-card-list/NewsCardList';
-import PopularProduct from '@/components/popular-products/PopularProducts';
 import PopularProducts from '@/components/popular-products/PopularProducts';
 function HomePage() {
     return (
@@ -15,8 +14,8 @@ function HomePage() {
                         {parse(MAIN_TEXT)}
                     </div>
                 </div>
-                <NewsCardList />
                 <PopularProducts />
+                <NewsCardList />
             </div> 
         </div>
     );
