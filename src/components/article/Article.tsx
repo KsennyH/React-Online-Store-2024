@@ -1,11 +1,12 @@
 import { JSX } from "react";
 import parse from 'html-react-parser';
 import styles from "./Article.module.scss";
-import { Post } from "../post/Post";
 import Title from "../ui/title/Title";
+import { SinglePost } from "@/pages/blog/single/SingleArticle";
+import { formatDate } from "@/lib/formatDate";
 
-function Article({ article }: { article: Post }): JSX.Element {
-    const { image, title, intro, content, date, author } = article;
+function Article({ article }: { article: SinglePost }): JSX.Element {
+    const { image, title, intro, content, created_at, authors } = article;
     return (
         <article className={styles.article}>
             <div className={styles.article__image}>
@@ -21,8 +22,8 @@ function Article({ article }: { article: Post }): JSX.Element {
                     {parse(content)}
                 </div>
                 <div className={styles.article__info}>
-                    <time className={styles.article__date}>{date}</time>
-                    <div className={styles.article__author}>Автор: {author}</div>
+                    <time className={styles.article__date}>{formatDate(created_at)}</time>
+                    <div className={styles.article__author}>Автор: {authors?.name}</div>
                 </div>
             </div>
         </article>

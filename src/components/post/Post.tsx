@@ -2,22 +2,25 @@ import { JSX } from "react";
 import styles from "./Post.module.scss";
 import Title from "@/components/ui/title/Title";
 import { Link } from "react-router-dom";
+import { formatDate } from "@/lib/formatDate";
 
-export type Post = {
-    id: string,
+export type Author = {
+    name: string,
+    avatar?: string
+}
+
+export interface Post {
+    id: number,
     title: string,
     image: string,
     intro: string,
-    author: string,
-    date: string,
-    category: number,
-    tags: string[],
-    content: string
+    authors: Author,
+    created_at: string,
 }
 
 function Post({ post }: { post: Post }): JSX.Element {
 
-    const { title, image, intro, author, date } = post;
+    const { title, image, intro, authors, created_at } = post;
 
     return(
         <article className={styles.article}>
@@ -32,8 +35,8 @@ function Post({ post }: { post: Post }): JSX.Element {
                     <p>{intro}</p>
                 </div>
                 <div className={styles.article__info}>
-                    <div className={styles.article__date}>{date}</div>
-                    <div className={styles.article__author}>Автор: {author}</div>
+                    <time className={styles.article__date}>{formatDate(created_at)}</time>
+                    <div className={styles.article__author}>Автор: {authors?.name}</div>
                 </div>
             </div>
         </article>

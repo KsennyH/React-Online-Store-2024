@@ -1,9 +1,20 @@
 import { JSX } from "react";
 import styles from "./PostCategories.module.scss";
-import { POST_CATEGORIES } from "@/constants/posts";
 import Title from "@/components/ui/title/Title";
+import { useGetCategoriesQuery } from "@/api/news/newsApi";
+
+export interface Category {
+    id: number,
+    name: string,
+    news: {id: number}[]
+}
 
 function PostCategories(): JSX.Element {
+
+    const { data, error } = useGetCategoriesQuery();
+
+    if(error) { return <div>Ошибка</div> }
+    
     return(
         <div className={styles.category}>
             <div className={styles.category__title}>
@@ -11,9 +22,9 @@ function PostCategories(): JSX.Element {
             </div>
             <ul className={styles.category__list}>
                 {
-                    POST_CATEGORIES.map((el, i:number) => (
-                        <li key={i}>
-                            <a className={styles.category__link} href="#">{el} (7)</a>
+                    data && data.length > 0 && data.map((el: Category)  => (
+                        <li key={el.id}>
+                            <a className={styles.category__link} href="#">{el.name} ({el.news.length})</a>
                         </li>
                     ))
                 }

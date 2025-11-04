@@ -6,7 +6,6 @@ import { cartProducts, clearCart, totalPrice } from "@/redux/cartSlice";
 import Title from "@/components/ui/title/Title";
 import { formatPrice } from '@/lib/formatPrice';
 import toast from 'react-hot-toast';
-import { useEffect } from 'react';
 import Button from '@/components/ui/Button';
 import { Link } from 'react-router-dom';
 

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productApi } from '@/api/product/productApi';
 import { persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { newsApi } from '@/api/news/newsApi';
 
 const cartPersistConfig = {
   key: 'cart',
@@ -20,13 +21,14 @@ export const store = configureStore({
     cart: persistedCartReducer,
     search,
     [productApi.reducerPath]: productApi.reducer,
+    [newsApi.reducerPath]: newsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(productApi.middleware),
+    }).concat([productApi.middleware, newsApi.middleware]),
 })
 
 export const persistor = persistStore(store);

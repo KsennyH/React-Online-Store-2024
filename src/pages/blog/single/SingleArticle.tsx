@@ -1,34 +1,44 @@
 import { useParams } from "react-router-dom";
 import styles from "./SingleArticle.module.scss";
 import { JSX } from "react";
-import PostCategories from "@/components/post-category/PostCategories";
+import PostCategories, { Category } from "@/components/post-category/PostCategories";
 import Tags from "@/components/tags/Tags";
-import { POSTS } from "@/constants/posts";
 import Article from "@/components/article/Article";
 import Comments from "@/components/comments/Comments";
+import { useGetSingleNewsQuery } from "@/api/news/newsApi";
+import { Author } from "@/components/post/Post";
+
+export interface SinglePost {
+    id: number,
+    title: string,
+    image: string,
+    intro: string,
+    content: string,
+    authors: Author,
+    categories?: Category;
+    created_at: string,
+}
 
 function SingleArticle(): JSX.Element {
 
     const { id } = useParams<{ id: string }>();
 
-    // Пока не перенесу данные статей на сервер, получаю статьи из константы
-    let article;
-
-    if (id) {
-        const index = parseInt(id, 10);
-        article = POSTS[index]; 
+    if(!id) {
+        return <div>Статья не найдена</div>;
     }
 
-    if(!article) {
-        return <div>"Статья не найдена"</div>;
-    }
+    const { data, error } = useGetSingleNewsQuery(id);
+
+    if(error) { return <div>Ошибка</div> }
+
+    if (!data) return <div>Загрузка...</div>;
 
     return(
         <section className={styles.blogPage}>
             <div className="container">
                 <div className={styles.blogPage__wrapper}>
                     <div className={styles.blogPage__content}>
-                        <Article article={article} />
+                        <Article article={ data } />
                         <Comments />
                     </div>
                     <aside className={styles.blogPage__aside}>
