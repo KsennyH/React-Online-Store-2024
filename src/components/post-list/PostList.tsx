@@ -15,12 +15,12 @@ function PostList(): JSX.Element {
         <ul className={styles.news}>
             {
                 isLoading ? [...Array(2)].map((_, i: number) => (
-                    <li key={i} className={styles.news__item} >
+                    <li key={i} className={styles.item} >
                         <NewsCardSkeleton />
                     </li>
                 )) :
                 data && data.length > 0 && data.map(el => (
-                    <li key={el.id} className={styles.news__item} >
+                    <li key={el.id} className={styles.item} >
                         <Post post={el} />
                     </li>
                 ))

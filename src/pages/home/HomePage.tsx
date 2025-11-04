@@ -8,9 +8,9 @@ function HomePage() {
     return (
         <div className={styles.home}>
             <div className="container">
-                <div className={styles.home__moto}>
-                    <Title tag='h1' className={styles.home__title}>Мото-Мир - интернет-магазин мототехники в Иванове</Title>
-                    <div className={styles.home__text}>
+                <div className={styles.moto}>
+                    <Title tag='h1' className={styles.title}>Мото-Мир - интернет-магазин мототехники в Иванове</Title>
+                    <div className={styles.text}>
                         {parse(MAIN_TEXT)}
                     </div>
                 </div>

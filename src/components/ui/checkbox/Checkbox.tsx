@@ -11,13 +11,13 @@ function Checkbox({ name, checked, onChange }: CheckboxProps) {
     return(
         <label className={styles.checkboxBlock}>
             <input
-                className={styles.checkboxBlock__input} 
+                className={styles.input} 
                 type="checkbox" 
                 checked={checked}
                 onChange={(e) => onChange(e.target.checked)}
             />
-            <span className={styles.checkboxBlock__custom}></span>
-            <span className={styles.checkboxBlock__name}>{name}</span>
+            <span className={styles.custom}></span>
+            <span className={styles.name}>{name}</span>
         </label>
     );
 }

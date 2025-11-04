@@ -12,16 +12,16 @@ function UserActions() {
         <> 
             <a className={styles.user} href="#" aria-label="Личный кабинет">
                 <CircleUser color="#ffffff" />
-                <span className={styles.user__label}>Личный кабинет</span>
+                <span className={styles.label}>Личный кабинет</span>
             </a>
             <Link to={'/cart'} className={styles.user} aria-label="Корзина">
-                <div className={styles.user__counter}>
+                <div className={styles.counter}>
                       <ShoppingCart color="#ffffff" />
                       {countProducts > 0 && (
-                        <span className={styles.user__quantity}>{countProducts}</span>
+                        <span className={styles.quantity}>{countProducts}</span>
                       )}
                 </div>
-                <span className={styles.user__label}>{ formatPrice(priceProduct) } руб.</span>
+                <span className={styles.label}>{ formatPrice(priceProduct) } руб.</span>
             </Link>
         </>
     );

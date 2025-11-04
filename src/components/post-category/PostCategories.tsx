@@ -17,14 +17,14 @@ function PostCategories(): JSX.Element {
     
     return(
         <div className={styles.category}>
-            <div className={styles.category__title}>
+            <div className={styles.title}>
                 <Title tag="h3">Категории</Title>
             </div>
-            <ul className={styles.category__list}>
+            <ul className={styles.list}>
                 {
                     data && data.length > 0 && data.map((el: Category)  => (
                         <li key={el.id}>
-                            <a className={styles.category__link} href="#">{el.name} ({el.news.length})</a>
+                            <a className={styles.link} href="#">{el.name} ({el.news.length})</a>
                         </li>
                     ))
                 }

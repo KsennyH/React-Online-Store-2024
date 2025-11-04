@@ -12,7 +12,7 @@ function MobileNav() {
   const closeMenu = () => setIsOpen(false);
     return (
     <div className={styles.mobileNav}>
-      <button className={styles.mobileNav__toggle} onClick={toggleMenu}>
+      <button className={styles.toggle} onClick={toggleMenu}>
         {isOpen ? <X size={24} color="#fff" /> : <Menu size={24} color="#fff" />}
       </button>
       <Link to='/'>
@@ -20,16 +20,16 @@ function MobileNav() {
       </Link>
 
       {isOpen && (
-        <div className={styles.mobileNav__menu}>
-          <ul className={styles.mobileNav__list}>
+        <div className={styles.menu}>
+          <ul className={styles.list}>
             {NAVIGATION.map((item, index) => (
-              <li key={index} className={styles.mobileNav__item}>
+              <li key={index} className={styles.item}>
                 <NavLink
                   to={item.path}
                   className={({ isActive }) =>
                     isActive
-                      ? `${styles.mobileNav__link} ${styles.active}`
-                      : styles.mobileNav__link
+                      ? `${styles.link} ${styles.active}`
+                      : styles.link
                   }
                   onClick={closeMenu}
                 >

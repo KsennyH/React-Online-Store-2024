@@ -10,10 +10,10 @@ function NewsCardList() {
 
     return(
         <section className={styles.motoNews}>
-            <div className={styles.motoNews__title}>
+            <div className={styles.title}>
                 <Title tag='h2'>Новости и статьи</Title>
             </div>
-            <ul className={styles.motoNews__list}>
+            <ul className={styles.list}>
                 {
                     data && data.length > 0 && data.map((el) => (
                         <li key={el.id}>
@@ -22,7 +22,7 @@ function NewsCardList() {
                     ))
                 }   
             </ul>
-            <div className={styles.motoNews__btn}>
+            <div className={styles.btn}>
                 <Link to='/blog'>Все новости</Link>
             </div>
         </section>

@@ -6,22 +6,20 @@ import { formatDate } from '@/lib/formatDate';
 function NewsCard({ article }: {article: Post}) {
     return(
         <article className={styles.newsCard}>
-            <div className={styles.newsCard__img}>
+            <div className={styles.img}>
                 <img src={article.image} alt={article.title} />
             </div>
-            <div className={styles.newsCard__information}>
-                <Link to={`/blog/${article.id}`} className={styles.newsCard__titleLink}>
-                    <div className={styles.newsCard__name}>
-                        <Title tag='h3'>{article.title}</Title>
-                    </div>
+            <div className={styles.information}>
+                <Link to={`/blog/${article.id}`} className={styles.titleLink}>
+                    <Title tag='h3'>{article.title}</Title>
                 </Link>
-                <div className={styles.newsCard__preview}>
+                <div className={styles.preview}>
                     { article.intro }
                 </div>
             </div>
-            <div className={styles.newsCard__info}>
-                <time className={styles.newsCard__date}>{ formatDate(article.created_at) }</time>
-                <Link to={`/blog/${article.id}`} className={styles.newsCard__link}>Подробнее</Link>
+            <div className={styles.info}>
+                <time className={styles.date}>{ formatDate(article.created_at) }</time>
+                <Link to={`/blog/${article.id}`} className={styles.link}>Подробнее</Link>
             </div>
         </article>
     );

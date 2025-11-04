@@ -34,7 +34,7 @@ function CartPage() {
         <>
             <section className={styles.cart}>
                 <div className="container"> 
-                    <div className={styles.cart__title}>
+                    <div className={styles.title}>
                         <Title tag="h1">Корзина товаров</Title>
                     </div>
                     <ul>
@@ -42,13 +42,13 @@ function CartPage() {
                             <Cart key={obj.variant.article} cartProducts={obj} />
                         ))}
                     </ul>
-                    <div className={styles.cart__footer}>
+                    <div className={styles.footer}>
                         <Button variant='secondary' onClick={onClickClear}>Очистить корзину</Button>
-                        <div className={styles.cart__total}> 
+                        <div className={styles.total}> 
                             <div>Всего: <strong>{ formatPrice(priceTotal) } руб.</strong></div>
                         </div>
                     </div>
-                    <div className={styles.cart__checkout}>
+                    <div className={styles.checkout}>
                         <Link to={'/checkout'}>Оформить заказ</Link>
                     </div>
                 </div>

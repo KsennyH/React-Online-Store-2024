@@ -19,14 +19,14 @@ function SliderProductCard({ images }: { images: string[] }) {
             
     return(
         <div className={styles.sliderImages}>
-            <div ref={sliderRef} className={`${styles.sliderImages__wrapper} keen-slider`}>
+            <div ref={sliderRef} className={`${styles.wrapper} keen-slider`}>
                 {
                     images.map((el, i: number) => <div key={i} className="keen-slider__slide"><img src={el} /></div>)
                 }
             </div>
-            <div className={styles.sliderImages__pagination}>
+            <div className={styles.pagination}>
                 {
-                    images.map((el, i: number) => <div key={i}  onClick={() => instanceRef.current?.moveToIdx(i)} className={`${styles.sliderImages__bottom} ${
+                    images.map((el, i: number) => <div key={i}  onClick={() => instanceRef.current?.moveToIdx(i)} className={`${styles.bottom} ${
               i === currentSlide ? styles.borderActive : ''
             }`} ><img src={el} /></div>)
                 }

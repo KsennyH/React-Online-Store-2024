@@ -1,12 +1,12 @@
 .comments {
   padding: 1.5625rem 0;
-  &__top {
+  .top {
     margin-bottom: 2.8125rem;
   }
-  &__title {
+  .title {
     margin-bottom: 24px;
   }
-  &__list {
+  .list {
     display: flex;
     flex-direction: column;
     gap: 24px;

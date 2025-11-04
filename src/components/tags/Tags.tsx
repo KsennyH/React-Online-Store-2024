@@ -16,15 +16,15 @@ function Tags(): JSX.Element {
 
     return(
         <div className={styles.tags}>
-            <div className={styles.tags__title}>
+            <div className={styles.title}>
                 <Title tag="h3">Теги</Title>
             </div>
-            <ul className={styles.tags__list}>
+            <ul className={styles.list}>
                 {
 
                     data && data.length > 0 && data.map((el: Tag) => (
-                        <li key={el.id} className={styles.tags__item}>
-                            <a className={styles.tags__link} href="#">{el.name}</a>
+                        <li key={el.id} className={styles.item}>
+                            <a className={styles.link} href="#">{el.name}</a>
                         </li>
                     ))
                 }

@@ -10,27 +10,27 @@ function HeaderTemplate() {
 
     return (
         <header className={styles.header}>
-            <div className={styles.header__top}>
+            <div className={styles.top}>
                 <div className="container">
-                    <div className={styles.header__inner}>
-                        <div className={styles.header__logo}>   
+                    <div className={styles.inner}>
+                        <div className={styles.logo}>   
                             <Logotype />
                         </div>
-                        <div className={styles.header__actions}>
-                            <div className={styles.header__form}>
+                        <div className={styles.actions}>
+                            <div className={styles.form}>
                                 <SearchComponent />
-                                <div className={styles.header__userActions}>
+                                <div className={styles.userActions}>
                                     <UserActions />
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.header__info}>
+                        <div className={styles.info}>
                             <AddressInfo />
                         </div>
                     </div>
                 </div>
             </div>
-            <div className={styles.header__bottom}> 
+            <div className={styles.bottom}> 
                 <div className="container"> 
                     <DesktopNav />
                     <MobileNav />

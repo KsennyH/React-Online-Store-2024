@@ -6,7 +6,7 @@ function PopularProducts() {
     
     return(
          <section className={styles.popularProducts}>
-            <div className={styles.popularProducts__title}>
+            <div className={styles.title}>
                 <Title tag='h2'>Популярные</Title>
             </div>
             <PopularProductSlider />

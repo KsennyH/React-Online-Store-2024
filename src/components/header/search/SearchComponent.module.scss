@@ -6,7 +6,7 @@
   font-size: inherit;
   color: #fff;
   position: relative;
-  &__input {
+  .input {
     width: 100%;
     border: 1px solid #ffffff;
     background-color: transparent;
@@ -20,7 +20,7 @@
       box-shadow: -0.0625rem 0px 0.5rem 0.0625rem #ffcbcb;
     }
   }
-  &__button {
+  .button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +30,7 @@
     top: 6px;
     right: 10px;
   }
-  &__icon {
+  .icon {
     width: 19px;
     height: 19px;
   }

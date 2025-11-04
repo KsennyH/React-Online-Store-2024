@@ -1,7 +1,8 @@
 .newsCard {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  justify-content: space-between;
+  height: 100%;
   position: relative;
   background: #ffffff;
   color: #000;
@@ -16,7 +17,7 @@
       scale: 1;
     }
   }
-  &__img {
+  .img {
     display: flex;
     justify-content: center;
     margin-bottom: 1.5625rem;
@@ -27,18 +28,15 @@
       object-fit: contain;
     }
   }
-  &__name {
-    margin-bottom: 24px;
+  .information {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
   }
-  &__information {
-    flex: 1 0 auto;
-  }
-  &__titleLink {
-    margin-bottom: 0.9375rem;
-    display: block;
+  .titleLink {
     text-align: center;
   }
-  &__preview {
+  .preview {
     margin-bottom: 24px;
     line-height: 1.2;
     text-align: justify;
@@ -47,14 +45,14 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  &__info {
+  .info {
     flex: 0 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: 300;
   }
-  &__link {
+  .link {
     &:hover {
       text-decoration: underline;
     }

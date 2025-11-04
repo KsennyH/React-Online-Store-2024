@@ -1,13 +1,13 @@
 .pagination {
   padding: 1.5625rem 0;
-  &__list {
+  .list {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.3125rem;
   }
-  &__link {
+  .link {
     display: flex;
     justify-content: center;
     align-items: center;

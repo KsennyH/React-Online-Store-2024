@@ -6,16 +6,16 @@ function FooterNav() {
         <div className={styles.footerNav}>
             {
                 FOOTER_NAVIGATION.map(obj => (
-                    <ul className={styles.footerNav__list} key={obj.category}>
-                        <h4 className={styles.footerNav__label}>{obj.category}</h4>
-                        <div className={styles.footerNav__content}>
+                    <div className={styles.list} key={obj.category}>
+                        <h4 className={styles.label}>{obj.category}</h4>
+                        <ul className={styles.content}>
                             {
                                 obj.links.map(link => (
-                                    <li key={link.title}><a className={styles.footerNav__link} href={link.path}>{link.title}</a></li>
+                                    <li key={link.title}><a className={styles.link} href={link.path}>{link.title}</a></li>
                                 ))
                             }
-                        </div>
-                    </ul>
+                        </ul>
+                    </div>
                 ))
             }
         </div>

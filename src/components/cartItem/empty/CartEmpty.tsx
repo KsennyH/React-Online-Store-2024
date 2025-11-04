@@ -6,10 +6,10 @@ function EmptyCart() {
     return (
         <section className={styles.empty}> 
             <div className="container"> 
-                <div className={styles.empty__title}>
+                <div className={styles.title}>
                     <Title tag='h2'>К сожалению, Ваша корзина пуста</Title>
                 </div>
-                <p className={styles.empty__description}>Вы можете это исправить: выберите в каталоге интересующий товар и нажмите кнопку “В корзину”.</p>
+                <p className={styles.description}>Вы можете это исправить: выберите в каталоге интересующий товар и нажмите кнопку “В корзину”.</p>
                 <Link to={'/'}>
                     <Button>Перейти в каталог</Button>
                 </Link>

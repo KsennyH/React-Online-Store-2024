@@ -1,37 +1,38 @@
 .article {
   position: relative;
-  &__image {
+  .image {
     display: flex;
     justify-content: center;
     height: 380px;
     background-color: #fff;
+    border-radius: 18px 18px 0 0;
   }
-  &__img {
+  .img {
     object-fit: contain;
   }
-  &__content {
+  .content {
     background-color: #414141;
     padding: 24px;
     border-radius: 0 0 1.25rem 1.25rem;
   }
-  &__contentTitle {
+  .contentTitle {
     margin-bottom: 24px;
   }
-  &__intro {
+  .intro {
     font-size: 18px;
     font-weight: 700;
     font-family: 'Scada';
     line-height: 1.8;
     margin-bottom: 24px;
   }
-  &__info {
+  .info {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: 'Scada', sans-serif;
     font-size: 1rem;
   }
-  &__text {
+  .text {
     font-weight: 300;
     line-height: 1.8;
     margin-bottom: 1.5625rem;

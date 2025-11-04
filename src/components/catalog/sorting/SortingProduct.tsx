@@ -14,10 +14,10 @@ const SortingProduct = (): JSX.Element => {
 
     return(
         <nav className={styles.sorting}> 
-            <ul className={styles.sorting__list}> 
+            <ul className={styles.list}> 
                 {CATEGORIES.map((elem, i) => (
                     <li key={i}> 
-                        <button onClick={() => onChangeCategory(i)} className={categoryId === i ? `${styles.sorting__btn} ${styles.active}` : `${styles.sorting__btn}`}>
+                        <button onClick={() => onChangeCategory(i)} className={categoryId === i ? `${styles.btn} ${styles.active}` : `${styles.btn}`}>
                             <span>{elem}</span>
                         </button>
                     </li>

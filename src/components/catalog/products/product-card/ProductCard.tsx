@@ -35,31 +35,31 @@ const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element
 
     return(
         <article className={styles.productCard}>
-                <div className={styles.productCard__img}>
+                <div className={styles.img}>
                     <img src={variants[motoColor].images[0]} alt={title}/>
                 </div>
-                <div className={styles.productCard__info}> 
+                <div className={styles.info}> 
                     <Link to={`/products/${id}`} key={id}>
-                        <h3 className={styles.productCard__title}>{title}</h3>
+                        <h3 className={styles.title}>{title}</h3>
                     </Link>
                     <div> 
                         <div className={styles.colors}>
-                            <div className={styles.colors__label}>Цвет:</div>
-                            <ul className={styles.colors__list}>
+                            <div className={styles.label}>Цвет:</div>
+                            <ul className={styles.list}>
                                 {variants.map((el, i: number) => (
                                     <li key={i}>
-                                        <button type="button" onClick={() => setMotoColor(i)} className={`${styles.colors__color} ${motoColor === i ? styles.active : ''}`} style={{ backgroundColor: el.color }}></button>
+                                        <button type="button" onClick={() => setMotoColor(i)} className={`${styles.color} ${motoColor === i ? styles.active : ''}`} style={{ backgroundColor: el.color }}></button>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <div className={styles.productCard__information}> 
-                            <span className={styles.productCard__article}>Артикул: {variants[motoColor].article}</span>
-                            <span className={styles.productCard__text}>{variants[motoColor].available ? `В наличии: ${variants[motoColor].stock}` : "Под заказ"}</span>
+                        <div className={styles.information}> 
+                            <span className={styles.article}>Артикул: {variants[motoColor].article}</span>
+                            <span className={styles.text}>{variants[motoColor].available ? `В наличии: ${variants[motoColor].stock}` : "Под заказ"}</span>
                         </div>
                     </div>
                 </div>
-            <div className={styles.productCard__price}>
+            <div className={styles.price}>
                 { formatPrice(price) } руб.
             </div>
             <Button onClick={onClickAddProduct}>

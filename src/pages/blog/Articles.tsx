@@ -10,12 +10,12 @@ function Articles() {
 
             <div className={styles.articles}>
                 <div className="container">
-                    <div className={styles.articles__wrapper}>
-                        <section className={styles.articles__news}>
-                            <Title className={styles.articles__title} tag="h1">Статьи и новости</Title>
+                    <div className={styles.wrapper}>
+                        <section className={styles.news}>
+                            <Title className={styles.title} tag="h1">Статьи и новости</Title>
                             <PostList />
                         </section>
-                        <aside className={styles.articles__aside}>
+                        <aside className={styles.aside}>
                             <PostCategories />
                             <Tags />
                         </aside>

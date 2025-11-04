@@ -48,26 +48,26 @@ export default function SingleProductPage () {
 
   return (
     <div className={styles.singlePage}>
-      <div className={styles.singlePage__info}>
+      <div className={styles.info}>
         <div className="container">
-          <div className={styles.singlePage__wrapper}>
+          <div className={styles.wrapper}>
             <SliderProductCard images={data.variants[motoColor].images} />
-            <div className={styles.singlePage__content}>
-              <h2 className={styles.singlePage__title}>{data.title}</h2>
-              <div className={styles.singlePage__article}>Артикул: {data.variants[motoColor].article}</div>
-              <div className={styles.singlePage__colors}>
-                  <div className={styles.singlePage__label}>Цвет:</div>
-                  <ul className={styles.singlePage__colorList}>
+            <div className={styles.content}>
+              <h2 className={styles.title}>{data.title}</h2>
+              <div className={styles.article}>Артикул: {data.variants[motoColor].article}</div>
+              <div className={styles.colors}>
+                  <div className={styles.label}>Цвет:</div>
+                  <ul className={styles.colorList}>
                     {data.variants.map((el, i: number) => (
                         <li key={i}>
-                            <button className={`${styles.singlePage__color} ${motoColor === i ? styles.active : ''}`} type="button" style={{ backgroundColor: el.color }} onClick={() => setMotoColor(i)}></button>
+                            <button className={`${styles.color} ${motoColor === i ? styles.active : ''}`} type="button" style={{ backgroundColor: el.color }} onClick={() => setMotoColor(i)}></button>
                         </li>
                         
                     ))}
                   </ul>
               </div>
-              <span className={styles.singlePage__price}>{formatPrice(data.price)} руб.</span>
-              <div className={styles.singlePage__buttons}>
+              <span className={styles.price}>{formatPrice(data.price)} руб.</span>
+              <div className={styles.buttons}>
                 <Button type="button" onClick={ onClickAddProduct }>
                     <ShoppingCart color="#ffffff" />
                     <span>В корзину</span>
@@ -78,7 +78,7 @@ export default function SingleProductPage () {
         </div>
       </div>
       <Features />
-        <div className={styles.singlePage__text}>
+        <div className={styles.text}>
             <div className="container">
                 {PRODUCT_CARD_CONTENT}
             </div>

@@ -4,7 +4,7 @@
   @media (max-width: 991.98px) {
     font-size: 1rem;
   }
-  &__contacts {
+  .contacts {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -12,19 +12,19 @@
       text-align: center;
     }
   }
-  &__content {
+  .content {
     background-color: #414141;
     padding: 5rem 0;
     @media (max-width: 991.98px) {
       padding: 40px 0;
     }
   }
-  &__logo {
+  .logo {
     @media (max-width: 575.98px) {
       margin-bottom: 1.125rem;
     }
   }
-  &__socialInfo {
+  .socialInfo {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,7 +34,7 @@
     }
   }
 
-  &__infoContent {
+  .infoContent {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -48,7 +48,7 @@
       align-items: center;
     }
   }
-  &__copyright {
+  .copyright {
     background-color: #555555;
     padding: 2.5rem 0;
     text-align: center;

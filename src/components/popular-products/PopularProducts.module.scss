@@ -3,15 +3,9 @@
   font-family: 'Scada', sans-serif;
   font-size: 1.125rem;
   position: relative;
-  &__title {
+  .title {
     text-align: left;
     margin-bottom: 24px;
-  }
-  &__btns {
-    display: flex;
-    position: absolute;
-    top: 0.625rem;
-    right: 0;
   }
 }
 .keen-slider {

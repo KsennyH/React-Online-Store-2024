@@ -46,14 +46,14 @@ const Search = () => {
     return (
         <div className={styles.searchWrapper} ref={wrapperRef}>
             <div className={styles.search}>
-                <input ref={inputRef} onChange={onChangeValue} value={value} className={styles.search__input} type="text" placeholder='Поиск'/>
+                <input ref={inputRef} onChange={onChangeValue} value={value} className={styles.input} type="text" placeholder='Поиск'/>
                 {!value && (
-                    <div className={styles.search__button}>
+                    <div className={styles.button}>
                         <SearchCheck color="#ffffff" />
                     </div>
                 )}
                 {value && (
-                    <button onClick={onClickClear} className={styles.search__button}>
+                    <button onClick={onClickClear} className={styles.button}>
                         <X color="#ffffff" />
                     </button>
                 )}

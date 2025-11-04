@@ -36,12 +36,12 @@ function SingleArticle(): JSX.Element {
     return(
         <section className={styles.blogPage}>
             <div className="container">
-                <div className={styles.blogPage__wrapper}>
-                    <div className={styles.blogPage__content}>
+                <div className={styles.wrapper}>
+                    <div className={styles.content}>
                         <Article article={ data } />
                         <Comments />
                     </div>
-                    <aside className={styles.blogPage__aside}>
+                    <aside className={styles.aside}>
                         <PostCategories />
                         <Tags /> 
                     </aside>

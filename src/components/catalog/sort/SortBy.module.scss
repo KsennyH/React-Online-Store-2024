@@ -6,13 +6,13 @@
   padding: 20px;
   color: #000;
   border-radius: 20px;
-  &__criterion {
+  .criterion {
     margin-left: 10px;
     color: red;
     text-decoration: underline;
     cursor: pointer;
   }
-  &__list {
+  .list {
     position: absolute;
     top: 100%;
     right: 0;
@@ -23,10 +23,10 @@
     padding: 20px;
     color: #fff;
   }
-  &__item:not(:last-child) {
+  .item:not(:last-child) {
     margin-bottom: 10px;
   }
-  &__item {
+  .item {
     cursor: pointer;
     &.active {
       color: red;
