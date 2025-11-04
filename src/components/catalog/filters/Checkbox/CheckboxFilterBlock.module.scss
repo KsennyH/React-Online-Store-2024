@@ -1,17 +1,17 @@
 .checkboxBlock {
-  &__title {
+  .title {
     font-family: 'Scada', sans-serif;
     font-weight: 700;
     font-size: 1.125rem;
     margin-bottom: 1.25rem;
   }
-  &__item {
+  .item {
     position: relative;
   }
-  &__item + &__item {
+  .item + .item {
     margin-top: 0.625rem;
   }
-  &__input {
+  .input {
     position: absolute;
     width: 0.0625rem;
     height: 0.0625rem;
@@ -19,7 +19,7 @@
     overflow: hidden;
     clip: rect(0 0 0 0);
   }
-  &__input:checked + &__custom::before {
+  .input:checked + .custom::before {
     content: '';
     position: absolute;
     background-image: url('./check.svg');
@@ -30,10 +30,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  &__input:focus + &__custom {
+  .input:focus + .custom {
     box-shadow: 0 0 0 0.125rem #414141;
   }
-  &__custom {
+  .custom {
     margin-top: 1px;
     position: absolute;
     width: 1rem;
@@ -41,7 +41,7 @@
     background-color: #fff;
     border-radius: 0.125rem;
   }
-  &__name {
+  .name {
     margin-left: 1.875rem;
   }
 }

@@ -36,10 +36,10 @@ const SortBy = (): JSX.Element => {
     return(
         <div className={styles.sort} ref={sortRef}>
             Сортировать по:
-            <span onClick={() => setOpenSort(prev => !prev)} className={styles.sort__criterion}>{sortTypeValue.name}</span>
-            {openSort && (<ul className={styles.sort__list}>
+            <span onClick={() => setOpenSort(prev => !prev)} className={styles.criterion}>{sortTypeValue.name}</span>
+            {openSort && (<ul className={styles.list}>
                 {SORT_OPTIONS.map((obj) => (
-                    <li onClick={() => onClickCriterion(obj)} key={obj.name} className={sortTypeValue.name === obj.name ? `${styles.sort__item} ${styles.active}` : `${styles.sort__item}`}>
+                    <li onClick={() => onClickCriterion(obj)} key={obj.name} className={sortTypeValue.name === obj.name ? `${styles.item} ${styles.active}` : `${styles.item}`}>
                         {obj.name}
                     </li>
                 ))}

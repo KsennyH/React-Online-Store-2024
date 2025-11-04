@@ -5,8 +5,12 @@ export type NavItem = {
 
 export const NAVIGATION: NavItem[] = [
     {
-        title: "Каталог",
+        title: "Главная",
         path: "/",
+    },
+    {
+        title: "Каталог",
+        path: "/products",
     },
     {
         title: "Блог",

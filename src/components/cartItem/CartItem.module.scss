@@ -11,10 +11,10 @@
     border-top: 1px solid #fff;
   }
   @media (max-width: 991.98px) {
-    &__title {
+    .title {
       font-size: 1rem;
     }
-    &__price {
+    .price {
       font-size: 1rem;
     }
   }
@@ -22,17 +22,17 @@
     flex-wrap: wrap;
   }
   @media (max-width: 575.98px) {
-    &__price {
+    .price {
       justify-self: flex-start;
     }
   }
-  &__info {
+  .info {
     width: 250px;
   }
-  &__title {
+  .title {
     margin-bottom: 24px;
   }
-  &__img {
+  .img {
     min-width: 120px;
     img {
       width: 120px;
@@ -42,23 +42,23 @@
       object-fit: contain;
     }
   }
-  &__colors {
+  .colors {
     display: flex;
     align-items: center;
     gap: 24px;
   }
-  &__color {
+  .color {
     width: 30px;
     height: 30px;
     border-radius: 50%;
   }
-  &__price {
+  .price {
     font-size: 1.125rem;
     font-weight: 600;
     justify-self: center;
     white-space: nowrap;
   }
-  &__delete {
+  .delete {
     position: absolute;
     top: 10px;
     right: 0;

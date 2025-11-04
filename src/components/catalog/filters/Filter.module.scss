@@ -13,21 +13,21 @@
       display: block;
     }
   }
-  &__settings {
+  .settings {
     padding: 1.5625rem 1.125rem;
   }
-  &__item {
+  .item {
     margin-bottom: 30px;
   }
-  &__btn {
+  .btn {
     display: flex;
     justify-content: center;
     margin-bottom: 1.125rem;
   }
-  &__reset {
+  .reset {
     text-align: center;
   }
-  &__resetBtn {
+  .resetBtn {
     font-weight: 700;
     text-decoration: underline;
     color: #fff;

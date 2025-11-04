@@ -12,11 +12,11 @@ export default function CheckboxFilterBlock ({headers, title, typesChecked, hand
 
     return (
         <div className={styles.checkboxBlock}> 
-            <h5 className={styles.checkboxBlock__title}>{title}</h5>
-            <ul className={styles.checkboxBlock__list}>
+            <h5 className={styles.title}>{title}</h5>
+            <ul className={styles.list}>
                 {
                     headers.map((el, i:number) => (
-                        <li className={styles.checkboxBlock__item} key={i}> 
+                        <li className={styles.item} key={i}> 
                             <Checkbox name={el} checked={typesChecked.includes(el)} onChange={(checked) => handleCheckboxChange(el, checked, "typesChecked")} />
                         </li>
                     ))

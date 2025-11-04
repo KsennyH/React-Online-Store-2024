@@ -1,6 +1,6 @@
 .feature {
   font-family: 'Scada', sans-serif;
-  &__top {
+  .top {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,10 +8,10 @@
     padding: 1.125rem 0;
     background-color: #414141;
   }
-  &__title {
+  .title {
     font-size: 1.125rem;
   }
-  &__bottom {
+  .bottom {
     display: flex;
     gap: 24px;
     background-color: #555;

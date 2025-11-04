@@ -1,0 +1,60 @@
+.newsCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  background: #ffffff;
+  color: #000;
+  font-size: 0.875rem;
+  border-radius: 1.125rem;
+  padding: 0.9375rem;
+  transition: box-shadow 0.5s ease-in;
+  &:hover {
+    cursor: pointer;
+    box-shadow: -0.0625rem 0 0.5rem 0.0625rem #d9c0c0;
+    .newsCard__img {
+      scale: 1;
+    }
+  }
+  .img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5625rem;
+    scale: 0.8;
+    transition: scale 0.5s ease-in;
+    img {
+      height: 200px;
+      object-fit: contain;
+    }
+  }
+  .information {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+  }
+  .titleLink {
+    text-align: center;
+  }
+  .preview {
+    margin-bottom: 24px;
+    line-height: 1.2;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .info {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 300;
+  }
+  .link {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -12,6 +12,9 @@ export const productApi = createApi({
                 return `products?${queryString.toString()}`
             }
         }),
+        getPopularProducts: build.query<FetchProducts,void>({
+            query: () => { return `products?sortBy=rating&limit=9` }
+        }),
         getProduct: build.query<Product,string>({
             query: (id) => {
                 return `products/${id}`
@@ -25,4 +28,4 @@ export const productApi = createApi({
     })
 });
 
-export const { useGetAllProductsQuery, useGetProductQuery, useGetSearchProductsQuery } = productApi;
+export const { useGetAllProductsQuery, useGetProductQuery, useGetSearchProductsQuery, useGetPopularProductsQuery } = productApi;

@@ -12,7 +12,7 @@ const ProductsList = memo(({ products, isLoading}: ProductsListProps) => {
 
     return(
         <div className={styles.products}>
-            <ul className={styles.products__list}>
+            <ul className={styles.list}>
             {
                 isLoading ? [...Array(6)].map((_, i) => (
                     <li key={i}><ProductCardSkeleton /></li>

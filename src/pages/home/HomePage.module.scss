@@ -1,0 +1,20 @@
+.home {
+  padding: 40px 0;
+  .moto {
+    padding: 40px 0;
+  }
+  .title {
+    margin-bottom: 24px;
+  }
+  .text {
+    font-weight: 300;
+    line-height: 1.8;
+    h2 {
+      font-size: 28px;
+      font-weight: 400;
+    }
+    * + * {
+      margin-top: 12px;
+    }
+  }
+}

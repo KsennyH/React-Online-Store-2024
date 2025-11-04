@@ -1,0 +1,31 @@
+.motoNews {
+  padding: 40px 0;
+  .title {
+    margin-bottom: 24px;
+  }
+  .list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .btn {
+    max-width: 250px;
+    margin: 24px auto 0;
+    a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      gap: 0.625rem;
+      border-radius: 1.875rem;
+      background-color: #0b9d1a;
+      color: #fff;
+      font-size: 1rem;
+      padding: 10px 20px;
+      font-family: 'Scada', sans-serif;
+      transition: background-color 0.5s ease;
+    }
+  }
+}

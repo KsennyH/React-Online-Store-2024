@@ -10,14 +10,14 @@ function Features(): JSX.Element {
     return(
         <div className={styles.feature}>
             <div className="container">
-                <div className={styles.feature__top}>
-                    <h4 className={styles.feature__title}>Технические характеристики</h4>
+                <div className={styles.top}>
+                    <h4 className={styles.title}>Технические характеристики</h4>
                     <button type="button" onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <CircleMinus color="#ffffff" /> : <CirclePlus color="#ffffff" />}</button>
                 </div>
                 <AnimatePresence initial={false}>
                     {
                         isOpen && (
-                            <motion.div className={styles.feature__bottom}
+                            <motion.div className={styles.bottom}
                                 initial={{ height: 0, opacity: 0, paddingTop: 0, paddingBottom: 0 }}
                                 animate={{ height: "auto", opacity: 1, paddingTop: "24px", paddingBottom: "24px" }}
                                 exit={{ height: 0, opacity: 0, paddingTop: 0, paddingBottom: 0 }}

@@ -16,12 +16,12 @@ function Comment({ articleComment }: CommentProps): JSX.Element {
     const { name, avatar, comment, date } = articleComment;
     return(
          <div className={styles.comment}>
-            <div className={styles.comment__avatar}></div>
-            <div className={styles.comment__info}>
-                <div className={styles.comment__name}>{name}</div>
-                <div className={styles.comment__text}><p>{comment}</p>
+            <div className={styles.avatar}></div>
+            <div className={styles.info}>
+                <div className={styles.name}>{name}</div>
+                <div className={styles.text}><p>{comment}</p>
                 </div>
-                <time className={styles.comment__date}>{date}</time>
+                <time className={styles.date}>{date}</time>
             </div>
         </div>
     );

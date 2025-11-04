@@ -10,7 +10,7 @@ function AddressInfoItem({ href, children, text }: AddressInfoItemProps) {
     return(
         <a className={styles.addressInfoItem} href={href}>
             {children}
-            <span className={styles.addressInfoItem__label}>{text}</span>
+            <span className={styles.label}>{text}</span>
         </a>
     );
 }

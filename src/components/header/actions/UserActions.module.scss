@@ -5,10 +5,10 @@
   & > * {
     pointer-events: none;
   }
-  &__counter {
+  .counter {
     position: relative;
   }
-  &__quantity {
+  .quantity {
     position: absolute;
     background-color: #2ef30e;
     padding: 7px;

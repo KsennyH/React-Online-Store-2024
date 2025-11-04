@@ -2,12 +2,12 @@
   font-family: 'Scada', sans-serif;
   font-size: 1.125rem;
   padding: 1.5625rem 0;
-  &__list {
+  .list {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
   }
-  &__item:not(:last-child) {
+  .item:not(:last-child) {
     margin-right: 0.9375rem;
     padding-right: 1.9375rem;
     position: relative;
@@ -23,7 +23,7 @@
       transform: translateY(-50%);
     }
   }
-  &__link {
+  .link {
     padding: 10px 0.3125rem;
     &--active {
       font-weight: 700;

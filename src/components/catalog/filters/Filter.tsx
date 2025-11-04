@@ -16,10 +16,10 @@ function Filter({ isOpen }: { isOpen: boolean }) {
 
     return(
         <div className={`${styles.filter} ${isOpen ? styles.active : ''}`}>
-            <div className={styles.filter__item}> 
+            <div className={styles.item}> 
                 <CheckboxFilterBlock title="Тип мотоцикла" headers={VARIANTS.typesMoto} typesChecked={selected.typesChecked} handleCheckboxChange={(value, checked) => handleTypeChange(value, checked, FilterKey.TYPES)} />
             </div>
-            <div className={styles.filter__item}>
+            <div className={styles.item}>
                 <CheckboxFilterBlock title="Бренд" headers={VARIANTS.brands} typesChecked={selected.brandsChecked} handleCheckboxChange={(value, checked) =>
                     handleTypeChange(value, checked, FilterKey.BRANDS)
                 } />

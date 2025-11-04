@@ -14,7 +14,7 @@
   & > a {
     display: block;
   }
-  &__img {
+  .img {
     display: flex;
     justify-content: center;
     margin-bottom: 0.625rem;
@@ -23,40 +23,40 @@
       object-fit: contain;
     }
   }
-  &__info {
+  .info {
     display: grid;
     row-gap: 10px;
     grid-template-rows: 0.5fr 1fr;
   }
-  &__title {
+  .title {
     font-weight: 700;
     text-align: center;
     font-size: 1rem;
     text-decoration: underline;
   }
-  &__colors {
+  .colors {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     row-gap: 5px;
     padding-bottom: 15px;
   }
-  &__information {
+  .information {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.9375rem;
   }
-  &__article {
+  .article {
     display: block;
     font-size: 0.875rem;
     color: #888;
   }
-  &__text {
+  .text {
     font-size: 0.875rem;
     color: #888;
   }
-  &__price {
+  .price {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,7 +69,7 @@
     color: #fff;
     margin-bottom: 5px;
   }
-  &__btn {
+  .btn {
     display: flex;
     align-items: center;
     column-gap: 10px;
@@ -81,12 +81,12 @@
   align-items: center;
   gap: 12px;
   padding: 12px 0;
-  &__list {
+  .list {
     display: flex;
     align-items: center;
     gap: 6px;
   }
-  &__color {
+  .color {
     width: 20px;
     height: 20px;
     border-radius: 50%;

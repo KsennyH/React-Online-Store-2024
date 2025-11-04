@@ -6,9 +6,9 @@ function Navigation() {
 
     return (
         <div className={styles.navigation}> 
-            <ul className={styles.navigation__list}>
+            <ul className={styles.list}>
                 {
-                    NAVIGATION.map((navElem, i) => <li key={i} className={styles.navigation__item}><NavLink to={navElem.path} end={navElem.path === '/'} className={({isActive}) => isActive ? `${styles.navigation__link} ${styles.active}` : styles.navigation__link}>{navElem.title}</NavLink></li>)
+                    NAVIGATION.map((navElem, i) => <li key={i} className={styles.item}><NavLink to={navElem.path} end={navElem.path === '/'} className={({isActive}) => isActive ? `${styles.link} ${styles.active}` : styles.link}>{navElem.title}</NavLink></li>)
                 }
             </ul>
         </div>

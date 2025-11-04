@@ -4,12 +4,12 @@ function Breadcrumb() {
     return (
         <div className={styles.breadcrumbs}> 
           <div className="container"> 
-                <ul className={styles.breadcrumbs__list}>
-                    <li className={styles.breadcrumbs__item}> 
-                        <span className={styles.breadcrumbs__link}>Мототехника</span>
+                <ul className={styles.list}>
+                    <li className={styles.item}> 
+                        <span className={styles.link}>Мототехника</span>
                     </li>
-                    <li className={styles.breadcrumbs__item}> 
-                        <span className={styles.breadcrumbs__link}>Все</span>
+                    <li className={styles.item}> 
+                        <span className={styles.link}>Все</span>
                     </li>
                 </ul>
             </div>

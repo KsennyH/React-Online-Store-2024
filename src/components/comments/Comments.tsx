@@ -7,11 +7,11 @@ import CommentForm from "../comment-form/CommentForm";
 function Comments(): JSX.Element {
     return (
         <div className={styles.comments}>
-            <div className={styles.comments__top}>
-                <div className={styles.comments__title}>
+            <div className={styles.top}>
+                <div className={styles.title}>
                     <Title tag="h4">Комментарии:</Title>
                 </div>
-                <ul className={styles.comments__list}>
+                <ul className={styles.list}>
                     {
                         COMMENTS.map((el, i:number) => (
                             <Comment key={i} articleComment={el} />

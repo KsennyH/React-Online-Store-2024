@@ -1,16 +1,16 @@
 .blogPage {
   padding: 40px 0;
-  &__wrapper {
+  .wrapper {
     display: flex;
     gap: 24px;
     @media (max-width: 992.98px) {
       flex-direction: column;
     }
   }
-  &__content {
+  .content {
     width: 100%;
   }
-  &__aside {
+  .aside {
     display: flex;
     flex-direction: column;
     gap: 24px;

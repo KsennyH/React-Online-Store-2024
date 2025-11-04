@@ -1,9 +1,9 @@
 .cart {
   padding: 48px 0;
-  &__title {
+  .title {
     margin-bottom: 24px;
   }
-  &__footer {
+  .footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -12,7 +12,7 @@
     gap: 24px;
     padding: 20px 0;
   }
-  &__checkout {
+  .checkout {
     max-width: 250px;
     margin: 24px auto 0;
     a {

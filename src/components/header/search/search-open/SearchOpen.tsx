@@ -20,8 +20,8 @@ function SearchOpen({ handleClick }: SearchOpenProps) {
                 <ul>
                     {
                         data.map((el) => (
-                            <li key={el.id} className={styles.searchOpen__item}>
-                                <Link to={`products/${el.id}`} className={styles.searchOpen__link} onClick={handleClick}>
+                            <li key={el.id} className={styles.item}>
+                                <Link to={`products/${el.id}`} className={styles.link} onClick={handleClick}>
                                     <img src={el.img} alt={el.title} />
                                     <h3>{el.title}</h3>
                                 </Link>
@@ -30,7 +30,7 @@ function SearchOpen({ handleClick }: SearchOpenProps) {
                     }
                 </ul>
             ) : 
-            <p className={styles.searchOpen__notFound}>Ничего не найдено</p>
+            <p className={styles.notFound}>Ничего не найдено</p>
             }
         </div>           
     );

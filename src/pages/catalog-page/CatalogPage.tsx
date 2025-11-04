@@ -13,14 +13,14 @@ function CatalogPage() {
     return (
         <section className={styles.catalog}>
             <div className="container">
-                <div className={styles.catalog__inner}>
-                    <button className={styles.catalog__filterBtn} type="button" onClick={() => setIsOpen(prev => !prev)}><FunnelPlus color="#ffffff" /></button>
-                    <aside className={styles.catalog__filter}>
+                <div className={styles.inner}>
+                    <button className={styles.filterBtn} type="button" onClick={() => setIsOpen(prev => !prev)}><FunnelPlus color="#ffffff" /></button>
+                    <aside className={styles.filter}>
                         <Filter isOpen={isOpen} />
                     </aside>
-                    <div className={styles.catalog__products}>
+                    <div className={styles.products}>
                         <SortingProduct />
-                        <div className={styles.catalog__sort}>
+                        <div className={styles.sort}>
                             <SortBy />
                         </div>
                         <Catalog />

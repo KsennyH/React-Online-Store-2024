@@ -2,14 +2,14 @@
   font-family: 'Scada', sans-serif;
   font-size: 1.125rem;
   padding: 0.9375rem 0;
-  &__list {
+  .list {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     row-gap: 0.3125rem;
     column-gap: 0.9375rem;
   }
-  &__btn {
+  .btn {
     display: flex;
     justify-content: center;
     align-items: center;

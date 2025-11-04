@@ -38,23 +38,23 @@ const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
 
     return (
         <li className={styles.cartProduct}> 
-            <div className={styles.cartProduct__img}> 
+            <div className={styles.img}> 
                 <img src={variant.images[0]} alt={title}/>
             </div>
-            <div className={styles.cartProduct__info}>
-                <div className={styles.cartProduct__title}>
+            <div className={styles.info}>
+                <div className={styles.title}>
                     <Title tag="h3">{title}</Title>
                 </div>
-                <div className={styles.cartProduct__colors}>
+                <div className={styles.colors}>
                     <div>Цвет</div>
-                    <div className={styles.cartProduct__color} style={{backgroundColor: variant.color}}></div>
+                    <div className={styles.color} style={{backgroundColor: variant.color}}></div>
                 </div>
             </div>
             <Counter onClickMinus={ decrement } onClickPlus={ increment } count={ productCount }  />
-            <div className={styles.cartProduct__price}> 
+            <div className={styles.price}> 
                 {formatPrice(totalPrice)} руб.
             </div>
-            <div className={styles.cartProduct__delete}>
+            <div className={styles.delete}>
                 <Button variant="close" onClick={onClickRemove} type="button"><span> </span></Button>
             </div>
         </li>
