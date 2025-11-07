@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest';
 import SortBy from './SortBy';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from '@/redux/store';
+import { store } from '@/app/store/store';
 
 vi.mock('@/constants/sortOptions', () => ({
   SORT_OPTIONS: [

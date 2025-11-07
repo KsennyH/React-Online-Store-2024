@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import styles from './SortingProduct.module.scss';
 import { CATEGORIES } from "@/constants/categories";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import { getCategory, setCategoryId } from "@/redux/filterSlice";
 
 const SortingProduct = (): JSX.Element => {    

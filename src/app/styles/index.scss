@@ -1,12 +1,7 @@
-%title-font {
-  font-family: 'Scada', sans-serif;
-  font-weight: 700;
-}
-
 $default: #fff;
 $dark-bg: #414141;
 $grey-bg: #555555;
-$body-bg: #888;
+$body-bg: #6e6e6e;
 $red: #f30e0e;
 $red-hover: #f24444;
 
@@ -88,15 +83,11 @@ body {
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  height: 100vh;
 }
 
 .main {
-  flex: 1 0 auto;
-}
-
-.footer {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
 }
 
 .container {
@@ -130,11 +121,4 @@ body {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
-}
-
-.spoiler {
-  display: block;
-}
-.spoiler-feature {
-  display: block;
 }

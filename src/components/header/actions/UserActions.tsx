@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "@/redux/store";
+import { useAppSelector } from "@/app/store/store";
 import styles from './UserActions.module.scss';
 import { CircleUser, ShoppingCart } from "lucide-react";
 import { totalCount, totalPrice } from "@/redux/cartSlice";

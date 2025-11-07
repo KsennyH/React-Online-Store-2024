@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import filter from './filterSlice';
-import cart from './cartSlice';
-import search from './searchSlice';
+import filter from '../../redux/filterSlice';
+import cart from '../../redux/cartSlice';
+import search from '../../redux/searchSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { productApi } from '@/api/product/productApi';
 import { persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';

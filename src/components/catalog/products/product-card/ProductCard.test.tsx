@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import ProductCard from './ProductCard';
 import { Provider } from 'react-redux';
-import { store } from '@/redux/store';
+import { store } from '@/app/store/store';
 import { MemoryRouter } from 'react-router-dom';
 
 const singleProduct = {

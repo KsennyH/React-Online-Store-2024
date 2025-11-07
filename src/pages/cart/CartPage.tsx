@@ -1,6 +1,6 @@
 import Cart from '@/components/cartItem/CartItem';
 import CartEmpty from '@/components/cartItem/empty/CartEmpty';
-import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/app/store/store';
 import styles from './CartPage.module.scss';
 import { cartProducts, clearCart, totalPrice } from "@/redux/cartSlice";
 import Title from "@/components/ui/title/Title";

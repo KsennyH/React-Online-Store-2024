@@ -1,6 +1,6 @@
 import { JSX, memo, useState } from 'react';
 import { addProduct } from '@/redux/cartSlice';
-import { useAppDispatch } from '@/redux/store';
+import { useAppDispatch } from '@/app/store/store';
 import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.scss';
 import Button from '@/components/ui/Button';

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "@/App";
 import CatalogPage from "@/pages/catalog-page/CatalogPage";
 import { lazy } from "react";
+import { Account } from "@/components/account/Account";
 
 const SingleProductPage = lazy(() => import ('@/pages/catalog-page/single/SingleProductPage'));
 const ServicesPage = lazy(() => import ('@/pages/services/ServicesPage'));
@@ -11,6 +12,7 @@ const Articles = lazy(() => import ('@/pages/blog/Articles'));
 const SingleArticle = lazy(() => import('@/pages/blog/single/SingleArticle'));
 const CheckoutPage = lazy(() => import('@/pages/checkout/CheckoutPage'));
 const MainPage = lazy(() => import('@/pages/home/HomePage'));
+const ProfilePage = lazy(() => import('@/pages/profile/ProfilePage'));
 
 export const router = createBrowserRouter([
     {
@@ -52,4 +54,11 @@ export const router = createBrowserRouter([
             }
         ],
     },
+    {
+        path: '/account',
+        element: <Account />,
+        children: [
+            { index: true, element: <ProfilePage /> },
+        ]
+    }
 ],);

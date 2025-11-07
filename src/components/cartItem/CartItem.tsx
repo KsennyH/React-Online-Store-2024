@@ -3,7 +3,7 @@ import styles from './CartItem.module.scss';
 import Counter from "./counter/Counter";
 import Button from "../ui/Button";
 import { JSX } from "react";
-import { useAppDispatch } from "@/redux/store";
+import { useAppDispatch } from "@/app/store/store";
 import Title from "../ui/title/Title";
 import { formatPrice } from "@/lib/formatPrice";
 import toast from "react-hot-toast";

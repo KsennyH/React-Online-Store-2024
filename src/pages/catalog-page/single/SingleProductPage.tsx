@@ -9,7 +9,7 @@ import { formatPrice } from "@/lib/formatPrice";
 import SliderProductCard from "@/components/slider-product-card/SliderProductCard";
 import Loader from "@/components/ui/loader/Loader";
 import { addProduct } from "@/redux/cartSlice";
-import { useAppDispatch } from "@/redux/store";
+import { useAppDispatch } from "@/app/store/store";
 import toast from "react-hot-toast";
 import { CartItem } from "@/types/cartTypes";
 import { useGetProductQuery } from "@/api/product/productApi";

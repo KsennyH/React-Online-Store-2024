@@ -2,7 +2,7 @@ import React, { useCallback, useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import styles from './SearchComponent.module.scss';
 import { searchValueAdded } from '@/redux/searchSlice';
-import { useAppDispatch } from '@/redux/store';
+import { useAppDispatch } from '@/app/store/store';
 import SearchOpen from './search-open/SearchOpen';
 import { useClickAway } from "@uidotdev/usehooks";
 import { SearchCheck, X } from 'lucide-react';
