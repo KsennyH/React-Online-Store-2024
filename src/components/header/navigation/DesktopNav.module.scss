@@ -18,12 +18,13 @@
     position: relative;
     padding: 0.625rem 0;
     font-weight: 500;
-    color: #fff;
+    color: var(--default);
     text-decoration: none;
     transition: color 0.3s ease;
 
     &:hover {
-      color: #f24444;
+      color: var(--pink-hover);
+      text-shadow: 0 0 6px rgba(62, 229, 255, 0.503);
     }
 
     &::after {
@@ -33,7 +34,7 @@
       bottom: 0;
       width: 0;
       height: 2px;
-      background-color: #f24444;
+      background-color: var(--text-accent);
       transition: width 0.3s ease;
     }
     &:hover::after {
@@ -41,7 +42,7 @@
     }
 
     &.active {
-      color: #f24444;
+      color: var(--text-accent);
 
       &::after {
         width: 100%;

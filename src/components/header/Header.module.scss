@@ -1,10 +1,10 @@
 .header {
-  font-family: 'Scada', sans-serif;
+  font-family: var(--font-secondary);
   font-size: 1.125rem;
   display: flex;
   flex-direction: column;
   .top {
-    background-color: #414141;
+    background-color: var(--dark-bg);
     padding: 3.125rem 0;
   }
   .inner {
@@ -32,7 +32,7 @@
     align-items: center;
   }
   .bottom {
-    background-color: #555555;
+    background-color: var(--grey-bg);
     padding: 0.625rem 0;
   }
   @media (max-width: 991.98px) {
