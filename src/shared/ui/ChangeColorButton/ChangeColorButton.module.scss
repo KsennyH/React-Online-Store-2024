@@ -1,0 +1,15 @@
+.color {
+  border-radius: 50%;
+  border: 1px solid transparent;
+  &.active {
+    border: 1px solid var(--default);
+  }
+}
+.sm {
+  width: 20px;
+  height: 20px;
+}
+.lg {
+  width: 30px;
+  height: 30px;
+}
