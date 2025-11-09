@@ -2,8 +2,8 @@ import { JSX } from "react";
 import styles from "./Comments.module.scss";
 import { COMMENTS } from "@/constants/posts";
 import Comment from "../comment/Comment";
-import Title from "../ui/title/Title";
 import CommentForm from "../comment-form/CommentForm";
+import { Title } from "@/shared";
 function Comments(): JSX.Element {
     return (
         <div className={styles.comments}>
