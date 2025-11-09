@@ -1,0 +1,63 @@
+.singlePage {
+  font-family: var(--font-secondary);
+  margin-top: 1.5rem;
+  .feature {
+    margin-bottom: 20px;
+  }
+  .info {
+    margin-bottom: 3rem;
+  }
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 24px;
+    row-gap: 48px;
+    @media (max-width: 991.98px) {
+      flex-direction: column;
+    }
+  }
+  .content {
+    width: 40%;
+    @media (max-width: 575.98px) {
+      width: 100%;
+    }
+  }
+  .title {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.25;
+    margin-bottom: 24px;
+  }
+  .colors {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 0;
+  }
+  .colorList {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+  .size {
+    margin-bottom: 2.1875rem;
+  }
+  .price {
+    font-weight: 700;
+    font-size: 1.25rem;
+    display: inline-block;
+    margin-bottom: 2.1875rem;
+  }
+  .buttons {
+    max-width: 250px;
+  }
+  .text {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 1.8;
+    padding: 24px 0;
+    p + p {
+      margin-top: 0.625rem;
+    }
+  }
+}
