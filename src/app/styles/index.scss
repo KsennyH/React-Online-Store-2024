@@ -1,9 +1,17 @@
-$default: #fff;
-$dark-bg: #414141;
-$grey-bg: #555555;
-$body-bg: #6e6e6e;
-$red: #f30e0e;
-$red-hover: #f24444;
+:root {
+  --default: #fff;
+  --dark-bg: #2b2b2b;
+  --grey-bg: #3a3a3a;
+  --body-bg: #434343;
+  --text-accent: #14b9e9;
+  --text-accent-hover: #1bccff;
+  --card-color: #4b4a4a;
+  --card-border: #736f6f;
+  --font-secondary: 'Montserrat', sans-serif;
+  --font-primary: 'Inter', sans-serif;
+  --primary: #0b9d1a;
+  --primary-hover: #098415;
+}
 
 * {
   padding: 0;
@@ -71,11 +79,11 @@ body {
 }
 
 body {
-  background-color: $body-bg;
-  font-family: 'Roboto Slab', serif;
+  background-color: var(--body-bg);
+  font-family: var(--font-primary);
   font-weight: 400;
   line-height: 1;
-  color: $default;
+  color: var(--default);
   min-width: 320px;
   overflow-x: hidden;
 }

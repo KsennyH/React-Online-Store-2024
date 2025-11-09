@@ -1,56 +1,57 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "@/App";
-import CatalogPage from "@/pages/catalog-page/CatalogPage";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Account } from "@/components/account/Account";
+import { MainLayout } from "../layout/MainLayout";
+import { Loader } from "@/shared";
 
-const SingleProductPage = lazy(() => import ('@/pages/catalog-page/single/SingleProductPage'));
-const ServicesPage = lazy(() => import ('@/pages/services/ServicesPage'));
-const ContactPage = lazy(() => import ('@/pages/contacts/ContactPage'));
-const CartPage = lazy(() => import ('@/pages/cart/CartPage'));
-const Articles = lazy(() => import ('@/pages/blog/Articles'));
-const SingleArticle = lazy(() => import('@/pages/blog/single/SingleArticle'));
+const SingleProductPage = lazy(() => import ('@/pages/product'));
+const ServicesPage = lazy(() => import ('@/pages/services'));
+const ContactsPage = lazy(() => import ('@/pages/contacts'));
+const CartPage = lazy(() => import ('@/pages/cart'));
+const ArticlesPage = lazy(() => import ('@/pages/articles'));
+const PostPage = lazy(() => import('@/pages/post'));
 const CheckoutPage = lazy(() => import('@/pages/checkout/CheckoutPage'));
-const MainPage = lazy(() => import('@/pages/home/HomePage'));
+const MainPage = lazy(() => import('@/pages/home'));
+const CatalogPage = lazy(() => import('@/pages/catalog'));
 const ProfilePage = lazy(() => import('@/pages/profile/ProfilePage'));
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: <MainLayout />,
         children: [
             { index: true, element: <MainPage /> },
             {
                 path: 'products',
-                element: <CatalogPage />
+                element: <Suspense fallback={<Loader />}><CatalogPage /></Suspense>
             },
             { 
                 path: 'products/:id',
-                element: <SingleProductPage />
+                element: <Suspense fallback={<Loader />}><SingleProductPage /></Suspense>
             },
             { 
                 path: 'blog', 
-                element: <Articles />
+                element: <Suspense fallback={<Loader />}><ArticlesPage /></Suspense>
             },
             {
                 path: 'blog/:id',
-                element: <SingleArticle />
+                element: <Suspense fallback={<Loader />}><PostPage /></Suspense>
             },
             { 
                 path: 'services', 
-                element: <ServicesPage />
+                element: <Suspense fallback={<Loader />}><ServicesPage /></Suspense>
             },
             { 
                 path: 'contacts', 
-                element: <ContactPage /> 
+                element: <Suspense fallback={<Loader />}><ContactsPage /> </Suspense>
             },
             { 
                 path: 'cart', 
-                element: <CartPage />,
+                element: <Suspense fallback={<Loader />}><CartPage /></Suspense>
             },
             {
                 path: 'checkout',
-                element: <CheckoutPage />
+                element: <Suspense fallback={<Loader />}><CheckoutPage /></Suspense>
             }
         ],
     },
