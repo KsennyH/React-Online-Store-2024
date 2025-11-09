@@ -1,7 +1,8 @@
 import { JSX } from "react";
 import styles from "./Tags.module.scss";
-import Title from "@/components/ui/title/Title";
 import { useGetTagsQuery } from "@/api/news/newsApi";
+import { ErrorMessage, LinkButton, Title } from "@/shared";
+import Skeleton from "react-loading-skeleton";
 
 export type Tag = {
     id: number,
@@ -10,9 +11,12 @@ export type Tag = {
 
 function Tags(): JSX.Element {
 
-    const { data, error } = useGetTagsQuery();
+    const { data, isLoading, error } = useGetTagsQuery();
     
-    if(error) { return <div>Ошибка</div> }
+    if(error) { 
+        console.error('Ошибка при загрузке тегов:', error);
+        return <ErrorMessage text="Не удалось загрузить теги. Попробуйте позже." />        
+    }
 
     return(
         <div className={styles.tags}>
@@ -21,10 +25,14 @@ function Tags(): JSX.Element {
             </div>
             <ul className={styles.list}>
                 {
-
+                    isLoading ? [...Array(6)].map((_,i: number) => (
+                        <li key={i}>
+                            <Skeleton height={28} width={100} borderRadius={18} />
+                        </li>
+                    )) :
                     data && data.length > 0 && data.map((el: Tag) => (
                         <li key={el.id} className={styles.item}>
-                            <a className={styles.link} href="#">{el.name}</a>
+                            <LinkButton href="#" variant="secondary" size="sm">{el.name}</LinkButton>
                         </li>
                     ))
                 }
