@@ -1,12 +1,17 @@
 import { JSX } from "react";
 import parse from 'html-react-parser';
 import styles from "./Article.module.scss";
-import Title from "../ui/title/Title";
-import { SinglePost } from "@/pages/blog/single/SingleArticle";
-import { formatDate } from "@/lib/formatDate";
+import { SinglePost } from "@/pages/post/ui/PostPage/PostPage";
+import { formatDate, Title } from "@/shared";
 
-function Article({ article }: { article: SinglePost }): JSX.Element {
+type ArticleProps = {
+    article: SinglePost;
+}
+
+function Article({ article }: ArticleProps): JSX.Element {
+
     const { image, title, intro, content, created_at, authors } = article;
+
     return (
         <article className={styles.article}>
             <div className={styles.image}>
