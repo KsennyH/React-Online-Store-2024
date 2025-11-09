@@ -1,0 +1,23 @@
+.cart {
+  font-family: var(--font-secondary);
+  padding: 48px 0;
+  .title {
+    margin-bottom: 24px;
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    gap: 24px;
+    padding: 20px 0;
+  }
+  .clear {
+    max-width: 300px;
+  }
+  .checkout {
+    max-width: 250px;
+    margin: 24px auto 0;
+  }
+}
