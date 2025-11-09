@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Post } from '../post/Post';
 import styles from './NewsCard.module.scss';
-import Title from '../ui/title/Title';
-import { formatDate } from '@/lib/formatDate';
+import { formatDate, Title } from '@/shared';
 function NewsCard({ article }: {article: Post}) {
     return(
         <article className={styles.newsCard}>
