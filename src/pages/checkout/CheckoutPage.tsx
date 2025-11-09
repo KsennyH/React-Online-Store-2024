@@ -1,17 +1,20 @@
-import { JSX } from "react";
+import { JSX, useState } from "react";
 import styles from "./CheckoutPage.module.scss";
-import Title from "@/components/ui/title/Title";
-import Button from "@/components/ui/Button";
-import Checkbox from "@/components/ui/checkbox/Checkbox";
 import { CheckoutSchema } from "./CheckoutSchema";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Button, Checkbox, Title } from "@/shared";
+import { useAppDispatch } from "@/app/store";
+import { clearCart } from "@/redux/cartSlice";
 
+// Страница в разработке, нужно разделить на компоненты
 
 function CheckoutPage(): JSX.Element {
+    const [isOpen, setIsOpen] = useState(false);
     
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { register, control, handleSubmit, reset, formState: { isDirty, isSubmitting, errors } } = useForm<CheckoutSchema>({ resolver: zodResolver(CheckoutSchema), mode: "onBlur" });
     const onSubmit: SubmitHandler<CheckoutSchema> = (data) => {
@@ -21,12 +24,19 @@ function CheckoutPage(): JSX.Element {
             duration: 3000
         });
         reset();
-        navigate('/');
+        dispatch(clearCart())
+        setIsOpen(true);
+        setTimeout(() => navigate('/'), 5000);
     }
     
     return(
         <section className={styles.checkout}>
             <div className="container">
+                {
+                    isOpen && <div style={{backgroundColor: '#fff', maxWidth: '800px', color: '#000', minHeight: '150px', borderRadius: '18px', padding: '40px', textAlign: 'center', margin: '0 auto 40px'}}><div style={{marginBottom: '20px'}}><Title tag="h2">Заказ успешно оформлен!</Title></div>
+                    <p>Но бэкенда и тестовой системы оплаты пока нет, возвращайтесь позже!</p>
+                    </div>
+                }
                 <div className={styles.checkout__title}>
                     <Title tag="h1">Оформление заказа</Title>
                 </div>
