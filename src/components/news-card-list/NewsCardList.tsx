@@ -1,12 +1,15 @@
-import Title from '../ui/title/Title';
 import styles from './NewsCardList.module.scss';
 import NewsCard from '../news-card/NewsCard';
-import { Link } from 'react-router-dom';
 import { useGetLatestNewsQuery } from '@/api/news/newsApi';
+import { ErrorMessage, LinkButton, Title } from '@/shared';
+import Skeleton from 'react-loading-skeleton';
 function NewsCardList() {
-    const { data, error } = useGetLatestNewsQuery();
+    const { data, isLoading, error } = useGetLatestNewsQuery();
     
-    if(error) { return <div>Ошибка</div> }
+    if(error) { 
+        console.error('Ошибка при загрузке новостей:', error);
+        return <ErrorMessage text="Не удалось загрузить новости. Попробуйте позже." />        
+    }
 
     return(
         <section className={styles.motoNews}>
@@ -15,6 +18,11 @@ function NewsCardList() {
             </div>
             <ul className={styles.list}>
                 {
+                    isLoading ? [...Array(6)].map((_, i: number) => (
+                        <li key={i} className={styles.item} >
+                            <Skeleton height={416} style={{borderRadius: 18}} />
+                        </li>
+                    )) :
                     data && data.length > 0 && data.map((el) => (
                         <li key={el.id}>
                             <NewsCard article={el} />
@@ -23,7 +31,7 @@ function NewsCardList() {
                 }   
             </ul>
             <div className={styles.btn}>
-                <Link to='/blog'>Все новости</Link>
+                <LinkButton href='/blog' size='lg'>Все новости</LinkButton>
             </div>
         </section>
     );

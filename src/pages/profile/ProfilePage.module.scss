@@ -1,0 +1,17 @@
+.profile {
+  padding: 80px 0;
+  .wrapper {
+    display: flex;
+    gap: 80px;
+  }
+  .aside {
+    max-width: 300px;
+    width: 100%;
+  }
+  .info {
+    width: 100%;
+  }
+  .title {
+    margin-bottom: 24px;
+  }
+}

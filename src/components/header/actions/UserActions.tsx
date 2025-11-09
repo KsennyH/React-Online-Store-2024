@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "@/redux/store";
+import { useAppSelector } from "@/app/store/store";
 import styles from './UserActions.module.scss';
 import { CircleUser, ShoppingCart } from "lucide-react";
 import { totalCount, totalPrice } from "@/redux/cartSlice";
-import { formatPrice } from "@/lib/formatPrice";
+import { formatPrice } from "@/shared";
 
 function UserActions() {
     const countProducts = useAppSelector(state => totalCount(state));

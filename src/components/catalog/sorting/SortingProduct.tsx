@@ -1,8 +1,9 @@
 import { JSX } from "react";
 import styles from './SortingProduct.module.scss';
 import { CATEGORIES } from "@/constants/categories";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import { getCategory, setCategoryId } from "@/redux/filterSlice";
+import { Button } from "@/shared";
 
 const SortingProduct = (): JSX.Element => {    
 
@@ -17,9 +18,13 @@ const SortingProduct = (): JSX.Element => {
             <ul className={styles.list}> 
                 {CATEGORIES.map((elem, i) => (
                     <li key={i}> 
-                        <button onClick={() => onChangeCategory(i)} className={categoryId === i ? `${styles.btn} ${styles.active}` : `${styles.btn}`}>
-                            <span>{elem}</span>
-                        </button>
+                        <Button onClick={
+                            () => onChangeCategory(i)}
+                            isActive={categoryId === i}
+                            size="lg"
+                            variant="secondary"
+                            >{elem}
+                        </Button>
                     </li>
                 ))}
             </ul>

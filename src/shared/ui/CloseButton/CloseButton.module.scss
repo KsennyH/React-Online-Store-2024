@@ -1,0 +1,40 @@
+.close {
+  background-color: var(--default);
+  border-radius: 50%;
+  & > * {
+    pointer-events: none;
+  }
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      background-color: var(--dark-bg);
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: -1px 1px 25px -8px #ffcbcb;
+  }
+}
+.sm {
+  width: 30px;
+  height: 30px;
+}
+.lg {
+  width: 40px;
+  height: 40px;
+}

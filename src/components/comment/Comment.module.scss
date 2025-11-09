@@ -1,6 +1,7 @@
 .comment {
   display: flex;
   gap: 12px;
+  font-family: var(--font-secondary);
   .avatar {
     flex: 0 0 auto;
     width: 2.5rem;
@@ -13,11 +14,13 @@
   }
   .name {
     font-size: 1.125rem;
+    font-weight: 500;
     margin-bottom: 0.625rem;
   }
   .text {
+    font-family: var(--font-primary);
     margin-bottom: 0.625rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.8;
     p + p {
       margin-top: 0.625rem;
@@ -25,7 +28,6 @@
   }
   .date {
     display: block;
-    font-family: 'Scada', sans-serif;
     font-size: 0.875rem;
   }
 }

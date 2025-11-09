@@ -1,6 +1,6 @@
 import CheckboxFilterBlock from './Checkbox/CheckboxFilterBlock';
 import styles from './Filter.module.scss';
-import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/app/store/store';
 import { getFiltersValue, setSelectedFilters } from '@/redux/filterSlice';
 import { VARIANTS } from '@/constants/variants';
 import { FilterKey } from '@/types/filterTypes';

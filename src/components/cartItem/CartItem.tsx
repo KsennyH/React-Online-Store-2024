@@ -1,13 +1,11 @@
 import { productDecrement, productIncrement, removeProduct } from "@/redux/cartSlice";
 import styles from './CartItem.module.scss';
 import Counter from "./counter/Counter";
-import Button from "../ui/Button";
 import { JSX } from "react";
-import { useAppDispatch } from "@/redux/store";
-import Title from "../ui/title/Title";
-import { formatPrice } from "@/lib/formatPrice";
+import { useAppDispatch } from "@/app/store/store";
 import toast from "react-hot-toast";
 import { CartItem } from "@/types/cartTypes";
+import { ChangeColorButton, CloseButton, formatPrice, Title } from "@/shared";
 
 const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
 
@@ -47,7 +45,7 @@ const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
                 </div>
                 <div className={styles.colors}>
                     <div>Цвет</div>
-                    <div className={styles.color} style={{backgroundColor: variant.color}}></div>
+                    <ChangeColorButton color={variant.color} />
                 </div>
             </div>
             <Counter onClickMinus={ decrement } onClickPlus={ increment } count={ productCount }  />
@@ -55,7 +53,7 @@ const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
                 {formatPrice(totalPrice)} руб.
             </div>
             <div className={styles.delete}>
-                <Button variant="close" onClick={onClickRemove} type="button"><span> </span></Button>
+                <CloseButton onClick={onClickRemove} type="button" />
             </div>
         </li>
     )

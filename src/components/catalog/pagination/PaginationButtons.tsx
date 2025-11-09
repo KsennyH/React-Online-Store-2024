@@ -2,7 +2,7 @@ import { JSX, memo } from 'react';
 import styles from './PaginationButtons.module.scss';
 import { getPagination, setCurrentPage } from '@/redux/filterSlice';
 import { MoveLeft, MoveRight } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/app/store/store';
 import { PaginationType } from '@/types/filterTypes';
 
 const Pagination = memo(({ totalPages }: { totalPages: number }): JSX.Element => {

@@ -1,11 +1,8 @@
-import { JSX, ReactNode } from "react";
+import { JSX } from "react";
 import styles from "./ContactWidget.module.scss";
-import Title from "../title/Title";
+import { ContactWidgetProps } from "./ContactWidgetProps";
+import { Title } from "@/shared";
 
-type ContactWidgetProps = {
-    title: string,
-    children: ReactNode
-}
 function ContactWidget({ title, children }: ContactWidgetProps): JSX.Element {
     return(
         <div className={styles.contactWidget}>

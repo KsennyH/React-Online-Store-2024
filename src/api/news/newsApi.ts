@@ -1,7 +1,7 @@
 import { Category } from '@/components/post-category/PostCategories';
 import { Post } from '@/components/post/Post';
 import { Tag } from '@/components/tags/Tags';
-import { SinglePost } from '@/pages/blog/single/SingleArticle';
+import { SinglePost } from '@/pages/post/ui/PostPage/PostPage';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const newsApi = createApi({

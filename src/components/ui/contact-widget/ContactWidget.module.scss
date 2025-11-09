@@ -1,5 +1,6 @@
 .contactWidget {
-  background-color: #414141;
+  font-family: var(--font-secondary);
+  background-color: var(--dark-bg);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -15,11 +16,11 @@
   p {
     font-size: 1rem;
     line-height: 1.2;
-    color: #fff;
+    color: var(--default);
     word-break: break-word;
   }
 
   a:hover {
-    color: #f24444;
+    color: var(--text-accent);
   }
 }

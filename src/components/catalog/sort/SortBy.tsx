@@ -1,7 +1,7 @@
 import { JSX, useEffect, useRef, useState } from "react";
 import { SORT_OPTIONS } from "@/constants/sortOptions";
 import styles from './SortBy.module.scss';
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import { SortItem } from "@/types/filterTypes";
 import { getSort, setSortType } from "@/redux/filterSlice";
 

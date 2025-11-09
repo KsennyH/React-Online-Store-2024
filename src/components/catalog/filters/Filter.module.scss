@@ -1,5 +1,5 @@
 .filter {
-  font-family: 'Scada', sans-serif;
+  font-family: var(--font-secondary);
   font-size: 1.125rem;
   @media (max-width: 767.98px) {
     background-color: #414141;

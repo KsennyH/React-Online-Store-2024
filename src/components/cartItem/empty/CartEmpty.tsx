@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
+import { LinkButton, Title } from '@/shared';
 import styles from './CartEmpty.module.scss';
-import Button from '@/components/ui/Button';
-import Title from '@/components/ui/title/Title';
 function EmptyCart() {
     return (
         <section className={styles.empty}> 
@@ -10,9 +8,9 @@ function EmptyCart() {
                     <Title tag='h2'>К сожалению, Ваша корзина пуста</Title>
                 </div>
                 <p className={styles.description}>Вы можете это исправить: выберите в каталоге интересующий товар и нажмите кнопку “В корзину”.</p>
-                <Link to={'/'}>
-                    <Button>Перейти в каталог</Button>
-                </Link>
+                <div className={styles.catalog}>
+                    <LinkButton href='/products' size='lg'>Перейти в каталог</LinkButton>
+                </div> 
             </div>
         </section>
     );

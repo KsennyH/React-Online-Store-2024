@@ -3,7 +3,7 @@ import { getFiltersValue, setQueryFromUrl } from "@/redux/filterSlice";
 import { QueryParams } from "@/types/filterTypes";
 import { useEffect, useRef } from "react";
 import qs from 'qs';
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import useSetQueryParams from "@/hooks/useSetQueryParams";
 import ProductsList from "./products/ProductsList";
 import PaginationButtons from "./pagination/PaginationButtons";

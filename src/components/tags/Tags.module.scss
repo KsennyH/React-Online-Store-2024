@@ -9,19 +9,4 @@
     flex-wrap: wrap;
     gap: 6px;
   }
-  .link {
-    border: 0.0625rem solid #ffffff;
-    border-radius: 1.875rem;
-    min-width: 8.4375rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 5px 15px;
-    transition: all 0.3 ease-in;
-    &:hover {
-      background-color: #414141;
-      border-color: #414141;
-    }
-  }
 }

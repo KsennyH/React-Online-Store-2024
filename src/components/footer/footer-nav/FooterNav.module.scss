@@ -8,7 +8,7 @@
   }
   .label {
     font-weight: 700;
-    color: #f24444;
+    color: var(--text-accent);
     margin-bottom: 0.625rem;
     position: relative;
     padding-right: 1.56rem;
@@ -34,7 +34,7 @@
     padding: 8px 0;
     transition: all 0.2s ease;
     &:hover {
-      color: #f24444;
+      color: var(--text-accent-hover);
       text-decoration: underline;
     }
   }

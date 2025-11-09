@@ -1,4 +1,4 @@
-import Checkbox from '@/components/ui/checkbox/Checkbox';
+import { Checkbox, Title } from '@/shared';
 import styles from './CheckboxFilterBlock.module.scss';
 
 interface CheckboxFilterBlockProps {
@@ -11,8 +11,10 @@ interface CheckboxFilterBlockProps {
 export default function CheckboxFilterBlock ({headers, title, typesChecked, handleCheckboxChange} : CheckboxFilterBlockProps) {
 
     return (
-        <div className={styles.checkboxBlock}> 
-            <h5 className={styles.title}>{title}</h5>
+        <div className={styles.checkboxBlock}>
+            <div className={styles.title}>
+                <Title tag='h4'>{title}</Title> 
+            </div>
             <ul className={styles.list}>
                 {
                     headers.map((el, i:number) => (

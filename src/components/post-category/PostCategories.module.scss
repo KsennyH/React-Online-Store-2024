@@ -1,5 +1,5 @@
 .category {
-  font-family: 'Scada', sans-serif;
+  font-family: var(--font-secondary);
   font-size: 1rem;
   .title {
     margin-bottom: 20px;
@@ -10,10 +10,10 @@
     gap: 0.9375rem;
   }
   .link {
-    color: #fff;
+    color: var(--default);
     transition: color 0.2s ease-in-out;
     &:hover {
-      color: #414141;
+      color: var(--text-accent);
     }
   }
 }

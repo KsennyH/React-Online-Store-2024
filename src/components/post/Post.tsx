@@ -1,8 +1,7 @@
 import { JSX } from "react";
 import styles from "./Post.module.scss";
-import Title from "@/components/ui/title/Title";
 import { Link } from "react-router-dom";
-import { formatDate } from "@/lib/formatDate";
+import { formatDate, Title } from "@/shared";
 
 export type Author = {
     name: string,

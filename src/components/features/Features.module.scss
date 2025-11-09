@@ -1,20 +1,21 @@
 .feature {
-  font-family: 'Scada', sans-serif;
+  font-family: var(--font-secondary);
+  line-height: 1.2;
   .top {
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 24px;
     padding: 1.125rem 0;
-    background-color: #414141;
+    background-color: var(--dark-bg);
   }
-  .title {
-    font-size: 1.125rem;
+  .btn {
+    display: flex;
   }
   .bottom {
     display: flex;
     gap: 24px;
-    background-color: #555;
+    background-color: var(--grey-bg);
     border-bottom-left-radius: 18px;
     border-bottom-right-radius: 18px;
     padding: 24px;

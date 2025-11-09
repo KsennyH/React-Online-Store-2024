@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/redux/store";
+import { useAppSelector } from "@/app/store/store";
 import styles from "./SearchOpen.module.scss";
 import { Link } from "react-router-dom";
 import { getSearchValue } from "@/redux/searchSlice";

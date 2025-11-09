@@ -4,6 +4,7 @@ import { FEATURE } from "@/constants/feature";
 import FeaturesList from "./features-list/FeaturesList";
 import { JSX, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Title } from "@/shared";
 
 function Features(): JSX.Element {
     const [isOpen, setIsOpen] = useState(true);
@@ -11,8 +12,8 @@ function Features(): JSX.Element {
         <div className={styles.feature}>
             <div className="container">
                 <div className={styles.top}>
-                    <h4 className={styles.title}>Технические характеристики</h4>
-                    <button type="button" onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <CircleMinus color="#ffffff" /> : <CirclePlus color="#ffffff" />}</button>
+                    <Title tag="h4">Технические характеристики</Title>
+                    <button className={styles.btn} type="button" onClick={() => setIsOpen(prev => !prev)}>{isOpen ? <CircleMinus color="#ffffff" /> : <CirclePlus color="#ffffff" />}</button>
                 </div>
                 <AnimatePresence initial={false}>
                     {

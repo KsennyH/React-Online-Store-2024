@@ -1,5 +1,5 @@
 .footer {
-  font-family: 'Scada', sans-serif;
+  font-family: var(--font-secondary);
   font-size: 1.125rem;
   @media (max-width: 991.98px) {
     font-size: 1rem;
@@ -13,7 +13,7 @@
     }
   }
   .content {
-    background-color: #414141;
+    background-color: var(--dark-bg);
     padding: 5rem 0;
     @media (max-width: 991.98px) {
       padding: 40px 0;
@@ -49,7 +49,7 @@
     }
   }
   .copyright {
-    background-color: #555555;
+    background-color: var(--grey-bg);
     padding: 2.5rem 0;
     text-align: center;
     @media (max-width: 575.98px) {
