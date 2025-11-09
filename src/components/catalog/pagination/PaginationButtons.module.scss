@@ -1,4 +1,5 @@
 .pagination {
+  font-family: var(--font-secondary);
   padding: 1.5625rem 0;
   .list {
     display: flex;
@@ -15,17 +16,17 @@
     cursor: pointer;
     width: 2.125rem;
     height: 2.125rem;
-    border: 0.0625rem solid #ffffff;
-    color: #fff;
+    border: 0.0625rem solid var(--default);
+    color: var(--default);
     padding: 0.3125rem;
     border-radius: 0.1875rem;
     &.active {
-      background-color: #f30e0e;
-      border-color: #f30e0e;
+      background-color: var(--text-accent);
+      border-color: var(--text-accent);
     }
     &:hover {
-      background-color: #f30e0e;
-      border-color: #f30e0e;
+      background-color: var(--text-accent-hover);
+      border-color: var(--text-accent-hover);
     }
     &--noBorder {
       border: none;

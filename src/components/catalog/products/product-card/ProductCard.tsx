@@ -3,11 +3,10 @@ import { addProduct } from '@/redux/cartSlice';
 import { useAppDispatch } from '@/app/store/store';
 import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.scss';
-import Button from '@/components/ui/Button';
-import { formatPrice } from '@/lib/formatPrice';
 import toast from 'react-hot-toast';
 import { Product } from '@/types/productTypes';
 import { CartItem } from '@/types/cartTypes';
+import { Button, ChangeColorButton, formatPrice } from '@/shared';
 
 const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element => {
     const { id, img, title, price, variants } = singleProduct;
@@ -47,15 +46,15 @@ const Card = memo(( { singleProduct }: { singleProduct: Product } ): JSX.Element
                             <div className={styles.label}>Цвет:</div>
                             <ul className={styles.list}>
                                 {variants.map((el, i: number) => (
-                                    <li key={i}>
-                                        <button type="button" onClick={() => setMotoColor(i)} className={`${styles.color} ${motoColor === i ? styles.active : ''}`} style={{ backgroundColor: el.color }}></button>
+                                    <li key={el.color}>
+                                        <ChangeColorButton color={el.color} isActive={motoColor === i} size='sm' onClick={() => setMotoColor(i)} />
                                     </li>
                                 ))}
                             </ul>
                         </div>
                         <div className={styles.information}> 
-                            <span className={styles.article}>Артикул: {variants[motoColor].article}</span>
-                            <span className={styles.text}>{variants[motoColor].available ? `В наличии: ${variants[motoColor].stock}` : "Под заказ"}</span>
+                            <span>Артикул: {variants[motoColor].article}</span>
+                            <span>{variants[motoColor].available ? `В наличии: ${variants[motoColor].stock}` : "Под заказ"}</span>
                         </div>
                     </div>
                 </div>
