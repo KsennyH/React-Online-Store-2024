@@ -1,4 +1,4 @@
-import Title from '@/components/ui/title/Title';
+import { Title } from '@/shared';
 import styles from './ProfilePage.module.scss';
 import AccountAside from '@/components/account-aside/AccountAside';
 

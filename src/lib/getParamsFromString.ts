@@ -1,5 +1,5 @@
 import { SORT_OPTIONS } from "@/constants/sortOptions";
-import { normalizeToArray } from "./normalizeToArray";
+import { normalizeToArray } from "@/shared";
 import { QueryParams } from "@/types/filterTypes";
 
 export const getParamsFromString = (params: QueryParams) => {
