@@ -1,7 +1,6 @@
 import { JSX } from "react";
 import styles from "./CommentForm.module.scss";
-import Title from "../ui/title/Title";
-import Button from "../ui/Button";
+import { Button, Title } from "@/shared";
 function CommentForm(): JSX.Element {
     return(
         <div className={styles.commentsForm}>
@@ -17,7 +16,7 @@ function CommentForm(): JSX.Element {
                 </label>
             </div>
             <textarea className={styles.textarea}></textarea>
-            <div className={styles.btn}><Button variant="primary">Отправить</Button></div>
+            <div className={styles.btn}><Button variant="primary" size="lg">Отправить</Button></div>
         </div>
     );
 }
