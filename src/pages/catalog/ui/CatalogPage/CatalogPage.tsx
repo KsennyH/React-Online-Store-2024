@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import Filter from '@/components/catalog/filters/Filter';
 import styles from './CatalogPage.module.scss';
-import SortingProduct from '@/components/catalog/sorting/SortingProduct';
-import SortBy from '@/components/catalog/sort/SortBy';
 import { FunnelPlus } from 'lucide-react';
 import Catalog from '@/components/catalog/Catalog';
+import { Filter, SortBy, SortingByCategory } from '@/features/product';
 
 export function CatalogPage() {
 
@@ -19,7 +17,7 @@ export function CatalogPage() {
                         <Filter isOpen={isOpen} />
                     </aside>
                     <div className={styles.products}>
-                        <SortingProduct />
+                        <SortingByCategory />
                         <div className={styles.sort}>
                             <SortBy />
                         </div>
