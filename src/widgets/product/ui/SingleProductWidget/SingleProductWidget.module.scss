@@ -1,0 +1,12 @@
+.info {
+  margin-bottom: 3rem;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 24px;
+  row-gap: 48px;
+  @media (max-width: 991.98px) {
+    flex-direction: column;
+  }
+}

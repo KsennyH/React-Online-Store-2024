@@ -1,0 +1,21 @@
+.popularProducts {
+  padding: 40px 0;
+  font-family: 'Scada', sans-serif;
+  font-size: 1.125rem;
+  position: relative;
+  .title {
+    text-align: left;
+    margin-bottom: 24px;
+  }
+}
+.keen-slider {
+  overflow: hidden;
+  position: relative;
+}
+
+.keen-slider__slide {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  min-height: auto;
+}
