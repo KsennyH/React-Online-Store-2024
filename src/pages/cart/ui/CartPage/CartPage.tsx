@@ -1,10 +1,10 @@
 import Cart from '@/components/cartItem/CartItem';
 import CartEmpty from '@/components/cartItem/empty/CartEmpty';
-import { useAppDispatch, useAppSelector } from '@/app/store/store';
 import styles from './CartPage.module.scss';
-import { cartProducts, clearCart, totalPrice } from "@/redux/cartSlice";
 import toast from 'react-hot-toast';
-import { Button, formatPrice, LinkButton, Title } from '@/shared';
+import { Button, LinkButton, Title } from '@/shared/ui';
+import { formatPrice, useAppDispatch, useAppSelector } from '@/shared/lib';
+import { cartProducts, clearCart, totalPrice } from '@/features/cart';
 
 export function CartPage() {
     const productsInCart = useAppSelector(state => cartProducts(state));
