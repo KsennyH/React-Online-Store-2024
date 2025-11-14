@@ -1,0 +1,26 @@
+.contactWidget {
+  font-family: var(--font-secondary);
+  background-color: var(--dark-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  .title {
+    margin-bottom: 12px;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+  a,
+  p {
+    font-size: 1rem;
+    line-height: 1.2;
+    color: var(--default);
+    word-break: break-word;
+  }
+
+  a:hover {
+    color: var(--text-accent);
+  }
+}
