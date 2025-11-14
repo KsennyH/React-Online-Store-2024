@@ -1,10 +1,12 @@
-import { MAIN_TEXT } from '@/constants/texts';
 import parse from 'html-react-parser';
 import styles from './HomePage.module.scss';
-import NewsCardList from '@/components/news-card-list/NewsCardList';
-import PopularProducts from '@/components/popular-products/PopularProducts';
-import { Title } from '@/shared';
-export function HomePage() {
+import { Title } from '@/shared/ui';
+import { JSX } from 'react';
+import { MAIN_TEXT } from '@/shared/constants';
+import { PopularProductsList } from '@/widgets/product';
+import { NewsCardList } from '@/widgets/article';
+
+export function HomePage(): JSX.Element {
     return (
         <div className={styles.home}>
             <div className="container">
@@ -14,7 +16,7 @@ export function HomePage() {
                         {parse(MAIN_TEXT)}
                     </div>
                 </div>
-                <PopularProducts />
+                <PopularProductsList />
                 <NewsCardList />
             </div> 
         </div>
