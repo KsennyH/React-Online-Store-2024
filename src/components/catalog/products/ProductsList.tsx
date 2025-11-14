@@ -1,8 +1,8 @@
-import { Product } from '@/types/productTypes';
-import ProductCard from './product-card/ProductCard';
+import { Product } from '@/entities/product';
 import styles from './ProductsList.module.scss';
 import { memo } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { ProductCardContainer } from '@/widgets/product';
 
 interface ProductsListProps {
     products: Product[];
@@ -19,7 +19,9 @@ const ProductsList = memo(({ products, isLoading}: ProductsListProps) => {
                 ))
                  : products.map((product) => (
                     <li key={product.id}>
-                        <ProductCard singleProduct={product}/>
+                        <ProductCardContainer 
+                            product={ product }
+                        />
                     </li>
                 ))
             }

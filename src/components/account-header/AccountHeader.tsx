@@ -1,7 +1,5 @@
-import UserActions from '../header/actions/UserActions';
-import AddressInfo from '../header/address/AddressInfo';
-import Logotype from '../header/logo/Logotype';
-import styles from './../header/Header.module.scss';
+import { Logotype } from '@/shared/ui';
+import styles from '@/app/layout/HeaderTemplate/Header/Header.module.scss';
 
 function AccountHeader() {
 
@@ -16,7 +14,6 @@ function AccountHeader() {
                         <div className={styles.actions}>
                             <div className={styles.form}>
                                 <div className={styles.userActions}>
-                                    <UserActions />
                                 </div>
                             </div>
                         </div>
