@@ -1,0 +1,43 @@
+.checkout {
+  font-family: var(--font-secondary);
+  padding: 48px 0;
+  &__title {
+    margin-bottom: 24px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 500px;
+  &__label {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__input {
+    height: 2rem;
+    padding: 0.3125rem 0.9375rem;
+    border: 0.0625rem solid #ffffff;
+    border-radius: 1.875rem;
+    background-color: #fff;
+    color: #555;
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: -0.0625rem 0px 0.5rem 0.0625rem #ffcbcb;
+    }
+  }
+  &__checkbox {
+    display: block;
+    padding: 1.875rem 0;
+    a {
+      text-decoration: underline;
+    }
+  }
+  &__btn {
+    width: 250px;
+  }
+}
