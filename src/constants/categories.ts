@@ -1,1 +1,0 @@
-export const CATEGORIES: string[] = ['Все', 'Мотоциклы', 'Мопеды', 'Скутеры'];
