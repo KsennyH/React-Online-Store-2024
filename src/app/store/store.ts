@@ -1,38 +1,36 @@
 import { configureStore } from '@reduxjs/toolkit';
-import filter from '../../redux/filterSlice';
-import cart from '../../redux/cartSlice';
-import search from '../../redux/searchSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { productApi } from '@/api/product/productApi';
+import { filterReducer, searchReducer } from '@/features/product';
+import { cartReducer } from '@/features/cart';
 import { persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { newsApi } from '@/api/news/newsApi';
+import { productApi } from '@/entities/product';
+import { newsApi } from '@/entities/article';
+import { categoryApi } from '@/entities/article-category';
+import { tagsApi } from '@/entities/tag';
 
 const cartPersistConfig = {
   key: 'cart',
   storage,
 };
 
-const persistedCartReducer = persistReducer(cartPersistConfig, cart);
+const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
 
 export const store = configureStore({
   reducer: {
-    filter,
+    filter: filterReducer,
     cart: persistedCartReducer,
-    search,
+    search: searchReducer,
     [productApi.reducerPath]: productApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
+    [categoryApi.reducerPath]: categoryApi.reducer,
+    [tagsApi.reducerPath]: tagsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat([productApi.middleware, newsApi.middleware]),
+    }).concat([productApi.middleware, newsApi.middleware, categoryApi.middleware, tagsApi.middleware]),
 })
 
 export const persistor = persistStore(store);
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
-export const useAppSelector = useSelector.withTypes<RootState>()

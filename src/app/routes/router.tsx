@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Account } from "@/components/account/Account";
 import { MainLayout } from "../layout/MainLayout";
-import { Loader } from "@/shared";
+import { Loader } from "@/shared/ui";
 
 const SingleProductPage = lazy(() => import ('@/pages/product'));
 const ServicesPage = lazy(() => import ('@/pages/services'));
@@ -10,10 +10,10 @@ const ContactsPage = lazy(() => import ('@/pages/contacts'));
 const CartPage = lazy(() => import ('@/pages/cart'));
 const ArticlesPage = lazy(() => import ('@/pages/articles'));
 const PostPage = lazy(() => import('@/pages/post'));
-const CheckoutPage = lazy(() => import('@/pages/checkout/CheckoutPage'));
+const CheckoutPage = lazy(() => import('@/pages/checkout'));
 const MainPage = lazy(() => import('@/pages/home'));
 const CatalogPage = lazy(() => import('@/pages/catalog'));
-const ProfilePage = lazy(() => import('@/pages/profile/ProfilePage'));
+const ProfilePage = lazy(() => import('@/pages/profile'));
 
 export const router = createBrowserRouter([
     {
