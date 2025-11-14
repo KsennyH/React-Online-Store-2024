@@ -1,8 +1,6 @@
-import PostCategories from "@/components/post-category/PostCategories";
-import PostList from "@/components/post-list/PostList";
-import Tags from "@/components/tags/Tags";
+import { ArticleAside, PostsList } from "@/widgets/article";
 import styles from "./ArticlesPage.module.scss";
-import { Title } from "@/shared";
+import { Title } from "@/shared/ui";
 
 export function ArticlesPage() {
 
@@ -13,12 +11,9 @@ export function ArticlesPage() {
                     <div className={styles.wrapper}>
                         <section className={styles.news}>
                             <Title className={styles.title} tag="h1">Статьи и новости</Title>
-                            <PostList />
+                            <PostsList />
                         </section>
-                        <aside className={styles.aside}>
-                            <PostCategories />
-                            <Tags />
-                        </aside>
+                        <ArticleAside />
                     </div>
                 </div>
             </div>
