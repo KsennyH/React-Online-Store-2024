@@ -1,0 +1,19 @@
+.category {
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  .title {
+    margin-bottom: 20px;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+  }
+  .link {
+    color: var(--default);
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: var(--text-accent);
+    }
+  }
+}

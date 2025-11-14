@@ -1,0 +1,1 @@
+export { categoryApi, useGetCategoriesQuery } from './categoryApi';

@@ -1,0 +1,1 @@
+export type { ArticleCategoryInterface } from './ArticleCategoryInterface';

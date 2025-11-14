@@ -1,0 +1,1 @@
+export type { ArticleTagInterface } from './ArticleTagInterface';

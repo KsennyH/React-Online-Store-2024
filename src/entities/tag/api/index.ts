@@ -1,0 +1,1 @@
+export { tagsApi, useGetTagsQuery } from './tagsApi';
