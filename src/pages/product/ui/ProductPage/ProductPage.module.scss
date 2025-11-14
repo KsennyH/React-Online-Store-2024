@@ -16,40 +16,8 @@
       flex-direction: column;
     }
   }
-  .content {
-    width: 40%;
-    @media (max-width: 575.98px) {
-      width: 100%;
-    }
-  }
-  .title {
-    font-weight: 700;
-    font-size: 2rem;
-    line-height: 1.25;
-    margin-bottom: 24px;
-  }
-  .colors {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 24px 0;
-  }
-  .colorList {
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
-  }
   .size {
     margin-bottom: 2.1875rem;
-  }
-  .price {
-    font-weight: 700;
-    font-size: 1.25rem;
-    display: inline-block;
-    margin-bottom: 2.1875rem;
-  }
-  .buttons {
-    max-width: 250px;
   }
   .text {
     font-family: var(--font-primary);
