@@ -1,0 +1,40 @@
+.sort {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  position: relative;
+  font-family: var(--font-secondary);
+  background: var(--grey-bg);
+  padding: 20px;
+  color: var(--default);
+  border-radius: 20px;
+  .criterion {
+    color: var(--text-accent-hover);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    z-index: 10;
+    background-color: var(--grey-bg);
+    border: 1px solid #5b5252;
+    border-radius: 10px;
+    padding: 20px;
+    color: var(--default);
+  }
+  .item:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .item {
+    cursor: pointer;
+    &:hover {
+      color: var(--text-accent-hover);
+    }
+    &.active {
+      color: var(--text-accent-hover);
+    }
+  }
+}

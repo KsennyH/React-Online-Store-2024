@@ -1,0 +1,14 @@
+.sorting {
+  font-family: var(--font-secondary);
+  padding: 0.9375rem 0;
+  .list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 0.3125rem;
+    column-gap: 0.9375rem;
+  }
+  @media (max-width: 767.98px) {
+    font-size: 1rem;
+  }
+}
