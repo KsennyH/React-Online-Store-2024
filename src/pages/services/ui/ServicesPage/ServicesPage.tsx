@@ -1,8 +1,8 @@
-import { SERVICE } from "@/constants/service";
 import parse from "html-react-parser";
 import styles from "./ServicesPage.module.scss";
 import { useState } from "react";
-import { Button, Title } from "@/shared";
+import { Button, Title } from "@/shared/ui";
+import { SERVICE } from "@/shared/constants";
 
 export function ServicesPage() {
     const [activeTab, setActiveTab] = useState(1);
