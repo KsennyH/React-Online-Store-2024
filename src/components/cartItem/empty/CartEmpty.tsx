@@ -1,4 +1,4 @@
-import { LinkButton, Title } from '@/shared';
+import { LinkButton, Title } from '@/shared/ui';
 import styles from './CartEmpty.module.scss';
 function EmptyCart() {
     return (

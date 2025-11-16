@@ -1,13 +1,12 @@
 import { getParamsFromString } from "@/lib/getParamsFromString";
-import { getFiltersValue, setQueryFromUrl } from "@/redux/filterSlice";
 import { QueryParams } from "@/types/filterTypes";
 import { useEffect, useRef } from "react";
 import qs from 'qs';
-import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import useSetQueryParams from "@/hooks/useSetQueryParams";
 import ProductsList from "./products/ProductsList";
-import PaginationButtons from "./pagination/PaginationButtons";
-import { useGetAllProductsQuery } from "@/api/product/productApi";
+import { useAppDispatch, useAppSelector } from "@/shared/lib";
+import { getFiltersValue, ProductPagination, setQueryFromUrl } from "@/features/product";
+import { useGetAllProductsQuery } from "@/entities/product";
 
 function Catalog() {
 
@@ -43,7 +42,7 @@ function Catalog() {
     return(
         <>
             <ProductsList products={data?.items ?? []} isLoading={isLoading} />
-            {data && data.meta.total_pages > 1 && (<PaginationButtons totalPages={data.meta.total_pages} />)}
+            {data && data.meta.total_pages > 1 && (<ProductPagination totalPages={data.meta.total_pages} />)}
         </>
         
 

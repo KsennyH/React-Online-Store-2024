@@ -1,0 +1,11 @@
+.checkboxBlock {
+  .title {
+    margin-bottom: 24px;
+  }
+  .item {
+    position: relative;
+  }
+  .item + .item {
+    margin-top: 0.625rem;
+  }
+}

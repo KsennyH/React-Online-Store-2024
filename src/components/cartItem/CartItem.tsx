@@ -1,11 +1,11 @@
-import { productDecrement, productIncrement, removeProduct } from "@/redux/cartSlice";
 import styles from './CartItem.module.scss';
 import Counter from "./counter/Counter";
 import { JSX } from "react";
-import { useAppDispatch } from "@/app/store/store";
 import toast from "react-hot-toast";
-import { CartItem } from "@/types/cartTypes";
-import { ChangeColorButton, CloseButton, formatPrice, Title } from "@/shared";
+import { ChangeColorButton, CloseButton, Title } from '@/shared/ui';
+import { formatPrice, useAppDispatch } from '@/shared/lib';
+import { CartItem } from '@/entities/cart';
+import { productDecrement, productIncrement, removeProduct } from '@/features/cart';
 
 const Cart = ({ cartProducts }: { cartProducts: CartItem }): JSX.Element => {
 

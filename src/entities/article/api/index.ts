@@ -1,0 +1,1 @@
+export { newsApi, useGetAllNewsQuery, useGetLatestNewsQuery, useGetSingleNewsQuery } from './newsApi';

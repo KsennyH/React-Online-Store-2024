@@ -1,4 +1,4 @@
-import { FilterSliceState, PaginationType, SortItem } from "@/redux/filterSlice";
+import { FilterSliceState, PaginationType, SortItem } from "@/shared/model";
 
 export const setQueryStringParams = (sortTypeValue: SortItem, categoryId: number, pagination: PaginationType, selected: FilterSliceState['selected']) => {
     

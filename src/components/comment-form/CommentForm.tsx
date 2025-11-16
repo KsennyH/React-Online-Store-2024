@@ -1,6 +1,6 @@
 import { JSX } from "react";
 import styles from "./CommentForm.module.scss";
-import { Button, Title } from "@/shared";
+import { Button, Title } from "@/shared/ui";
 function CommentForm(): JSX.Element {
     return(
         <div className={styles.commentsForm}>

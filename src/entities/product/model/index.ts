@@ -1,0 +1,1 @@
+export type { Product, ProductCardProps, FetchProducts, FetchProductsArgs } from './ProductInterface';

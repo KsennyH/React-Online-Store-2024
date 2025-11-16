@@ -1,0 +1,27 @@
+.addressInformation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  @media (max-width: 767.98px) {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+.addressInfoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  .icon {
+    margin-right: 0.625rem;
+    width: 16px;
+    height: 21px;
+  }
+  @media (max-width: 850px) {
+    .icon {
+      margin-right: 0;
+    }
+    .label {
+      display: none;
+    }
+  }
+}

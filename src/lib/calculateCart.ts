@@ -1,4 +1,4 @@
-import { CartSliceState } from "@/redux/cartSlice";
+import { CartSliceState } from "@/entities/cart";
 
 export const calculateCart = (state: CartSliceState) => {
     state.count = state.products.reduce((sum: number, item) => sum + item.productCount, 0);

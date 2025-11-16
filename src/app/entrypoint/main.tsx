@@ -5,7 +5,7 @@ import '../styles/index.scss';
 import { PersistGate } from 'redux-persist/integration/react';
 import { router } from '../routes';
 import { persistor, store } from '../store';
-import { Loader } from '@/shared';
+import { Loader } from '@/shared/ui';
 
 const rootElem = document.getElementById('root');
 

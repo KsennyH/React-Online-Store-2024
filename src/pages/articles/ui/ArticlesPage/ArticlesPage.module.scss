@@ -13,13 +13,4 @@
   .news {
     width: 100%;
   }
-  .aside {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    flex: 0 0 300px;
-    @media (max-width: 992.98px) {
-      width: 100%;
-    }
-  }
 }

@@ -1,4 +1,4 @@
-import { FilterSliceState, PaginationType, SortItem } from "@/types/filterTypes";
+import { FilterSliceState, PaginationType, SortItem } from '@/shared/model';
 import qs from 'qs';
 import { RefObject, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

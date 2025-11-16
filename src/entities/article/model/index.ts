@@ -1,0 +1,1 @@
+export type { PostInterface, SinglePostInterface } from './PostInterface';
